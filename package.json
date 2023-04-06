@@ -1,8 +1,15 @@
 {
   "name": "favlog-movies",
-  "private": true,
   "version": "0.0.1",
   "type": "module",
+  "description": "Favlog movies is a project using themoviedb api.",
+  "author": "Fabrizio Nucci",
+  "license": "MIT",
+  "homepage": "https://github.com/fabrinucci/react-favlog-movies",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabrinucci/react-favlog-movies.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
