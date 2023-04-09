@@ -1,5 +1,5 @@
-import { Movies, MoviesResult } from '../interfaces';
+import { MoviesResult } from '../interfaces';
 
-export const getRandomImage = (movies: Movies) => {
-  Math.floor(Math.random() * movies?.results.length);
+export const getRandomImage = (movies: MoviesResult[]) => {
+  return Math.floor(Math.random() * movies?.length);
 };
