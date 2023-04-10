@@ -17,11 +17,11 @@ export const Hero = () => {
               src={`https://image.tmdb.org/t/p/original${movies?.[randomMovie].backdrop_path}`}
               alt={movies?.[randomMovie].title}
             />
-            <div className='absolute left-10 top-[45%] min-[440px]:left-24 sm:left-40'>
-              <h1 className='my-2 pr-4 text-2xl font-semibold sm:text-3xl'>
+            <div className='absolute left-[50%] top-[60%] -translate-x-[50%] -translate-y-[50%] md:left-52 md:top-[40%] md:-translate-y-0 md:translate-x-0'>
+              <h1 className='mb-4 text-center text-2xl font-semibold sm:text-left sm:text-3xl md:mb-3'>
                 {movies?.[randomMovie].title}
               </h1>
-              <div className='flex flex-col items-start gap-3 sm:flex-row sm:items-center'>
+              <div className='flex flex-col items-center gap-3 sm:flex-row sm:items-center md:items-start'>
                 <p className='text-sm text-zinc-400'>
                   Released: {movies?.[randomMovie].release_date}
                 </p>
@@ -37,14 +37,14 @@ export const Hero = () => {
                   </div>
                 </div>
               </div>
-              <h2 className='mt-3 hidden text-sm leading-7 sm:block sm:w-[80%] sm:text-base lg:w-[70%]'>
+              <h2 className='mt-3 hidden text-sm leading-7 sm:w-[80%] sm:text-base md:block lg:w-[70%]'>
                 {movies?.[randomMovie].overview}
               </h2>
-              <div className='mt-5 flex gap-3'>
-                <button className='rounded-md border border-violet-600 bg-violet-600 px-5 py-2 duration-200 ease-in-out hover:bg-violet-700'>
+              <div className='mt-8 flex flex-col items-center gap-3 sm:flex-row md:mt-5 md:items-start'>
+                <button className='h-12 w-36 rounded-md border border-violet-600 bg-violet-600 px-5 py-2 duration-200 ease-in-out hover:bg-violet-700'>
                   Play
                 </button>
-                <button className='rounded-md border border-violet-600 bg-[#0000006b] px-5 py-2 duration-200 ease-in-out hover:bg-[#000000cc]'>
+                <button className='h-12 w-36 rounded-md border border-violet-600 bg-[#0000006b] px-5 py-2 duration-200 ease-in-out hover:bg-[#000000cc]'>
                   Watch Later
                 </button>
               </div>

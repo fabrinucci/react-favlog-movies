@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { MoviesResult } from '../interfaces';
+import { GiRoundStar } from 'react-icons/gi';
 
 interface Props {
   movies: MoviesResult[] | undefined;
@@ -35,14 +36,29 @@ export const MoviesCard = ({ movies, moviesTitle }: Props) => {
         <ul className='grid grid-cols-2 gap-6 sm:grid-cols-3 md:gap-4 lg:grid-cols-6 lg:gap-3'>
           {moviesSelected?.map((movie) => (
             <li key={movie.id}>
-              <article className='relative'>
-                <figure>
-                  <img
-                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                    alt={movie.title}
-                    className='rounded-sm'
-                  />
-                </figure>
+              <article className='container-movies'>
+                <img
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                  alt={movie.title}
+                  className='rounded-sm'
+                />
+                <div className='info-movies'>
+                  <h4 className='mb-1 text-sm font-semibold'>{movie.title}</h4>
+                  <div className='mb-2 flex items-center gap-2'>
+                    <p className='text-[.65rem] text-zinc-300'>
+                      {movie.release_date.split('-')[0]}
+                    </p>
+                    <div className='flex items-center gap-1'>
+                      <GiRoundStar size={10} />
+                      <p className='text-[.65rem] text-zinc-300'>
+                        {movie.vote_average}
+                      </p>
+                    </div>
+                  </div>
+                  <p className='mb-2 text-[.7rem] text-gray-300'>
+                    {movie.overview.slice(0, 80)}...
+                  </p>
+                </div>
               </article>
             </li>
           ))}

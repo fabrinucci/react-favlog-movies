@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getMovies } from '../api';
-import { Movies, MoviesResult } from '../interfaces';
+import { MoviesResult } from '../interfaces';
 
 export const useMovies = (type: string) => {
   const [movies, setMovies] = useState<MoviesResult[]>();

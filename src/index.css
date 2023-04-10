@@ -18,3 +18,37 @@ html {
   background-color: #8c3ab5;
   border-radius: 10px;
 }
+
+.container-movies {
+  position: relative;
+  cursor: pointer;
+}
+
+.info-movies {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(27, 9, 60, 0.9);
+  height: 100%;
+  width: 100%;
+  border-radius: 0.125rem;
+  color: #fff;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+.container-movies img {
+  transition: all 0.3s ease-in;
+}
+
+.container-movies:hover .info-movies {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.container-movies:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+}
