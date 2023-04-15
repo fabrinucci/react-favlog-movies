@@ -1,7 +1,7 @@
 import { Hero } from '../components/Hero';
 import { Main } from '../components/Main';
 
-export const Home = () => {
+export const HomePage = () => {
   return (
     <div>
       <Hero />

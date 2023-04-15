@@ -14,7 +14,7 @@ export interface Movie {
   poster_path:           string;
   production_companies:  ProductionCompany[];
   production_countries:  ProductionCountry[];
-  release_date:          Date;
+  release_date:          string;
   revenue:               number;
   runtime:               number;
   spoken_languages:      SpokenLanguage[];
@@ -47,4 +47,27 @@ export interface SpokenLanguage {
   english_name: string;
   iso_639_1:    string;
   name:         string;
+}
+
+export interface MovieCredits {
+  id:   number;
+  cast: Cast[];
+  crew: Cast[];
+}
+
+export interface Cast {
+  adult:                boolean;
+  gender:               number;
+  id:                   number;
+  known_for_department: string;
+  name:                 string;
+  original_name:        string;
+  popularity:           number;
+  profile_path:         null | string;
+  cast_id?:             number;
+  character?:           string;
+  credit_id:            string;
+  order?:               number;
+  department?:          string;
+  job?:                 string;
 }

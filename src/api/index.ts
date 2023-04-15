@@ -1,3 +1,3 @@
 export * from './moviesApi';
-export * from './getMovies';
+export * from './getDataFetch';
 export * from './secrets';

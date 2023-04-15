@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { useMovies } from '../hooks';
 import { GiRoundStar } from 'react-icons/gi';
 import { getRandomImage } from '../utils';
 
 export const Hero = () => {
+  const navigate = useNavigate();
   const { movies, loading } = useMovies('popular');
   const randomMovie = getRandomImage(movies!);
 
@@ -41,7 +43,10 @@ export const Hero = () => {
                 {movies?.[randomMovie].overview}
               </h2>
               <div className='mt-8 flex flex-col items-center gap-3 sm:flex-row md:mt-5 md:items-start'>
-                <button className='h-12 w-36 rounded-md border border-violet-600 bg-violet-600 px-5 py-2 duration-200 ease-in-out hover:bg-violet-700'>
+                <button
+                  onClick={() => navigate(`movie/${movies?.[randomMovie].id}`)}
+                  className='h-12 w-36 rounded-md border border-violet-600 bg-violet-600 px-5 py-2 duration-200 ease-in-out hover:bg-violet-700'
+                >
                   Play
                 </button>
                 <button className='h-12 w-36 rounded-md border border-violet-600 bg-[#0000006b] px-5 py-2 duration-200 ease-in-out hover:bg-[#000000cc]'>

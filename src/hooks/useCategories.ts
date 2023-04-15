@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getCategories } from '../api';
-import { Categories, Genre } from '../interfaces';
+import { Genre } from '../interfaces';
 
 export const useCategories = () => {
   const [categories, setCategories] = useState<Genre[]>();
