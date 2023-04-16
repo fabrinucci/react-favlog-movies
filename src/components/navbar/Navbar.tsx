@@ -1,5 +1,5 @@
-import { MdCameraRoll } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { MdCameraRoll } from 'react-icons/md';
 
 export const Navbar = () => {
   return (

@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
-import { HomePage } from './pages/HomePage';
-import { MoviePage } from './pages/MoviePage';
+import { Navbar } from './components/navbar';
+import { HomePage, MoviePage } from './pages';
 export const App = () => {
   return (
     <div className='font-sans'>

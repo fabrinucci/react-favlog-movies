@@ -1,4 +1,4 @@
-import { useCategories } from '../hooks/useCategories';
+import { useCategories } from '../../hooks';
 
 export const ShowCategories = () => {
   const { categories } = useCategories();

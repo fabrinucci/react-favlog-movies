@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useMovies } from '../hooks';
 import { GiRoundStar } from 'react-icons/gi';
-import { getRandomImage } from '../utils';
+import { useMovies } from '../../hooks';
+import { getRandomImage } from '../../utils';
 
 export const Hero = () => {
   const navigate = useNavigate();

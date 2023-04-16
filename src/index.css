@@ -8,6 +8,7 @@ html {
 
 *::-webkit-scrollbar {
   width: 7px;
+  height: 8px;
 }
 
 *::-webkit-scrollbar-track {
@@ -28,8 +29,7 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  padding: 10px;
+  padding: 20px 10px;
   background-color: rgba(27, 9, 60, 0.9);
   height: 100%;
   width: 100%;
@@ -37,6 +37,7 @@ html {
   color: #fff;
   opacity: 0;
   transition: all 0.3s ease-in;
+  text-align: center;
 }
 
 .container-movies img {
