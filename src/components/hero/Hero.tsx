@@ -8,9 +8,14 @@ export const Hero = () => {
   const { movies, loading } = useMovies('popular');
   const randomMovie = getRandomImage(movies!);
 
+  const handlePlay = () => {
+    navigate(`movie/${movies?.[randomMovie].id}`);
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <div className='relative h-[600px] w-full text-white'>
-      <div className='h-full w-full'>
+    <section className='relative h-[600px] w-full text-white'>
+      <div className='h-full w-full animate-fadeIn'>
         <div className='absolute h-[600px] w-full bg-gradient-to-r from-black'></div>
         {!loading && (
           <>
@@ -44,7 +49,7 @@ export const Hero = () => {
               </h2>
               <div className='mt-8 flex flex-col items-center gap-3 sm:flex-row md:mt-5 md:items-start'>
                 <button
-                  onClick={() => navigate(`movie/${movies?.[randomMovie].id}`)}
+                  onClick={handlePlay}
                   className='h-12 w-36 rounded-md border border-violet-600 bg-violet-600 px-5 py-2 duration-200 ease-in-out hover:bg-violet-700'
                 >
                   Play
@@ -57,6 +62,6 @@ export const Hero = () => {
           </>
         )}
       </div>
-    </div>
+    </section>
   );
 };

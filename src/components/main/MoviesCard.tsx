@@ -9,8 +9,12 @@ interface Props {
 }
 
 export const MoviesCard = ({ movies, moviesTitle, loading }: Props) => {
+  const handleNavigation = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <section>
+    <section className='animate-fadeIn'>
       <div className='py-5'>
         <div className='mb-5 flex items-center justify-between'>
           <h3 className='text-xl font-semibold md:text-2xl'>{moviesTitle}</h3>
@@ -24,7 +28,7 @@ export const MoviesCard = ({ movies, moviesTitle, loading }: Props) => {
                 className='relative inline-block w-[160px] cursor-pointer overflow-hidden p-2 sm:w-[200px] md:w-[240px]'
                 key={movie.id}
               >
-                <Link to={`/movie/${movie.id}`}>
+                <Link to={`/movie/${movie.id}`} onClick={handleNavigation}>
                   <article className='container-movies'>
                     <img
                       src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}

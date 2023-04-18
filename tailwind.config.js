@@ -8,6 +8,7 @@ export default {
     },
     animation: {
       fadeIn: 'fadeIn 1s ease-in',
+      loading: 'loading 1.5s ease-in infinite',
     },
     keyframes: {
       fadeIn: {
@@ -15,6 +16,17 @@ export default {
           opacity: 0,
         },
         to: {
+          opacity: 1,
+        },
+      },
+      loading: {
+        '0%': {
+          opacity: 1,
+        },
+        '40%': {
+          opacity: 0.3,
+        },
+        '100%': {
           opacity: 1,
         },
       },

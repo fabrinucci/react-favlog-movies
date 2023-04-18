@@ -60,9 +60,9 @@ export const MovieCast = ({ movieCredits }: Props) => {
                   : `${profileCast.name?.slice(0, 22)}...`}
               </h4>
               <h5 className='text-sm text-gray-300'>
-                {profileCast.character?.length! <= 26
+                {profileCast.character?.length! <= 22
                   ? profileCast.character
-                  : `${profileCast.character?.slice(0, 26)}...`}
+                  : `${profileCast.character?.slice(0, 22)}...`}
               </h5>
             </li>
           ))}

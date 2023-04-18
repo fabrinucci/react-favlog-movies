@@ -62,3 +62,15 @@ html {
     opacity: 1;
   }
 }
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
