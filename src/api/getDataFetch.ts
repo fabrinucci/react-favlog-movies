@@ -20,3 +20,8 @@ export const getCategories = async () => {
   const { data } = await moviesApi.get<Categories>('/genre/movie/list');
   return data.genres;
 };
+
+export const getMoviesBySearch = async (query: string) => {
+  const { data } = await moviesApi.get<Movies>(`search/movie?query=${query}`);
+  return data.results;
+};

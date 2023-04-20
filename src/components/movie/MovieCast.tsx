@@ -5,7 +5,7 @@ interface Props {
   movieCredits: MovieCredits;
 }
 
-const castImg = `https://image.tmdb.org/t/p/w500`;
+const castImg = 'https://image.tmdb.org/t/p/w500';
 const notFoundImg = '/assets/profileNotFound.jpg';
 
 export const MovieCast = ({ movieCredits }: Props) => {

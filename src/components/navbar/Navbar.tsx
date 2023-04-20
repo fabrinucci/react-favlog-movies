@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { MdCameraRoll } from 'react-icons/md';
+import { Search } from './';
 
 export const Navbar = () => {
   return (
@@ -8,6 +9,9 @@ export const Navbar = () => {
         <h2 className='text-xl font-semibold text-white'>Favlog</h2>
         <MdCameraRoll color='white' />
       </Link>
+
+      <Search />
+
       <div className='flex gap-2'>
         <button className='rounded-md border border-violet-600 bg-[#0000006b] px-5 py-2 text-white duration-200 ease-in-out hover:bg-[#000000b1]'>
           Sign In
