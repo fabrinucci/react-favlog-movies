@@ -19,11 +19,17 @@ export const Hero = () => {
         <div className='absolute h-[600px] w-full bg-gradient-to-r from-black'></div>
         {!loading && (
           <>
-            <img
-              className='h-full w-full object-cover'
-              src={`https://image.tmdb.org/t/p/original${movies?.[randomMovie].backdrop_path}`}
-              alt={movies?.[randomMovie].title}
-            />
+            <picture>
+              <source
+                media='(min-width:640px)'
+                srcSet={`https://image.tmdb.org/t/p/original${movies?.[randomMovie].backdrop_path}`}
+              />
+              <img
+                className='h-full w-full object-cover'
+                src={`https://image.tmdb.org/t/p/w500${movies?.[randomMovie].poster_path}`}
+                alt={movies?.[randomMovie].title}
+              />
+            </picture>
             <div className='absolute left-[50%] top-[60%] -translate-x-[50%] -translate-y-[50%] md:left-52 md:top-[40%] md:-translate-y-0 md:translate-x-0'>
               <h1 className='mb-4 text-center text-2xl font-semibold sm:text-left sm:text-3xl md:mb-3'>
                 {movies?.[randomMovie].title}

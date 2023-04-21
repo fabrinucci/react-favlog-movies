@@ -31,7 +31,7 @@ export const MoviesCard = ({ movies, moviesTitle, loading }: Props) => {
                 <Link to={`/movie/${movie.id}`} onClick={handleNavigation}>
                   <article className='container-movies'>
                     <img
-                      src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                       alt={movie.title}
                       className='block h-auto w-full rounded-sm'
                     />

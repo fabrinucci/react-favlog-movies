@@ -13,7 +13,7 @@ export const SearchPage = () => {
 
   return (
     <main>
-      <div className='h-[80px] w-full bg-gray-950'></div>
+      <div className='h-[120px] w-full bg-gray-950 sm:h-[80px]'></div>
       {loading ? (
         <div className='animate-loading px-4 py-4 md:px-8'>
           <div className='mb-4 h-9 w-64 rounded-full bg-gray-600'></div>
@@ -32,7 +32,7 @@ export const SearchPage = () => {
           <ul>
             {movies?.map((movie) => (
               <li className='mb-4' key={movie.id}>
-                <div className='flex animate-fadeIn flex-col items-center gap-4 sm:flex-row'>
+                <div className='flex animate-fadeIn flex-col items-center gap-4 sm:flex-row sm:items-start'>
                   <div>
                     <figure className='h-40 w-28 rounded-sm bg-gray-600'>
                       <img
@@ -47,11 +47,13 @@ export const SearchPage = () => {
                     </figure>
                   </div>
                   <div className='flex flex-col gap-1'>
-                    <h2 className='font-semibold'>{movie.title}</h2>
-                    <p className='text-sm text-gray-300'>
+                    <h2 className='text-center font-semibold sm:text-start'>
+                      {movie.title}
+                    </h2>
+                    <p className='text-center text-sm text-gray-300 sm:text-start'>
                       {movie.release_date}
                     </p>
-                    <p className='text-justify text-sm'>
+                    <p className='text-justify text-sm leading-7 sm:leading-6'>
                       {movie.overview.length > 300
                         ? `${movie.overview.slice(0, 300)}...`
                         : movie.overview}

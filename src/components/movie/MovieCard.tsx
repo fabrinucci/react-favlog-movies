@@ -39,7 +39,7 @@ export const MovieCard = ({ movie, movieCredits, loading }: Props) => {
           <div className='mx-auto w-[80%] animate-fadeIn sm:w-[60%] md:col-span-1 md:w-auto'>
             <img
               className='rounded-md'
-              src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
               alt={movie?.title}
             />
           </div>

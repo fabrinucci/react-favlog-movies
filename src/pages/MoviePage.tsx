@@ -8,9 +8,9 @@ export const MoviePage = () => {
   const { movieInfo: movieCredits } = useMovieInfo(params.id!, 'credits');
 
   return (
-    <main className='relative h-[80px] w-full text-white'>
+    <main className='relative h-[120px] w-full text-white sm:h-[80px]'>
       <div className='h-full w-full'>
-        <div className='absolute h-[80px] w-full bg-gradient-to-r from-black'></div>
+        <div className='absolute h-[120px] w-full bg-gradient-to-r from-black sm:h-[80px]'></div>
         {loading ? (
           <div className='h-full w-full bg-gray-900'></div>
         ) : (
