@@ -5,11 +5,12 @@ interface Props {
   movieCredits: MovieCredits;
 }
 
-const castImg = 'https://image.tmdb.org/t/p/w500';
-const notFoundImg = '/assets/profileNotFound.jpg';
+const castImg = 'https://image.tmdb.org/t/p/w300';
+const notFoundImg = '/assets/profileNotFound.webp';
 
 export const MovieCast = ({ movieCredits }: Props) => {
   const [showAllCast, setShowAllCast] = useState(false);
+
   let moviesCast;
 
   if (showAllCast) {
@@ -21,6 +22,7 @@ export const MovieCast = ({ movieCredits }: Props) => {
   const onToggleCast = () => {
     setShowAllCast(!showAllCast);
   };
+
   return (
     <section className='py-10 md:py-6'>
       <div className='mt-3'>
@@ -45,6 +47,7 @@ export const MovieCast = ({ movieCredits }: Props) => {
             >
               <div className='my-2 h-60 w-40 rounded-md bg-gray-600'>
                 <img
+                  loading='lazy'
                   className='h-60 w-40 rounded-md object-cover'
                   src={
                     profileCast.profile_path

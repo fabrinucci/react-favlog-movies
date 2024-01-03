@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { useSearchMovies } from '../hooks';
 
-const moviePath = 'https://image.tmdb.org/t/p/w500';
-const movieNotFound = '/assets/movieNotFound.jpg';
+const moviePath = 'https://image.tmdb.org/t/p/w300';
+const movieNotFound = '/assets/movieNotFound.webp';
 
 export const SearchPage = () => {
   const location = useLocation();
@@ -43,6 +43,7 @@ export const SearchPage = () => {
                             : movieNotFound
                         }
                         alt={movie.title}
+                        loading='lazy'
                       />
                     </figure>
                   </div>
