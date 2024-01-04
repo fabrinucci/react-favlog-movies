@@ -1,4 +1,4 @@
-import { MovieCard } from '@/components/ui';
+import { MovieCard } from '@/components/movie';
 
 interface Props {
   params: {
