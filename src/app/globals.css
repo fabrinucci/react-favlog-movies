@@ -2,26 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html {
+  @apply scroll-smooth bg-[#0e0e10] text-gray-100;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #13114b;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #8c3ab5;
+  border-radius: 10px;
+}
+
+.container-movies {
+  position: relative;
+  cursor: pointer;
+}
+
+.info-movies {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px 10px;
+  background-color: rgba(27, 9, 60, 0.9);
+  height: 100%;
+  width: 100%;
+  border-radius: 0.125rem;
+  color: #fff;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+  text-align: center;
+}
+
+.container-movies img {
+  transition: all 0.3s ease-in;
+}
+
+.container-movies:hover .info-movies {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.container-movies:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
 }
