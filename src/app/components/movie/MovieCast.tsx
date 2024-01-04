@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { MovieCredits } from '@/interfaces';
+import type { MovieCredits } from '@/interfaces';
 
 interface Props {
   movieCredits: MovieCredits;

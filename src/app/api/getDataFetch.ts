@@ -1,5 +1,5 @@
-import { Categories, MovieCredits, Movie, Movies } from '../interfaces';
-import { moviesApi } from '.';
+import type { Categories, MovieCredits, Movie, Movies } from '@/interfaces';
+import { moviesApi } from './';
 
 export const getMovies = async (type: string) => {
   const { data } = await moviesApi.get<Movies>(`/movie/${type}`);

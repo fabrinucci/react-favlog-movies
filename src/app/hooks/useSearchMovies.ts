@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getMoviesBySearch } from '../api';
-import { MoviesResult } from '../interfaces';
+import { getMoviesBySearch } from '@/api';
+import type { MoviesResult } from '@/interfaces';
 
 export const useSearchMovies = (query: string) => {
   const [movies, setMovies] = useState<MoviesResult[]>();

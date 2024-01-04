@@ -1,5 +1,5 @@
 'use client';
-import { useCategories } from '../../hooks';
+import { useCategories } from '@/hooks';
 
 export const ShowCategories = () => {
   const { categories } = useCategories();

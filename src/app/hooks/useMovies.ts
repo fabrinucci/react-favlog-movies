@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getMovies } from '../api';
-import { MoviesResult } from '../interfaces';
+import { getMovies } from '@/api';
+import type { MoviesResult } from '@/interfaces';
 
 export const useMovies = (type: string) => {
   const [movies, setMovies] = useState<MoviesResult[]>();

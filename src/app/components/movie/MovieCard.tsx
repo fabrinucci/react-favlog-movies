@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useMovie, useMovieInfo } from '@/hooks';
-import { MovieInfo, MovieCast } from '.';
+import { MovieInfo, MovieCast } from './';
 
 interface Props {
   id: string;

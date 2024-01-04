@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getMovieInfo } from '../api';
-import { MovieCredits } from '../interfaces';
+import { getMovieInfo } from '@/api';
+import type { MovieCredits } from '@/interfaces';
 
 export const useMovieInfo = (id: string, info: string) => {
   const [movieInfo, setMovieInfo] = useState<MovieCredits>();

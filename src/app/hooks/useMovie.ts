@@ -1,8 +1,6 @@
-'use client';
-
 import { useEffect, useState } from 'react';
-import { getMovie } from '../api';
-import { Movie } from '../interfaces';
+import { getMovie } from '@/api';
+import type { Movie } from '@/interfaces';
 
 export const useMovie = (id: string) => {
   const [movie, setMovie] = useState<Movie>();

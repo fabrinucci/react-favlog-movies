@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { GiRoundStar } from 'react-icons/gi';
-import { Movie, MovieCredits } from '@/interfaces';
+import type { Movie, MovieCredits } from '@/interfaces';
 
 interface Props {
   movie: Movie;
