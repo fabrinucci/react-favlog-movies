@@ -30,17 +30,20 @@ yarn dev
 
 ## Technologies
 
-- [React](https://react.dev/)
-- [Tailwindcss](https://tailwindcss.com/)
-- [TypeScript](https://www.typescriptlang.org/)
+[![ReactJS](https://img.shields.io/static/v1?label=&message=reactjs&color=149ECA&logo=react&logoColor=white&style=for-the-badge)](https://react.dev/)
+[![NextJS](https://img.shields.io/static/v1?label=&message=nextjs&color=0d0d0d&logo=next.js&logoColor=white&style=for-the-badge)](https://nextjs.org/)
+
+[![TypeScript](https://img.shields.io/static/v1?label=&message=typescript&color=3178C6&logo=typescript&logoColor=white&style=for-the-badge)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/static/v1?label=&message=TailwindCSS&color=06B6D4&logo=tailwindcss&logoColor=white&style=for-the-badge)](https://tailwindcss.com/)
 
 ## Author
 
 👤 **Fabrizio Nucci**
 
-- Github: [@fabrinucci](https://github.com/fabrinucci)
-- Twitter: [@FabrizioDev](https://twitter.com/FabrizioDev)
-- LinkedIn: [@fabrinucci](https://linkedin.com/in/fabrinucci)
+[![Website](https://img.shields.io/static/v1?label=&message=website&color=CCCCF1&style=for-the-badge)](https://fabrinucci.github.io)
+[![GitHub](https://img.shields.io/static/v1?label=&message=github&color=181717&logo=github&logoColor=white&style=for-the-badge)](https://github.com/fabrinucci)
+[![LinkedIn](https://img.shields.io/static/v1?label=&message=linkedin&color=0A66C2&logo=linkedin&logoColor=white&style=for-the-badge)](https://linkedin.com/in/fabrinucci)
+[![Twitter](https://img.shields.io/static/v1?label=&message=twitter&color=1D9BF0&logo=twitter&logoColor=white&style=for-the-badge)](https://twitter.com/FabrizioDev)
 
 ## Show your support
 
@@ -50,7 +53,3 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2023 [Fabrizio Nucci](https://github.com/fabrinucci).<br />
 This project is [MIT](https://github.com/fabrinucci/react-favlog-movies/blob/main/LICENSE) licensed.
-
----
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
