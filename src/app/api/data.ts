@@ -27,9 +27,9 @@ export const getMovie = async (id: string) => {
   }
 };
 
-export const getMovieInfo = async (id: string, info: string) => {
+export const getMovieCredits = async (id: string) => {
   try {
-    const { data } = await moviesApi.get<MovieCredits>(`/movie/${id}/${info}`);
+    const { data } = await moviesApi.get<MovieCredits>(`/movie/${id}/credits`);
     return data;
   } catch (error) {
     console.error('Database Error:', error);
