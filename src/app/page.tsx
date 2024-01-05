@@ -1,11 +1,15 @@
 import { Hero } from '@/components/hero';
 import { Main } from '@/components/main';
+import { getMovies } from './api';
 
-export default function Home() {
+export default async function HomePage() {
+  const popularMovies = await getMovies('popular');
+  const topRatedMovies = await getMovies('top_rated');
+
   return (
     <>
-      <Hero />
-      <Main />
+      <Hero movies={popularMovies.slice(0, 6)} />
+      <Main popularMovies={popularMovies} topRatedMovies={topRatedMovies} />
     </>
   );
 }

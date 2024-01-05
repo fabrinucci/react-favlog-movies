@@ -1,27 +1,16 @@
-'use client';
-
-import { useMovies } from '@/hooks';
+import type { MoviesResult } from '@/interfaces';
 import { MoviesCard } from './';
 
-export const Main = () => {
-  const { movies: popularMovies, loading: popularLoading } =
-    useMovies('popular');
+interface Props {
+  popularMovies: MoviesResult[];
+  topRatedMovies: MoviesResult[];
+}
 
-  const { movies: topRatedMovies, loading: topRatedLoading } =
-    useMovies('top_rated');
-
+export const Main = ({ popularMovies, topRatedMovies }: Props) => {
   return (
     <main className='bg-[#13114b] px-4 py-5 text-white sm:px-8 md:px-16'>
-      <MoviesCard
-        movies={popularMovies}
-        moviesTitle='Top Movies Today'
-        loading={popularLoading}
-      />
-      <MoviesCard
-        movies={topRatedMovies}
-        moviesTitle='Top Rated Movies'
-        loading={topRatedLoading}
-      />
+      <MoviesCard movies={popularMovies} moviesTitle='Top Movies Today' />
+      <MoviesCard movies={topRatedMovies} moviesTitle='Top Rated Movies' />
     </main>
   );
 };
