@@ -71,3 +71,5 @@ export interface Cast {
   department?:          string;
   job?:                 string;
 }
+
+export type MoviesType = 'popular' | 'top_rated' | 'upcoming'

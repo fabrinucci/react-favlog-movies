@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getMovies } from '@/api';
-import type { MoviesResult } from '@/interfaces';
+import type { MoviesType, MoviesResult } from '@/interfaces';
 
-export const useMovies = (type: string) => {
+export const useMovies = (type: MoviesType) => {
   const [movies, setMovies] = useState<MoviesResult[]>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
