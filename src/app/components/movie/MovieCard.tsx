@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import { Suspense } from 'react';
 import { MovieInfo, MovieCast } from './';
 import type { Movie, MovieCredits } from '@/interfaces';
+import { MovieInfoSkeleton } from '@/components/skeletons';
 
 interface Props {
   movie: Movie;
@@ -20,7 +22,9 @@ export const MovieCard = ({ movie, movieCredits }: Props) => {
       />
 
       <div className='px-4 md:px-8'>
-        <MovieInfo movie={movie} movieCredits={movieCredits} />
+        <Suspense fallback={<MovieInfoSkeleton />}>
+          <MovieInfo movie={movie} movieCredits={movieCredits} />
+        </Suspense>
         <MovieCast movieCredits={movieCredits} />
       </div>
     </section>
