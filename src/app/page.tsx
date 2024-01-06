@@ -8,7 +8,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero movies={popularMovies.slice(0, 6)} />
+      <Hero movies={popularMovies.slice(0, 5)} />
       <Main popularMovies={popularMovies} topRatedMovies={topRatedMovies} />
     </>
   );
