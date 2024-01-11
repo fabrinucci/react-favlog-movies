@@ -1,14 +1,19 @@
+'use client';
+
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import type { MoviesResult } from '@/interfaces';
 
 interface Props {
   movies: MoviesResult[];
-  query: string;
 }
 
-export const SearchMovies = ({ movies, query }: Props) => {
+export const SearchMovies = ({ movies }: Props) => {
+  const searchParams = useSearchParams();
+  const query = searchParams.get('query');
+
   const MOVIE_PATH = 'https://image.tmdb.org/t/p/w300';
-  const MOVIE_NOT_FOUND = '/assets/movieNotFound.webp';
+  const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
 
   return (
     <section>
@@ -26,7 +31,7 @@ export const SearchMovies = ({ movies, query }: Props) => {
                 <div>
                   <figure className='h-40 w-28 rounded-sm bg-gray-600'>
                     <Image
-                      className='h-full w-full rounded-sm object-cover'
+                      className='object-fit h-full w-full rounded-sm'
                       src={
                         movie.poster_path
                           ? `${MOVIE_PATH}${movie.poster_path}`

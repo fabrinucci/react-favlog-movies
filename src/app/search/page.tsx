@@ -12,7 +12,7 @@ export default async function SearchPage({ searchParams }: Props) {
 
   return (
     <main>
-      <SearchMovies movies={searchedMovies} query={searchParams.query} />
+      <SearchMovies movies={searchedMovies} />
     </main>
   );
 }
