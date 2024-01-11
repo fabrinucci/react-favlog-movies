@@ -7,6 +7,17 @@ import type {
 } from '@/interfaces';
 import { moviesApi } from './';
 
+export const getHeroMovie = async () => {
+  try {
+    const { data } = await moviesApi.get<Movies>('/movie/popular');
+    const movie = data.results[0];
+    return movie;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch movies data.');
+  }
+};
+
 export const getMovies = async (type: MoviesType) => {
   try {
     const { data } = await moviesApi.get<Movies>(`/movie/${type}`);
