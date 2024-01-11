@@ -1,15 +1,15 @@
 import Image from 'next/image';
-import { Suspense } from 'react';
 import { MovieInfo, MovieCast } from './';
-import type { Movie, MovieCredits } from '@/interfaces';
-import { MovieInfoSkeleton } from '@/components/skeletons';
+import { getMovie, getMovieCredits } from '@/api';
 
 interface Props {
-  movie: Movie;
-  movieCredits: MovieCredits;
+  id: string;
 }
 
-export const MovieCard = ({ movie, movieCredits }: Props) => {
+export async function MovieCard({ id }: Props) {
+  const movie = await getMovie(id);
+  const movieCredits = await getMovieCredits(id);
+
   return (
     <section className='h-full w-full'>
       <div className='absolute h-[120px] w-full bg-gradient-to-r from-black sm:h-[80px]'></div>
@@ -17,16 +17,14 @@ export const MovieCard = ({ movie, movieCredits }: Props) => {
         className='h-full w-full object-cover'
         src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
         alt={movie?.title}
-        height={800}
-        width={800}
+        height={200}
+        width={1000}
       />
 
       <div className='px-4 md:px-8'>
-        <Suspense fallback={<MovieInfoSkeleton />}>
-          <MovieInfo movie={movie} movieCredits={movieCredits} />
-        </Suspense>
+        <MovieInfo movie={movie} movieCredits={movieCredits} />
         <MovieCast movieCredits={movieCredits} />
       </div>
     </section>
   );
-};
+}

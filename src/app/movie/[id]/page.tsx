@@ -1,5 +1,7 @@
 import { getMovie, getMovieCredits } from '@/api';
 import { MovieCard } from '@/components/movie';
+import { MovieCardSkeleton } from '@/components/skeletons/MovieCardSkeleton';
+import { Suspense } from 'react';
 
 interface Props {
   params: {
@@ -8,12 +10,11 @@ interface Props {
 }
 
 export default async function MoviePage({ params }: Props) {
-  const movie = await getMovie(params.id);
-  const movieCredits = await getMovieCredits(params.id);
-
   return (
     <main className='relative h-[120px] w-full text-white sm:h-[80px]'>
-      <MovieCard movie={movie} movieCredits={movieCredits} />
+      <Suspense fallback={<MovieCardSkeleton />}>
+        <MovieCard id={params.id} />
+      </Suspense>
     </main>
   );
 }

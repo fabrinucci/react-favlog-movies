@@ -32,7 +32,7 @@ const config: Config = {
           opacity: '1',
         },
         '40%': {
-          opacity: '0.3',
+          opacity: '0.6',
         },
         '100%': {
           opacity: '1',
