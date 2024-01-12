@@ -1,7 +1,6 @@
-import { getMovie, getMovieCredits } from '@/api';
-import { MovieCard } from '@/components/movie';
-import { MovieCardSkeleton } from '@/components/skeletons/MovieCardSkeleton';
 import { Suspense } from 'react';
+import { MovieCard } from '@/components/movie';
+import { MovieCardSkeleton } from '@/components/skeletons';
 
 interface Props {
   params: {

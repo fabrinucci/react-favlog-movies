@@ -1,7 +1,7 @@
-import { MoviesResult } from '@/interfaces';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
+import type { MoviesResult } from '@/interfaces';
 
 interface Props {
   movie: MoviesResult;

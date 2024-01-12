@@ -1,6 +1,6 @@
 import Image from 'next/image';
+import { getMovie, getMovieCredits } from '@/lib';
 import { MovieInfo, MovieCast } from './';
-import { getMovie, getMovieCredits } from '@/api';
 
 interface Props {
   id: string;

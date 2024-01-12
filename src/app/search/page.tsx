@@ -1,4 +1,4 @@
-import { getMoviesBySearch } from '@/api';
+import { getMoviesBySearch } from '@/lib';
 import { SearchMovies } from '@/components/search';
 
 interface Props {

@@ -1,5 +1,7 @@
 import { HeroCard } from './HeroCard';
-import { getHeroMovie } from '@/api';
+import { getHeroMovie } from '@/lib';
+
+export const revalidate = 60 * 60 * 24;
 
 export async function Hero() {
   const movie = await getHeroMovie();

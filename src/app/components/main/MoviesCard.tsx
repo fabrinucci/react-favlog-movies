@@ -1,5 +1,5 @@
+import { getMovies } from '@/lib';
 import type { MoviesType } from '@/interfaces';
-import { getMovies } from '@/api';
 import MovieCardList from './MovieCardList';
 
 interface Props {

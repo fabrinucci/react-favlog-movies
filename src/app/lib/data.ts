@@ -5,7 +5,7 @@ import type {
   Movies,
   MoviesType,
 } from '@/interfaces';
-import { moviesApi } from './';
+import { moviesApi } from '.';
 
 export const getHeroMovie = async () => {
   try {
