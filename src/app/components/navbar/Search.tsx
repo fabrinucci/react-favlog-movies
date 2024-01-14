@@ -13,6 +13,7 @@ export const Search = () => {
     const params = new URLSearchParams();
     if (term) {
       params.set('query', term);
+      params.set('page', '1');
       router.push(`/search?${params.toString()}`);
     } else {
       params.delete('query');

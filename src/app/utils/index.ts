@@ -7,3 +7,9 @@ export const getRandomImage = (movies: MoviesResult[]) => {
 export const getYear = (movieRelease: string) => {
   return movieRelease.split('-')[0];
 };
+
+export const validatedPage = (page: number) => {
+  if (isNaN(page)) return 1;
+  if (page > 500) return 1;
+  return page;
+};

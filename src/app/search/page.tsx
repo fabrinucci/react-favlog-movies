@@ -1,18 +1,29 @@
+import { redirect } from 'next/navigation';
+import { Pagination, SearchMovies } from '@/components/search';
 import { getMoviesBySearch } from '@/lib';
-import { SearchMovies } from '@/components/search';
+import { validatedPage } from '@/utils';
 
 interface Props {
   searchParams: {
     query: string;
+    page: string;
   };
 }
 
 export default async function SearchPage({ searchParams }: Props) {
-  const searchedMovies = await getMoviesBySearch(searchParams.query);
+  const { query, page } = searchParams;
+  const searchedMovies = await getMoviesBySearch({
+    query: query || '',
+    page: validatedPage(Number(page)),
+  });
+
+  if (Number(page) > searchedMovies.total_pages || isNaN(Number(page)))
+    redirect(`/search?query=${query}&page=1`);
 
   return (
     <main>
-      <SearchMovies movies={searchedMovies} />
+      <SearchMovies movies={searchedMovies.results} />
+      <Pagination movies={searchedMovies} />
     </main>
   );
 }

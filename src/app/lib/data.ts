@@ -5,7 +5,12 @@ import type {
   Movies,
   MoviesType,
 } from '@/interfaces';
-import { moviesApi } from '.';
+import { moviesApi } from './';
+
+interface MovieSearchProps {
+  query: string;
+  page: number;
+}
 
 export const getHeroMovie = async () => {
   try {
@@ -58,10 +63,12 @@ export const getCategories = async () => {
   }
 };
 
-export const getMoviesBySearch = async (query: string) => {
+export const getMoviesBySearch = async ({ query, page }: MovieSearchProps) => {
   try {
-    const { data } = await moviesApi.get<Movies>(`search/movie?query=${query}`);
-    return data.results;
+    const { data } = await moviesApi.get<Movies>(
+      `search/movie?query=${query}&page=${page}`
+    );
+    return data;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch movies data.');
