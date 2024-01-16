@@ -1,31 +1,35 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
 export const Search = () => {
-  const [search, setSearch] = useState<string>('');
+  const WAIT_BETWEEN_CHANGE = 400;
+
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
+  const handleChange = useDebouncedCallback((term: string) => {
+    const params = new URLSearchParams();
+    if (term) {
+      params.set('query', term);
+      params.set('page', '1');
+      router.push(`/search?${params.toString()}`);
+    } else {
+      params.delete('query');
+      router.push('/');
+    }
+  }, WAIT_BETWEEN_CHANGE);
 
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    router.push(`/search?query=${search}`);
-    setSearch('');
-  };
   return (
-    <form onSubmit={handleSearch}>
+    <div>
       <input
         className='h-8 w-40 rounded-md bg-[rgba(250,250,250,0.5)] px-3 py-1 text-black transition-all placeholder:text-black hover:bg-slate-200 hover:outline-slate-200 focus:outline-1 focus:outline-slate-200 sm:h-10 sm:w-56'
         type='text'
         placeholder='Search'
-        onChange={handleChange}
-        name='search'
-        value={search}
+        onChange={(e) => handleChange(e.target.value)}
+        defaultValue={searchParams.get('query')?.toString()}
       />
-    </form>
+    </div>
   );
 };

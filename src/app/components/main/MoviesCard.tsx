@@ -1,18 +1,14 @@
-'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { GiRoundStar } from 'react-icons/gi';
-import type { MoviesResult } from '@/interfaces';
+import { getMovies } from '@/lib';
+import type { MoviesType } from '@/interfaces';
+import MovieCardList from './MovieCardList';
 
 interface Props {
-  movies: MoviesResult[] | undefined;
+  movieType: MoviesType;
   moviesTitle: string;
 }
 
-export const MoviesCard = ({ movies, moviesTitle }: Props) => {
-  const handleNavigation = () => {
-    window.scrollTo(0, 0);
-  };
+export async function MoviesCard({ movieType, moviesTitle }: Props) {
+  const movies = await getMovies(movieType);
 
   return (
     <section className='animate-fadeIn'>
@@ -23,41 +19,10 @@ export const MoviesCard = ({ movies, moviesTitle }: Props) => {
 
         <ul className='scrollbar-hide relative h-full w-full overflow-x-scroll scroll-smooth whitespace-nowrap'>
           {movies?.map((movie) => (
-            <li
-              className='relative inline-block w-[160px] cursor-pointer overflow-hidden p-2 sm:w-[200px] md:w-[240px]'
-              key={movie.id}
-            >
-              <Link href={`/movie/${movie.id}`} onClick={handleNavigation}>
-                <article className='container-movies'>
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                    alt={movie.title}
-                    className='block h-auto w-full rounded-sm'
-                    height={300}
-                    width={300}
-                  />
-                  <div className='info-movies hidden lg:block'>
-                    <h4 className='mb-1 text-sm font-semibold'>
-                      {movie.title}
-                    </h4>
-                    <div className='mb-2 flex items-center justify-center gap-2'>
-                      <p className='text-[.65rem] text-zinc-300'>
-                        {movie.release_date.split('-')[0]}
-                      </p>
-                      <div className='flex items-center gap-1'>
-                        <GiRoundStar size={10} />
-                        <p className='text-[.65rem] text-zinc-300'>
-                          {movie.vote_average}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </Link>
-            </li>
+            <MovieCardList key={movie.id} movie={movie} />
           ))}
         </ul>
       </div>
     </section>
   );
-};
+}
