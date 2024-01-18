@@ -27,7 +27,7 @@ export const MovieCast = ({ movieCredits }: Props) => {
   };
 
   return (
-    <section className='py-10 md:py-6'>
+    <section className='mt-6'>
       <div className='mt-3'>
         <div className='flex items-center justify-between pb-3'>
           <h3 className='text-xl font-semibold'>Cast:</h3>
@@ -40,9 +40,7 @@ export const MovieCast = ({ movieCredits }: Props) => {
             </button>
           )}
         </div>
-        <ul
-          className={`grid grid-cols-1 justify-items-center gap-2 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6`}
-        >
+        <ul className='grid grid-cols-1 justify-items-center gap-2 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
           {moviesCast?.map((profileCast) => (
             <li
               className='flex animate-fadeIn flex-col items-center justify-center'

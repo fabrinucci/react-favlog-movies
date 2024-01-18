@@ -21,7 +21,7 @@ export async function MovieCard({ id }: Props) {
         width={1000}
       />
 
-      <div className='px-4 md:px-8'>
+      <div className='p-6 md:p-8'>
         <MovieInfo movie={movie} movieCredits={movieCredits} />
         <MovieCast movieCredits={movieCredits} />
       </div>
