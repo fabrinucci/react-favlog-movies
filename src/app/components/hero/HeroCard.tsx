@@ -47,8 +47,10 @@ export const HeroCard = ({ movie }: Props) => {
               Trending
             </p>
             <div className='flex items-center justify-center gap-2'>
-              <GiRoundStar size={20} />
-              <p className='leading-4'>{movie.vote_average}</p>
+              <div>
+                <GiRoundStar size={20} />
+              </div>
+              <p className='leading-4'>{movie.vote_average.toFixed(1)}</p>
             </div>
           </div>
         </div>
