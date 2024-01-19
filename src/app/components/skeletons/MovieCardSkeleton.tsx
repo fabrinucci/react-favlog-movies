@@ -5,11 +5,11 @@ export const MovieCardSkeleton = () => {
       <div className='h-[120px] bg-gradient-to-r from-black sm:h-[80px]'></div>
 
       {/* MovieCard */}
-      <div className='px-4 md:px-8'>
+      <div className='p-6 md:p-8'>
         {/* MovieInfo */}
-        <section className='grid gap-8 py-10 md:grid-cols-3 md:py-6'>
+        <section className='grid gap-8 md:grid-cols-3'>
           {/* MovieInfoImage */}
-          <div className='mx-auto h-[400px] w-[70%] rounded-md bg-gray-500 sm:h-[500px] sm:w-[60%] md:col-span-1 md:h-[350px] md:w-full lg:h-[600px]'></div>
+          <div className='mx-auto h-[500px] w-full overflow-clip rounded-md bg-gray-400 min-[460px]:w-[80%] sm:h-[600px] md:h-[400px] md:w-full lg:h-[500px]'></div>
 
           {/* MovieInfoDetails */}
           <div className='h-screen w-full md:col-span-2 md:h-auto md:w-auto'>

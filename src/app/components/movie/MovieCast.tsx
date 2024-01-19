@@ -40,38 +40,42 @@ export const MovieCast = ({ movieCredits }: Props) => {
             </button>
           )}
         </div>
-        <ul className='grid grid-cols-1 justify-items-center gap-2 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
-          {moviesCast?.map((profileCast) => (
-            <li
-              className='flex animate-fadeIn flex-col items-center justify-center'
-              key={profileCast.id}
-            >
-              <figure className='my-2 h-60 w-40 rounded-md bg-gray-600'>
-                <Image
-                  className='h-60 w-40 rounded-md object-cover'
-                  src={
-                    profileCast.profile_path
-                      ? `${CAST_IMG}${profileCast.profile_path}`
-                      : NOT_FOUND_IMG
-                  }
-                  alt={profileCast.name}
-                  height={300}
-                  width={300}
-                />
-              </figure>
-              <h4>
-                {profileCast.name?.length! <= 22
-                  ? profileCast.name
-                  : `${profileCast.name?.slice(0, 22)}...`}
-              </h4>
-              <h5 className='text-sm text-gray-300'>
-                {profileCast.character?.length! <= 22
-                  ? profileCast.character
-                  : `${profileCast.character?.slice(0, 22)}...`}
-              </h5>
-            </li>
-          ))}
-        </ul>
+        {movieCredits?.cast.length === 0 ? (
+          <p className='text-lg'>No cast available</p>
+        ) : (
+          <ul className='grid grid-cols-1 justify-items-center gap-2 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
+            {moviesCast?.map((profileCast) => (
+              <li
+                className='flex animate-fadeIn flex-col items-center justify-center'
+                key={profileCast.id}
+              >
+                <figure className='my-2 h-60 w-40 rounded-md bg-gray-600'>
+                  <Image
+                    className='h-60 w-40 rounded-md object-cover'
+                    src={
+                      profileCast.profile_path
+                        ? `${CAST_IMG}${profileCast.profile_path}`
+                        : NOT_FOUND_IMG
+                    }
+                    alt={profileCast.name}
+                    height={300}
+                    width={300}
+                  />
+                </figure>
+                <h4>
+                  {profileCast.name?.length! <= 22
+                    ? profileCast.name
+                    : `${profileCast.name?.slice(0, 22)}...`}
+                </h4>
+                <h5 className='text-sm text-gray-300'>
+                  {profileCast.character?.length! <= 22
+                    ? profileCast.character
+                    : `${profileCast.character?.slice(0, 22)}...`}
+                </h5>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );

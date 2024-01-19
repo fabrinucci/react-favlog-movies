@@ -19,22 +19,41 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
     (member) => member.job === 'Writer'
   );
 
-  const { genres, poster_path, release_date, overview, title, vote_average } =
-    movie;
+  const {
+    genres,
+    poster_path,
+    release_date,
+    overview,
+    title,
+    vote_average,
+    vote_count,
+  } = movie;
 
   const movieVotesAvg = Number(vote_average.toFixed(1));
 
+  const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
+
   return (
     <section className='grid gap-8 md:grid-cols-3'>
-      <div className='mx-auto w-[70%] animate-fadeIn rounded-md sm:w-[50%] md:col-span-1 md:w-auto'>
+      <div className='mx-auto h-[500px] w-full animate-fadeIn overflow-clip rounded-md bg-gray-400 min-[460px]:w-[80%] sm:h-[600px] md:h-[400px] md:w-full lg:h-[500px]'>
         <picture>
           <source
             media='(min-width:640px)'
-            srcSet={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            srcSet={
+              poster_path
+                ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                : MOVIE_NOT_FOUND
+            }
           />
           <Image
-            className='rounded-md'
-            src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+            className={`h-full w-full rounded-md ${
+              poster_path ? 'object-cover' : ''
+            } object-center`}
+            src={
+              poster_path
+                ? `https://image.tmdb.org/t/p/w300${poster_path}`
+                : MOVIE_NOT_FOUND
+            }
             alt={title}
             height={500}
             width={500}
@@ -49,26 +68,36 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
           <h2 className='text-center text-2xl font-semibold sm:text-3xl'>
             {title}
           </h2>
-          <div className='flex gap-5'>
-            <h3 className='text-xl font-semibold sm:text-2xl'>
-              {release_date.split('-')[0]}
-            </h3>
-            <div
-              className={`flex items-center gap-2  ${
-                movieVotesAvg < 3 && 'text-red-600'
-              }  ${
-                movieVotesAvg >= 3 && movieVotesAvg < 6 && 'text-orange-400'
-              } ${movieVotesAvg >= 6 && movieVotesAvg < 7 && 'text-yellow-400'} 
+          <div className='flex items-center gap-5'>
+            {release_date && (
+              <h3 className='text-xl font-semibold sm:text-2xl'>
+                {release_date.split('-')[0]}
+              </h3>
+            )}
+            {vote_count === 0 ? (
+              <div className='flex h-[55px] w-[55px] items-center justify-center rounded-full border-2 border-gray-200 text-gray-200'>
+                <p className='text-center'>N/R</p>
+              </div>
+            ) : (
+              <div
+                className={`flex items-center gap-2  ${
+                  movieVotesAvg < 3 && 'text-red-600'
+                }  ${
+                  movieVotesAvg >= 3 && movieVotesAvg < 6 && 'text-orange-400'
+                } ${
+                  movieVotesAvg >= 6 && movieVotesAvg < 7 && 'text-yellow-400'
+                } 
               ${movieVotesAvg >= 7 && movieVotesAvg <= 8 && 'text-green-400'}
               ${movieVotesAvg >= 8 && 'text-green-700'}
               
             `}
-            >
-              <GiRoundStar size={22} />
-              <h3 className='text-xl font-semibold sm:text-2xl'>
-                {movieVotesAvg}
-              </h3>
-            </div>
+              >
+                <GiRoundStar size={22} />
+                <h3 className='text-xl font-semibold sm:text-2xl'>
+                  {movieVotesAvg}
+                </h3>
+              </div>
+            )}
           </div>
         </div>
         <div className='my-4'>
