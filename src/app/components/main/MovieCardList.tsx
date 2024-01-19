@@ -20,16 +20,19 @@ export default async function MovieCardList({ movie }: Props) {
               fill
             />
           </figure>
-          <div className='info-movies hidden lg:block'>
-            <h4 className='mb-1 text-sm font-semibold'>{movie.title}</h4>
+
+          <div className='info-movies hidden hover:scale-110 md:block'>
+            <h4 className='text-md mb-2 text-wrap font-semibold'>
+              {movie.title}
+            </h4>
             <div className='mb-2 flex items-center justify-center gap-2'>
-              <p className='text-[.65rem] text-zinc-300'>
+              <p className='text-sm text-zinc-300'>
                 {movie.release_date.split('-')[0]}
               </p>
               <div className='flex items-center gap-1'>
                 <GiRoundStar size={10} />
-                <p className='text-[.65rem] text-zinc-300'>
-                  {movie.vote_average}
+                <p className='text-sm text-zinc-300'>
+                  {movie.vote_average.toFixed(1)}
                 </p>
               </div>
             </div>
