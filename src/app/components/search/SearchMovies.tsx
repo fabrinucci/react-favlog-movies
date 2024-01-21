@@ -13,8 +13,8 @@ export const SearchMovies = ({ movies }: Props) => {
   const query = searchParams.get('query');
 
   return (
-    <section>
-      <div className='h-[120px] w-full bg-gray-950 sm:h-[80px]'></div>
+    <section className='pt-[120px] sm:pt-[80px]'>
+      {/* <div className='h-[120px] w-full bg-gray-950 sm:h-[80px]'></div> */}
       <div className='p-6 md:p-8'>
         <h2 className='mb-6 text-2xl'>
           {movies?.length! > 0

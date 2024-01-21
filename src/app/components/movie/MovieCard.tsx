@@ -12,14 +12,19 @@ export async function MovieCard({ id }: Props) {
 
   return (
     <section className='h-full w-full'>
-      <div className='absolute h-[120px] w-full bg-gradient-to-r from-black sm:h-[80px]'></div>
-      <Image
-        className='h-full w-full object-cover'
-        src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
-        alt={movie?.title}
-        height={200}
-        width={1000}
-      />
+      {movie.backdrop_path ? (
+        <figure>
+          <Image
+            className='h-[120px] w-full object-cover sm:h-[80px]'
+            src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+            alt={movie?.title}
+            height={200}
+            width={1000}
+          />
+        </figure>
+      ) : (
+        <div className='h-[120px] sm:h-[80px]'></div>
+      )}
 
       <div className='p-6 md:p-8'>
         <MovieInfo movie={movie} movieCredits={movieCredits} />

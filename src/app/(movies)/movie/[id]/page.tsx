@@ -10,7 +10,7 @@ interface Props {
 
 export default async function MoviePage({ params }: Props) {
   return (
-    <main className='relative h-[120px] w-full text-white sm:h-[80px]'>
+    <main>
       <Suspense fallback={<MovieCardSkeleton />}>
         <MovieCard id={params.id} />
       </Suspense>

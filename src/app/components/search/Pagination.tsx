@@ -41,7 +41,7 @@ export const Pagination = ({ movies }: Props) => {
     return createPagination(endingPage).slice(startingPage - 1);
   };
   return (
-    <div className='flex justify-center gap-6'>
+    <section className='flex justify-center gap-6'>
       {currentPage > 1 && (
         <>
           <Link
@@ -88,6 +88,6 @@ export const Pagination = ({ movies }: Props) => {
           </Link>
         </>
       )}
-    </div>
+    </section>
   );
 };
