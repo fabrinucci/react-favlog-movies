@@ -11,7 +11,8 @@ interface Props {
 export default async function MoviePage({ params }: Props) {
   return (
     <Suspense fallback={<MovieCardSkeleton />}>
-      <MovieCard id={params.id} />
+      {/* <MovieCard id={params.id} /> */}
+      <MovieCardSkeleton />
     </Suspense>
   );
 }

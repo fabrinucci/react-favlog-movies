@@ -16,7 +16,7 @@ const config: Config = {
     },
     animation: {
       fadeIn: 'fadeIn 1s ease-in',
-      loading: 'loading 1.5s ease-in infinite',
+      loading: 'loading 2s ease-in infinite',
     },
     keyframes: {
       fadeIn: {
