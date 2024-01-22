@@ -20,6 +20,10 @@ html {
   border-radius: 10px;
 }
 
+f {
+  color: #e0d8f1;
+}
+
 .container-movies {
   position: relative;
   cursor: pointer;

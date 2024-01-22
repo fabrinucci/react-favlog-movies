@@ -12,7 +12,7 @@ export default async function MovieCardList({ movie }: Props) {
     <li className='relative inline-block w-[160px] cursor-pointer overflow-hidden p-2 sm:w-[200px] md:w-[240px]'>
       <Link href={`/movie/${movie.id}`}>
         <article className='container-movies'>
-          <figure className='relative h-[250px] w-auto rounded-sm bg-gray-600 sm:h-[300px] md:h-[350px]'>
+          <figure className='relative h-[250px] w-auto rounded-sm bg-purple-400 sm:h-[300px] md:h-[350px]'>
             <Image
               src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
               alt={movie.title}

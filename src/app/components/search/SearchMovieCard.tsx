@@ -14,7 +14,7 @@ export const SearchMovieCard = ({ movie }: Props) => {
     <li className='mb-4' key={movie.id}>
       <div className='flex animate-fadeIn flex-col items-center gap-4 sm:flex-row sm:items-start'>
         <Link href={`/movie/${movie.id}`}>
-          <figure className='h-40 w-28 rounded-sm bg-gray-600'>
+          <figure className='h-40 w-28 rounded-sm bg-purple-400'>
             <Image
               className='object-fit h-full w-full rounded-sm'
               src={

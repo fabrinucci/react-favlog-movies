@@ -49,7 +49,7 @@ export const MovieCast = ({ movieCredits }: Props) => {
                 className='flex animate-fadeIn flex-col items-center justify-center'
                 key={profileCast.id}
               >
-                <figure className='my-2 h-60 w-40 rounded-md bg-gray-600'>
+                <figure className='my-2 h-60 w-40 rounded-md bg-purple-400'>
                   <Image
                     className='h-60 w-40 rounded-md object-cover'
                     src={

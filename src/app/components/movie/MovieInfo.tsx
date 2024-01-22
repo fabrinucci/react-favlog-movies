@@ -35,7 +35,7 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
 
   return (
     <section className='grid gap-8 md:grid-cols-3'>
-      <div className='mx-auto h-[500px] w-full animate-fadeIn overflow-clip rounded-md bg-gray-400 min-[460px]:w-[80%] sm:h-[600px] md:h-[400px] md:w-full lg:h-[500px]'>
+      <div className='mx-auto h-[500px] w-full animate-fadeIn overflow-clip rounded-md bg-purple-400 min-[460px]:w-[80%] sm:h-[600px] md:h-[400px] md:w-full lg:h-[500px]'>
         <picture>
           <source
             media='(min-width:640px)'
