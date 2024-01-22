@@ -12,7 +12,7 @@ html {
 }
 
 *::-webkit-scrollbar-track {
-  background: #13114b;
+  background: #2b114b;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -30,7 +30,7 @@ html {
   top: 0;
   left: 0;
   padding: 30px 15px;
-  background-color: rgba(27, 9, 60, 0.9);
+  background-color: #331963e6;
   height: 100%;
   width: 100%;
   border-radius: 0.125rem;

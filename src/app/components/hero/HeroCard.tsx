@@ -39,7 +39,7 @@ export const HeroCard = ({ movie }: Props) => {
         </h1>
 
         <div className='flex flex-col items-center gap-3 sm:flex-row sm:items-center md:items-start'>
-          <p className='text-sm text-zinc-400'>
+          <p className='text-sm text-purple-300'>
             Released: {movie.release_date}
           </p>
           <div className='flex gap-3'>

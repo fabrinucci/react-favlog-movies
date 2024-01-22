@@ -23,11 +23,11 @@ export default async function SearchPage({ searchParams }: Props) {
     redirect(`/search?query=${query}&page=1`);
 
   return (
-    <main>
+    <>
       <SearchMovies movies={searchedMovies.results} />
       {searchedMovies.results.length !== 0 && (
         <Pagination movies={searchedMovies} />
       )}
-    </main>
+    </>
   );
 }

@@ -11,7 +11,7 @@ export async function MovieCard({ id }: Props) {
   const movieCredits = await getMovieCredits(id);
 
   return (
-    <section className='h-full w-full'>
+    <section>
       {movie.backdrop_path ? (
         <figure>
           <Image

@@ -8,7 +8,7 @@ export default function HomePageLayout({
   return (
     <>
       <Hero />
-      {children}
+      <main className='px-4 py-5 sm:px-8 md:px-16'>{children}</main>
     </>
   );
 }

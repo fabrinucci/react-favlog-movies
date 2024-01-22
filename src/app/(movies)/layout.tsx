@@ -6,7 +6,7 @@ export default function HomePageLayout({
   return (
     <>
       <section className='absolute h-[120px] w-full  bg-gradient-to-r from-violet-900 sm:h-[80px]'></section>
-      {children}
+      <main>{children}</main>
     </>
   );
 }

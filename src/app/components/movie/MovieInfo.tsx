@@ -75,20 +75,18 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
               </h3>
             )}
             {vote_count === 0 ? (
-              <div className='flex h-[55px] w-[55px] items-center justify-center rounded-full border-2 border-gray-200 text-gray-200'>
+              <div className='flex h-[55px] w-[55px] items-center justify-center rounded-full border-2 border-purple-200 text-purple-200'>
                 <p className='text-center'>N/R</p>
               </div>
             ) : (
               <div
-                className={`flex items-center gap-2  ${
-                  movieVotesAvg < 3 && 'text-red-600'
-                }  ${
-                  movieVotesAvg >= 3 && movieVotesAvg < 6 && 'text-orange-400'
+                className={`flex items-center gap-2 ${
+                  movieVotesAvg > 0 && movieVotesAvg < 6 && 'text-orange-400'
                 } ${
-                  movieVotesAvg >= 6 && movieVotesAvg < 7 && 'text-yellow-400'
+                  movieVotesAvg >= 6 && movieVotesAvg < 7 && 'text-yellow-300'
                 } 
-              ${movieVotesAvg >= 7 && movieVotesAvg <= 8 && 'text-green-400'}
-              ${movieVotesAvg >= 8 && 'text-green-700'}
+              ${movieVotesAvg >= 7 && movieVotesAvg < 8 && 'text-lime-400'}
+              ${movieVotesAvg >= 8 && 'text-green-400'}
               
             `}
               >
@@ -102,15 +100,17 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
         </div>
         <div className='my-4'>
           <h3 className='text-lg font-semibold'>Categories:</h3>
-          <ul className='flex gap-4'>
+          <ul className='mt-2 flex gap-4'>
             {genres.map((category) => (
-              <li key={category.id}>{category.name}</li>
+              <li className='rounded-md bg-violet-600 p-2' key={category.id}>
+                {category.name}
+              </li>
             ))}
           </ul>
         </div>
         <div className='my-4'>
           <h3 className='text-lg font-semibold'>Overview:</h3>
-          <p className='max-w-[700px] text-justify leading-7 text-zinc-300'>
+          <p className='max-w-[700px] text-justify leading-7 text-purple-200'>
             {overview}
           </p>
         </div>
@@ -119,21 +119,21 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
           {director && (
             <div>
               <h3 className='text-base font-semibold'>{director.name}</h3>
-              <h4 className='text-sm text-gray-300'>Director</h4>
+              <h4 className='text-sm text-purple-200'>Director</h4>
             </div>
           )}
           {producers &&
             producers.map((producer) => (
               <div key={producer.id}>
                 <h3 className='text-base font-semibold'>{producer.name}</h3>
-                <h4 className='text-sm text-gray-300'>Producer</h4>
+                <h4 className='text-sm text-purple-200'>Producer</h4>
               </div>
             ))}
           {writers &&
             writers.map((writer) => (
               <div key={writer.id}>
                 <h3 className='text-base font-semibold'>{writer.name}</h3>
-                <h4 className='text-sm text-gray-300'>Writer</h4>
+                <h4 className='text-sm text-purple-200'>Writer</h4>
               </div>
             ))}
         </div>

@@ -34,7 +34,7 @@ export const MovieCast = ({ movieCredits }: Props) => {
           {movieCredits?.cast.length! > 6 && (
             <button
               onClick={onToggleCast}
-              className='rounded-md bg-violet-600 px-4 py-1 font-semibold text-gray-200 md:py-2'
+              className='rounded-md bg-violet-600 px-4 py-1 font-semibold md:py-2'
             >
               {showAllCast ? 'Hide cast' : 'Show all cast'}
             </button>
@@ -67,7 +67,7 @@ export const MovieCast = ({ movieCredits }: Props) => {
                     ? profileCast.name
                     : `${profileCast.name?.slice(0, 22)}...`}
                 </h4>
-                <h5 className='text-sm text-gray-300'>
+                <h5 className='text-sm text-purple-200'>
                   {profileCast.character?.length! <= 22
                     ? profileCast.character
                     : `${profileCast.character?.slice(0, 22)}...`}

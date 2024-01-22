@@ -31,7 +31,7 @@ export const SearchMovieCard = ({ movie }: Props) => {
         <div className='flex flex-col gap-2'>
           <div>
             <Link href={`/movie/${movie.id}`}>
-              <h3 className='text-center font-semibold transition-colors duration-200 sm:text-start md:inline md:hover:text-gray-400'>
+              <h3 className='text-center font-semibold transition-colors duration-200 sm:text-start md:inline md:hover:text-violet-300'>
                 {movie.title}
               </h3>
             </Link>

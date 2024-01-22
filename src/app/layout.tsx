@@ -20,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} min-h-[100vh] bg-[#1d0a36] text-purple-100`}
+      >
         <header>
           <Navbar />
         </header>
