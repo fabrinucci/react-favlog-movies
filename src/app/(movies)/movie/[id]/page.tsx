@@ -1,10 +1,20 @@
 import { Suspense } from 'react';
+import type { Metadata } from 'next';
 import { MovieCard } from '@/components/movie';
 import { MovieCardSkeleton } from '@/components/skeletons';
+import { getMovie } from '@/lib';
 
 interface Props {
   params: {
     id: string;
+  };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const movie = await getMovie(params.id);
+  return {
+    title: movie.title,
+    description: `View the details about ${movie.title}`,
   };
 }
 
