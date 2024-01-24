@@ -39,6 +39,7 @@ export const getMovie = async (id: string) => {
     return data;
   } catch (error) {
     console.error('Database Error:', error);
+    return null;
     throw new Error('Failed to fetch movie data.');
   }
 };

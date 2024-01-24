@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import { MovieCard } from '@/components/movie';
 import { MovieCardSkeleton } from '@/components/skeletons';
 import { getMovie } from '@/lib';
@@ -13,12 +14,15 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const movie = await getMovie(params.id);
   return {
-    title: movie.title,
-    description: `View the details about ${movie.title}`,
+    title: movie?.title,
+    description: `View the details about ${movie?.title}`,
   };
 }
 
 export default async function MoviePage({ params }: Props) {
+  const movie = await getMovie(params.id);
+  if (!movie) redirect('/');
+
   return (
     <Suspense fallback={<MovieCardSkeleton />}>
       <MovieCard id={params.id} />

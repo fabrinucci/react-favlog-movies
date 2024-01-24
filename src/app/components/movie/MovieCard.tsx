@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import { getMovie, getMovieCredits } from '@/lib';
 import { MovieInfo, MovieCast } from './';
+import { Movie } from '@/interfaces';
 
 interface Props {
   id: string;
 }
 
 export async function MovieCard({ id }: Props) {
-  const movie = await getMovie(id);
+  const movie = (await getMovie(id)) as Movie;
   const movieCredits = await getMovieCredits(id);
 
   return (
@@ -16,8 +17,8 @@ export async function MovieCard({ id }: Props) {
         <figure>
           <Image
             className='h-[120px] w-full object-cover sm:h-[80px]'
-            src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
-            alt={movie?.title}
+            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+            alt={movie.title}
             height={200}
             width={1000}
           />
