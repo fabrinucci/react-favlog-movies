@@ -6,13 +6,14 @@ import type {
   MoviesType,
 } from '@/interfaces';
 import { moviesApi } from './';
+import { cache } from 'react';
 
 interface MovieSearchProps {
   query: string;
   page: number;
 }
 
-export const getHeroMovie = async () => {
+export const getHeroMovie = cache(async () => {
   try {
     const { data } = await moviesApi.get<Movies>('/movie/popular');
     const movie = data.results[0];
@@ -21,9 +22,9 @@ export const getHeroMovie = async () => {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch movies data.');
   }
-};
+});
 
-export const getMovies = async (type: MoviesType) => {
+export const getMovies = cache(async (type: MoviesType) => {
   try {
     const { data } = await moviesApi.get<Movies>(`/movie/${type}`);
     return data.results;
@@ -31,7 +32,7 @@ export const getMovies = async (type: MoviesType) => {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch movies data.');
   }
-};
+});
 
 export const getMovie = async (id: string) => {
   try {
