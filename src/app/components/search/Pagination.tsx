@@ -2,6 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
+
+import {
+  RxArrowLeft,
+  RxDoubleArrowLeft,
+  RxArrowRight,
+  RxDoubleArrowRight,
+} from 'react-icons/rx';
+
 import { Movies } from '@/interfaces';
 
 interface Props {
@@ -41,20 +49,20 @@ export const Pagination = ({ movies }: Props) => {
     return createPagination(endingPage).slice(startingPage - 1);
   };
   return (
-    <div className='flex justify-center gap-6'>
+    <section className='flex justify-center gap-6'>
       {currentPage > 1 && (
         <>
           <Link
             href={`${pathname}?query=${query}&page=1`}
-            className='rounded-lg bg-gray-500 p-3 duration-200 ease-in-out hover:bg-violet-500'
+            className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
           >
-            {'<<<'}
+            <RxDoubleArrowLeft />
           </Link>
           <Link
             href={`${pathname}?query=${query}&page=${currentPage - 1}`}
-            className='rounded-lg bg-gray-500 p-3 duration-200 ease-in-out hover:bg-violet-500'
+            className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
           >
-            {'<'}
+            <RxArrowLeft />
           </Link>
         </>
       )}
@@ -64,8 +72,8 @@ export const Pagination = ({ movies }: Props) => {
           href={`${pathname}?query=${query}&page=${searchPage}`}
           className={`rounded-lg p-3 ${
             currentPage === searchPage
-              ? 'bg-violet-600'
-              : 'bg-gray-500 duration-200 ease-in-out hover:bg-violet-500'
+              ? 'bg-violet-700'
+              : 'bg-violet-500 duration-200 ease-in-out hover:bg-violet-700'
           }`}
         >
           {searchPage}
@@ -75,19 +83,19 @@ export const Pagination = ({ movies }: Props) => {
         <>
           <Link
             href={`${pathname}?query=${query}&page=${currentPage + 1}`}
-            className='rounded-lg bg-gray-500 p-3 duration-200 ease-in-out hover:bg-violet-500'
+            className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
           >
-            {'>'}
+            <RxArrowRight />
           </Link>
 
           <Link
             href={`${pathname}?query=${query}&page=${totalPages}`}
-            className='rounded-lg bg-gray-500 p-3 duration-200 ease-in-out hover:bg-violet-500'
+            className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
           >
-            {'>>>'}
+            <RxDoubleArrowRight />
           </Link>
         </>
       )}
-    </div>
+    </section>
   );
 };
