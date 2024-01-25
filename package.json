@@ -1,6 +1,6 @@
 {
   "name": "favlog-movies",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Favlog movies is a project using themoviedb api.",
   "author": "Fabrizio Nucci",
   "license": "MIT",
