@@ -13,6 +13,12 @@ interface MovieSearchProps {
   page: number;
 }
 
+interface MovieCastProps {
+  id: string;
+  start?: number;
+  end?: number;
+}
+
 export const getHeroMovie = cache(async () => {
   try {
     const { data } = await moviesApi.get<Movies>('/movie/popular');
@@ -45,10 +51,23 @@ export const getMovie = async (id: string) => {
   }
 };
 
-export const getMovieCredits = async (id: string) => {
+export const getMovieCrew = async ({ id }: { id: string }) => {
   try {
     const { data } = await moviesApi.get<MovieCredits>(`/movie/${id}/credits`);
-    return data;
+    return data.crew;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch movie data.');
+  }
+};
+
+export const getMovieCast = async ({ id, start, end }: MovieCastProps) => {
+  try {
+    const { data } = await moviesApi.get<MovieCredits>(`/movie/${id}/credits`);
+    if (typeof start === 'number') {
+      return data.cast.slice(start, end);
+    }
+    return data.cast;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch movie data.');

@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { getMovie, getMovieCredits } from '@/lib';
-import { MovieInfo, MovieCast } from './';
-import { Movie } from '@/interfaces';
+import Link from 'next/link';
+import { getMovie, getMovieCast, getMovieCrew } from '@/lib';
+import { MovieInfo, SmallMovieCast } from './';
+import type { Movie } from '@/interfaces';
 
 interface Props {
   id: string;
@@ -9,7 +10,8 @@ interface Props {
 
 export async function MovieCard({ id }: Props) {
   const movie = (await getMovie(id)) as Movie;
-  const movieCredits = await getMovieCredits(id);
+  const movieCast = await getMovieCast({ id });
+  const movieCrew = await getMovieCrew({ id });
 
   return (
     <section>
@@ -28,8 +30,27 @@ export async function MovieCard({ id }: Props) {
       )}
 
       <div className='p-6 md:p-8'>
-        <MovieInfo movie={movie} movieCredits={movieCredits} />
-        <MovieCast movieCredits={movieCredits} />
+        <MovieInfo movie={movie} movieCrew={movieCrew} />
+
+        {movieCast.length === 0 ? (
+          <section className='mt-6'>
+            <h3 className='text-xl font-semibold'>No cast available</h3>
+          </section>
+        ) : (
+          <section className='mt-6'>
+            <div className='flex items-center justify-between pb-3'>
+              <h3 className='text-xl font-semibold'>Cast:</h3>
+              <Link
+                href={`/movie/${movie.id}/cast`}
+                className='rounded-md border border-violet-600 bg-violet-600 px-4 py-3 font-semibold text-white duration-200 ease-in-out md:hover:scale-110'
+              >
+                View full cast
+              </Link>
+            </div>
+
+            <SmallMovieCast movieId={id} />
+          </section>
+        )}
       </div>
     </section>
   );

@@ -52,7 +52,7 @@ export interface SpokenLanguage {
 export interface MovieCredits {
   id:   number;
   cast: Cast[];
-  crew: Cast[];
+  crew: Crew[];
 }
 
 export interface Cast {
@@ -64,12 +64,15 @@ export interface Cast {
   original_name:        string;
   popularity:           number;
   profile_path:         null | string;
-  cast_id?:             number;
-  character?:           string;
+  cast_id:              number;
+  character:            string;
   credit_id:            string;
-  order?:               number;
-  department?:          string;
-  job?:                 string;
+  order:                number;
+}
+
+export interface Crew extends Omit<Cast, 'cast_id' | 'character' | 'order'> {
+  department: string;
+  job:        string   
 }
 
 export type MoviesType = 'popular' | 'top_rated' | 'upcoming'

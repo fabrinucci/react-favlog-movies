@@ -1,23 +1,17 @@
 import Image from 'next/image';
 import { GiRoundStar } from 'react-icons/gi';
-import type { Movie, MovieCredits } from '@/interfaces';
+import type { Crew, Movie } from '@/interfaces';
 
 interface Props {
   movie: Movie;
-  movieCredits: MovieCredits;
+  movieCrew: Crew[];
 }
 
-export const MovieInfo = ({ movie, movieCredits }: Props) => {
-  const director = movieCredits?.crew.find(
-    (member) => member.job === 'Director'
-  );
-  const producers = movieCredits?.crew.filter(
-    (member) => member.job === 'Producer'
-  );
+export const MovieInfo = ({ movie, movieCrew }: Props) => {
+  const director = movieCrew.find((member) => member.job === 'Director');
+  const producers = movieCrew.filter((member) => member.job === 'Producer');
 
-  const writers = movieCredits?.crew.filter(
-    (member) => member.job === 'Writer'
-  );
+  const writers = movieCrew.filter((member) => member.job === 'Writer');
 
   const {
     genres,
@@ -100,7 +94,7 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
         </div>
         <div className='my-4'>
           <h3 className='text-lg font-semibold'>Categories:</h3>
-          <ul className='mt-2 flex gap-4'>
+          <ul className='mt-2 flex flex-wrap gap-4'>
             {genres.map((category) => (
               <li className='rounded-md bg-violet-600 p-2' key={category.id}>
                 {category.name}
