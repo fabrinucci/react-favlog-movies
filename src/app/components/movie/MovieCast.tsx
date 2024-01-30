@@ -7,7 +7,8 @@ interface Props {
 }
 
 const CAST_IMG = 'https://image.tmdb.org/t/p/w300';
-const NOT_FOUND_IMG = '/assets/profileNotFound.webp';
+const NOT_FOUND_F = '/assets/profileFemaleNF.svg';
+const NOT_FOUND_M = '/assets/profileMaleNF.svg';
 
 export async function MovieCast({ movieId }: Props) {
   const movieCast = await getMovieCast({ id: movieId });
@@ -26,7 +27,9 @@ export async function MovieCast({ movieId }: Props) {
                 src={
                   profileCast.profile_path
                     ? `${CAST_IMG}${profileCast.profile_path}`
-                    : NOT_FOUND_IMG
+                    : profileCast.gender === 1
+                    ? NOT_FOUND_F
+                    : NOT_FOUND_M
                 }
                 alt={profileCast.name}
                 height={100}
@@ -35,7 +38,11 @@ export async function MovieCast({ movieId }: Props) {
             </figure>
           </Link>
           <div>
-            <h4>{profileCast.name}</h4>
+            <Link href={`/person/${profileCast.id}`}>
+              <h4 className='mb-1 font-semibold transition-colors md:hover:text-violet-300'>
+                {profileCast.name}
+              </h4>
+            </Link>
             <h5 className='text-sm text-purple-200'>{profileCast.character}</h5>
           </div>
         </li>

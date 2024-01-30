@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
 import type { Crew, Movie } from '@/interfaces';
 
@@ -112,21 +113,33 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
         <div className='my-4 grid gap-4 min-[400px]:grid-cols-2 sm:grid-cols-3 sm:gap-6'>
           {director && (
             <div>
-              <h3 className='text-base font-semibold'>{director.name}</h3>
+              <Link href={`/person/${director.id}`}>
+                <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
+                  {director.name}
+                </h3>
+              </Link>
               <h4 className='text-sm text-purple-200'>Director</h4>
             </div>
           )}
           {producers &&
             producers.map((producer) => (
               <div key={producer.id}>
-                <h3 className='text-base font-semibold'>{producer.name}</h3>
+                <Link href={`/person/${producer.id}`}>
+                  <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
+                    {producer.name}
+                  </h3>
+                </Link>
                 <h4 className='text-sm text-purple-200'>Producer</h4>
               </div>
             ))}
           {writers &&
             writers.map((writer) => (
               <div key={writer.id}>
-                <h3 className='text-base font-semibold'>{writer.name}</h3>
+                <Link href={`/person/${writer.id}`}>
+                  <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
+                    {writer.name}
+                  </h3>
+                </Link>
                 <h4 className='text-sm text-purple-200'>Writer</h4>
               </div>
             ))}

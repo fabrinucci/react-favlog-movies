@@ -8,7 +8,8 @@ interface Props {
 }
 
 const CREW_IMG = 'https://image.tmdb.org/t/p/w300';
-const NOT_FOUND_IMG = '/assets/profileNotFound.webp';
+const NOT_FOUND_F = '/assets/profileFemaleNF.svg';
+const NOT_FOUND_M = '/assets/profileMaleNF.svg';
 
 export async function MovieCrew({ movieId }: Props) {
   const movieCast = await getMovieCrew({ id: movieId });
@@ -29,7 +30,9 @@ export async function MovieCrew({ movieId }: Props) {
                 src={
                   profileCrew.profile_path
                     ? `${CREW_IMG}${profileCrew.profile_path}`
-                    : NOT_FOUND_IMG
+                    : profileCrew.gender === 1
+                    ? NOT_FOUND_F
+                    : NOT_FOUND_M
                 }
                 alt={profileCrew.name}
                 height={100}
@@ -38,7 +41,11 @@ export async function MovieCrew({ movieId }: Props) {
             </figure>
           </Link>
           <div>
-            <h4>{profileCrew.name}</h4>
+            <Link href={`/person/${profileCrew.id}`}>
+              <h4 className='mb-1 font-semibold transition-colors md:hover:text-violet-300'>
+                {profileCrew.name}
+              </h4>
+            </Link>
             <h5 className='text-sm text-purple-200'>{profileCrew.job}</h5>
           </div>
         </li>

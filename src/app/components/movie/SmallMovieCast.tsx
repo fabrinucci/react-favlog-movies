@@ -7,9 +7,13 @@ interface Props {
 }
 
 export async function SmallMovieCast({ movieId }: Props) {
+  const movieCast = await getMovieCast({ id: movieId, start: 0, end: 6 });
+
   const CAST_IMG = 'https://image.tmdb.org/t/p/w300';
   const NOT_FOUND_IMG = '/assets/profileNotFound.webp';
-  const movieCast = await getMovieCast({ id: movieId, start: 0, end: 6 });
+  const NOT_FOUND_F = '/assets/profileFemaleNF.svg';
+  const NOT_FOUND_M = '/assets/profileMaleNF.svg';
+
   return (
     <ul className='grid grid-cols-fill-2 gap-4'>
       {movieCast.map((profileCast) => (
@@ -24,7 +28,9 @@ export async function SmallMovieCast({ movieId }: Props) {
                 src={
                   profileCast.profile_path
                     ? `${CAST_IMG}${profileCast.profile_path}`
-                    : NOT_FOUND_IMG
+                    : profileCast.gender === 1
+                    ? NOT_FOUND_F
+                    : NOT_FOUND_M
                 }
                 alt={profileCast.name}
                 height={300}
@@ -32,11 +38,13 @@ export async function SmallMovieCast({ movieId }: Props) {
               />
             </figure>
           </Link>
-          <h4>
-            {profileCast.name?.length! <= 22
-              ? profileCast.name
-              : `${profileCast.name?.slice(0, 22)}...`}
-          </h4>
+          <Link href={`/person/${profileCast.id}`}>
+            <h4 className='font-semibold transition-colors md:hover:text-violet-300'>
+              {profileCast.name?.length! <= 22
+                ? profileCast.name
+                : `${profileCast.name?.slice(0, 22)}...`}
+            </h4>
+          </Link>
           <h5 className='text-sm text-purple-200'>
             {profileCast.character?.length! <= 22
               ? profileCast.character
