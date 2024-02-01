@@ -4,6 +4,7 @@ import type {
   Movie,
   Movies,
   MoviesType,
+  Person,
 } from '@/interfaces';
 import { moviesApi } from './';
 import { cache } from 'react';
@@ -43,6 +44,17 @@ export const getMovies = cache(async (type: MoviesType) => {
 export const getMovie = async (id: string) => {
   try {
     const { data } = await moviesApi.get<Movie>(`/movie/${id}`);
+    return data;
+  } catch (error) {
+    console.error('Database Error:', error);
+    return null;
+    throw new Error('Failed to fetch movie data.');
+  }
+};
+
+export const getPerson = async (id: string) => {
+  try {
+    const { data } = await moviesApi.get<Person>(`/person/${id}`);
     return data;
   } catch (error) {
     console.error('Database Error:', error);
