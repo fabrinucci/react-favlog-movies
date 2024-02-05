@@ -13,7 +13,7 @@ export const BiographyInfo = ({ name, biography }: Props) => {
   const newBio = separateBiography(biography);
 
   return (
-    <div className='flex max-w-4xl flex-col gap-3'>
+    <div className='flex flex-col gap-3'>
       <h3 className='text-xl font-semibold'>Biography</h3>
 
       {(biography &&
