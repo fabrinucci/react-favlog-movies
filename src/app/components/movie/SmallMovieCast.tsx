@@ -10,12 +10,11 @@ export async function SmallMovieCast({ movieId }: Props) {
   const movieCast = await getMovieCast({ id: movieId, start: 0, end: 6 });
 
   const CAST_IMG = 'https://image.tmdb.org/t/p/w300';
-  const NOT_FOUND_IMG = '/assets/profileNotFound.webp';
   const NOT_FOUND_F = '/assets/profileFemaleNF.svg';
   const NOT_FOUND_M = '/assets/profileMaleNF.svg';
 
   return (
-    <ul className='grid grid-cols-fill-2 gap-4'>
+    <ul className='grid grid-cols-fit-3 gap-x-6 gap-y-4'>
       {movieCast.map((profileCast) => (
         <li
           className='flex animate-fadeIn flex-col items-center justify-center'
@@ -39,7 +38,7 @@ export async function SmallMovieCast({ movieId }: Props) {
             </figure>
           </Link>
           <Link href={`/person/${profileCast.id}`}>
-            <h4 className='font-semibold transition-colors md:hover:text-violet-300'>
+            <h4 className='text-center font-semibold transition-colors md:hover:text-violet-300'>
               {profileCast.name?.length! <= 22
                 ? profileCast.name
                 : `${profileCast.name?.slice(0, 22)}...`}

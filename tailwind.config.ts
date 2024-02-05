@@ -14,8 +14,14 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       gridTemplateColumns: {
-        'fill-1': 'repeat(auto-fill, minmax(150px, 1fr))',
-        'fill-2': 'repeat(auto-fill, minmax(200px, 1fr))',
+        'fit-1': 'repeat(auto-fit, minmax(100px, 1fr))',
+        'fit-2': 'repeat(auto-fit, minmax(120px, 1fr))',
+        'fit-3': 'repeat(auto-fit, minmax(150px, 1fr))',
+        'fit-4': 'repeat(auto-fit, minmax(200px, 1fr))',
+        'fill-1': 'repeat(auto-fill, minmax(100px, 1fr))',
+        'fill-2': 'repeat(auto-fill, minmax(120px, 1fr))',
+        'fill-3': 'repeat(auto-fill, minmax(150px, 1fr))',
+        'fill-4': 'repeat(auto-fill, minmax(200px, 1fr))',
       },
       animation: {
         fadeIn: 'fadeIn 1s ease-in',
