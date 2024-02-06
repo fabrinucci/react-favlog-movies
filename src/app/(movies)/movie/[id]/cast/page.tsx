@@ -21,10 +21,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const movie = await getMovie(params.id);
+  if (!movie) redirect('/');
+
   const movieCast = await getMovieCast({ id: params.id });
   const movieCrew = await getMovieCrew({ id: params.id });
-
-  if (!movie) redirect('/');
 
   const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
 
