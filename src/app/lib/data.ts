@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import type {
   Categories,
   MovieCredits,
@@ -6,9 +7,10 @@ import type {
   MoviesType,
   Person,
   PersonCredits,
+  MovieCrewFiltered,
 } from '@/interfaces';
 import { moviesApi } from './';
-import { cache } from 'react';
+import { filteredMoviesCrew } from '@/utils';
 
 interface MovieSearchProps {
   query: string;
@@ -80,7 +82,8 @@ export const getPersonCredits = async (id: string) => {
 export const getMovieCrew = async ({ id }: { id: string }) => {
   try {
     const { data } = await moviesApi.get<MovieCredits>(`/movie/${id}/credits`);
-    return data.crew;
+    const filteredCrew = filteredMoviesCrew(data.crew);
+    return filteredCrew as MovieCrewFiltered[];
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch movie data.');

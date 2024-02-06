@@ -51,11 +51,11 @@ export interface SpokenLanguage {
 
 export interface MovieCredits {
   id:   number;
-  cast: Cast[];
-  crew: Crew[];
+  cast: MovieCast[];
+  crew: MovieCrew[];
 }
 
-export interface Cast {
+export interface MovieCast {
   adult:                boolean;
   gender:               number;
   id:                   number;
@@ -70,9 +70,13 @@ export interface Cast {
   order:                number;
 }
 
-export interface Crew extends Omit<Cast, 'cast_id' | 'character' | 'order'> {
+export interface MovieCrew extends Omit<MovieCast, 'cast_id' | 'character' | 'order'> {
   department: string;
   job:        string   
+}
+
+export interface MovieCrewFiltered extends MovieCrew {
+  job: string[]   
 }
 
 export type MoviesType = 'popular' | 'top_rated' | 'upcoming'

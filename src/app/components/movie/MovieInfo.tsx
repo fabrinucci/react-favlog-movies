@@ -1,18 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
-import type { Crew, Movie } from '@/interfaces';
+import type { Movie, MovieCrewFiltered } from '@/interfaces';
 
 interface Props {
   movie: Movie;
-  movieCrew: Crew[];
+  movieCrew: MovieCrewFiltered[];
 }
 
 export const MovieInfo = ({ movie, movieCrew }: Props) => {
-  const director = movieCrew.find((member) => member.job === 'Director');
-  const producers = movieCrew.filter((member) => member.job === 'Producer');
+  const directors = movieCrew.filter((member) =>
+    member.job.some((j) => j === 'Director')
+  );
+  const producers = movieCrew.filter((member) =>
+    member.job.some((j) => j === 'Producer')
+  );
 
-  const writers = movieCrew.filter((member) => member.job === 'Writer');
+  const writers = movieCrew.filter((member) =>
+    member.job.some((j) => j === 'Writer')
+  );
 
   const {
     genres,
@@ -25,7 +31,6 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
   } = movie;
 
   const movieVotesAvg = Number(vote_average.toFixed(1));
-
   const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
 
   return (
@@ -111,38 +116,52 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
         </div>
 
         <div className='my-4 grid gap-4 min-[400px]:grid-cols-2 sm:grid-cols-3 sm:gap-6'>
-          {director && (
-            <div>
-              <Link href={`/person/${director.id}`}>
-                <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
-                  {director.name}
-                </h3>
-              </Link>
-              <h4 className='text-sm text-purple-200'>Director</h4>
-            </div>
-          )}
+          {directors &&
+            directors.map((director) => (
+              <div key={director.id}>
+                <Link href={`/person/${director.id}`}>
+                  <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
+                    {director.name}
+                  </h3>
+                </Link>
+                <h4 className='text-sm text-purple-200'>
+                  {`${director.job}`.split(',').join(', ')}
+                </h4>
+              </div>
+            ))}
           {producers &&
-            producers.map((producer) => (
-              <div key={producer.id}>
-                <Link href={`/person/${producer.id}`}>
-                  <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
-                    {producer.name}
-                  </h3>
-                </Link>
-                <h4 className='text-sm text-purple-200'>Producer</h4>
-              </div>
-            ))}
+            producers.map((producer) => {
+              if (producer.job.some((j) => j === 'Director')) return;
+              return (
+                <div key={producer.id}>
+                  <Link href={`/person/${producer.id}`}>
+                    <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
+                      {producer.name}
+                    </h3>
+                  </Link>
+                  <h4 className='text-sm text-purple-200'>
+                    {`${producer.job}`.split(',').join(', ')}
+                  </h4>
+                </div>
+              );
+            })}
           {writers &&
-            writers.map((writer) => (
-              <div key={writer.id}>
-                <Link href={`/person/${writer.id}`}>
-                  <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
-                    {writer.name}
-                  </h3>
-                </Link>
-                <h4 className='text-sm text-purple-200'>Writer</h4>
-              </div>
-            ))}
+            writers.map((writer) => {
+              if (writer.job.some((j) => j === 'Director' || j === 'Producer'))
+                return;
+              return (
+                <div key={writer.id}>
+                  <Link href={`/person/${writer.id}`}>
+                    <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
+                      {writer.name}
+                    </h3>
+                  </Link>
+                  <h4 className='text-sm text-purple-200'>
+                    {`${writer.job}`.split(',').join(', ')}
+                  </h4>
+                </div>
+              );
+            })}
         </div>
       </div>
     </section>

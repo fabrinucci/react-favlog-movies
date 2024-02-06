@@ -1,4 +1,4 @@
-import { MoviesResult } from '../interfaces';
+import type { CreditCrew, MovieCrew, MoviesResult } from '../interfaces';
 
 export const getRandomImage = (movies: MoviesResult[]) => {
   return Math.floor(Math.random() * movies?.length);
@@ -60,4 +60,20 @@ export const calculateDeathAge = ({
 
 export const separateBiography = (biography: string) => {
   return biography.split('\n\n');
+};
+
+export const filteredMoviesCrew = (movies: MovieCrew[] | CreditCrew[]) => {
+  const filteredMovies = movies.filter((movie, index) => {
+    const previousMovieIndex = movies.findIndex((m) => m.id === movie.id);
+    return index === previousMovieIndex;
+  });
+
+  const uniqueMovies = filteredMovies.map((movie) => {
+    const jobs = movies.filter((m) => m.id === movie.id).map((m) => m.job);
+    return {
+      ...movie,
+      job: jobs,
+    };
+  });
+  return uniqueMovies;
 };

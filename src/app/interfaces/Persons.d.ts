@@ -45,3 +45,7 @@ export interface CreditCrew extends Omit<CreditCast, 'character' | 'order'> {
   department: string;
   job:        string   
 }
+
+export interface CreditCrewFiltered extends CreditCrew {
+  job: string[]   
+}

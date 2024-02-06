@@ -12,13 +12,12 @@ const NOT_FOUND_F = '/assets/profileFemaleNF.svg';
 const NOT_FOUND_M = '/assets/profileMaleNF.svg';
 
 export async function MovieCrew({ movieId }: Props) {
-  const movieCast = await getMovieCrew({ id: movieId });
-
-  if (movieCast.length === 0) redirect('/');
+  const movieCrew = await getMovieCrew({ id: movieId });
+  if (movieCrew.length === 0) redirect('/');
 
   return (
     <ul className='flex flex-col gap-y-3'>
-      {movieCast.map((profileCrew) => (
+      {movieCrew.map((profileCrew) => (
         <li
           className='flex animate-fadeIn items-center gap-4'
           key={profileCrew.id}
@@ -46,7 +45,9 @@ export async function MovieCrew({ movieId }: Props) {
                 {profileCrew.name}
               </h4>
             </Link>
-            <h5 className='text-sm text-purple-200'>{profileCrew.job}</h5>
+            <h5 className='text-sm text-purple-200'>
+              {`${profileCrew.job}`.split(',').join(', ')}
+            </h5>
           </div>
         </li>
       ))}
