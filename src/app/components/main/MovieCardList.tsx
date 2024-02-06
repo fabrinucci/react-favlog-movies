@@ -9,7 +9,7 @@ interface Props {
 
 export default async function MovieCardList({ movie }: Props) {
   return (
-    <li className='relative inline-block w-[160px] overflow-hidden pb-2 pr-4 last-of-type:pr-0 sm:w-[200px] md:w-[240px]'>
+    <li className='relative mb-2 mr-4 inline-block w-[160px] overflow-hidden transition-all last-of-type:mr-0 sm:w-[200px] md:w-[240px]'>
       <Link href={`/movie/${movie.id}`}>
         <article className='container-movies'>
           <figure className='relative h-[250px] w-auto rounded-sm bg-purple-400 sm:h-[300px] md:h-[350px]'>
