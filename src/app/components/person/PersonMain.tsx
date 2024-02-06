@@ -1,6 +1,12 @@
-import type { Person, PersonCredits } from '@/interfaces';
+import type {
+  CreditCast,
+  CreditCrewFiltered,
+  Person,
+  PersonCredits,
+} from '@/interfaces';
 import { getPerson, getPersonCredits } from '@/lib';
 import { BiographyInfo, PersonMoviesCard } from './';
+import { filteredMoviesCrew } from '@/utils';
 
 interface Props {
   id: string;
@@ -21,11 +27,17 @@ export async function PersonMain({ id }: Props) {
         <div className='flex flex-col gap-3'>
           <h3 className='text-xl font-semibold'>Known For</h3>
           <ul className='grid grid-cols-fill-2 justify-center gap-3 lg:gap-6'>
-            {(person.known_for_department === 'Acting' ? cast : crew)
+            {(person.known_for_department === 'Acting'
+              ? cast
+              : filteredMoviesCrew(crew)
+            )
               .sort((a, b) => b.popularity - a.popularity)
               .slice(0, 6)
-              .map((castMovie) => (
-                <PersonMoviesCard key={castMovie.id} credits={castMovie} />
+              .map((creditsMovie) => (
+                <PersonMoviesCard
+                  key={creditsMovie.id}
+                  credits={creditsMovie as CreditCast | CreditCrewFiltered}
+                />
               ))}
           </ul>
         </div>

@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { CreditCast, CreditCrew } from '@/interfaces';
+import type { CreditCast, CreditCrewFiltered } from '@/interfaces';
 
 interface Props {
-  credits: CreditCast | CreditCrew;
+  credits: CreditCast | CreditCrewFiltered;
 }
 
 export const PersonMoviesCard = ({ credits }: Props) => {
