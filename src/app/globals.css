@@ -53,6 +53,10 @@ html {
   transform: scale(1.1);
 }
 
+.footer-height {
+  height: calc(100vh - 5rem);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Custom404() {
   return (
-    <div className='flex h-screen w-full flex-col items-center justify-center gap-6'>
+    <div className='footer-height flex w-full flex-col items-center justify-center gap-6'>
       <figure>
         <Image src='/assets/pageNotFound.svg' alt='' width={250} height={250} />
       </figure>

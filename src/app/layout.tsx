@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 import { Navbar } from '@/components/navbar';
 import './globals.css';
+import { Footer } from './components/footer';
 
 const inter = Lato({
   subsets: ['latin'],
@@ -41,13 +42,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body
-        className={`${inter.className} min-h-[100vh] bg-[#1d0a36] text-purple-100`}
-      >
-        <header>
-          <Navbar />
-        </header>
-        {children}
+      <body className={`${inter.className} bg-[#1d0a36] text-purple-100`}>
+        <div className='relative min-h-screen'>
+          <header>
+            <Navbar />
+          </header>
+          <div className='pb-20'>{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
