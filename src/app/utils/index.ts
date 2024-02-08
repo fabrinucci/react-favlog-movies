@@ -1,4 +1,10 @@
-import type { CreditCrew, MovieCrew, MoviesResult } from '../interfaces';
+import type {
+  CreditCrew,
+  CreditCrewFiltered,
+  MovieCrew,
+  MovieCrewFiltered,
+  MoviesResult,
+} from '@/interfaces';
 
 export const getRandomImage = (movies: MoviesResult[]) => {
   return Math.floor(Math.random() * movies?.length);
@@ -75,5 +81,5 @@ export const filteredMoviesCrew = (movies: MovieCrew[] | CreditCrew[]) => {
       job: jobs,
     };
   });
-  return uniqueMovies;
+  return uniqueMovies as MovieCrewFiltered[] | CreditCrewFiltered[];
 };

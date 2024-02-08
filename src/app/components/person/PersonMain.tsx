@@ -4,9 +4,10 @@ import type {
   Person,
   PersonCredits,
 } from '@/interfaces';
+
 import { getPerson, getPersonCredits } from '@/lib';
-import { BiographyInfo, PersonMoviesCard } from './';
 import { filteredMoviesCrew } from '@/utils';
+import { BiographyInfo, CreditsList, PersonMoviesCard } from './';
 
 interface Props {
   id: string;
@@ -40,6 +41,13 @@ export async function PersonMain({ id }: Props) {
                 />
               ))}
           </ul>
+        </div>
+
+        <div className='mt-6'>
+          <CreditsList
+            credits={personCredits!}
+            knownFor={person.known_for_department}
+          />
         </div>
       </div>
     </div>

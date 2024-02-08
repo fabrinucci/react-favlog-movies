@@ -24,7 +24,7 @@ export const BiographyInfo = ({ name, biography }: Props) => {
           >
             {bio}
           </p>
-        ))) || <p>{`We don't have biography for ${name}`}</p>}
+        ))) || <p>{`We don't have biography for ${name}.`}</p>}
 
       {biography && newBio.length > 2 && (
         <div className='flex place-self-end'>
