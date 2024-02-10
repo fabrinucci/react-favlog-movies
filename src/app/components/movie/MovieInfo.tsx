@@ -102,8 +102,15 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
           <h3 className='text-lg font-semibold'>Categories:</h3>
           <ul className='mt-2 flex flex-wrap gap-4'>
             {genres.map((category) => (
-              <li className='rounded-md bg-violet-600 p-2' key={category.id}>
-                {category.name}
+              <li key={category.id}>
+                <Link
+                  className='block rounded-md bg-violet-600 p-2 duration-200 ease-in hover:scale-110'
+                  href={`/category/${
+                    category.id
+                  }-${category.name.toLowerCase()}`}
+                >
+                  {category.name}
+                </Link>
               </li>
             ))}
           </ul>
