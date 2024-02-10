@@ -1,3 +1,4 @@
+import { Genre } from '../interfaces/Categories';
 import type {
   CreditCrew,
   CreditCrewFiltered,
@@ -12,6 +13,21 @@ export const getRandomImage = (movies: MoviesResult[]) => {
 
 export const getYear = (movieRelease: string) => {
   return movieRelease.split('-')[0];
+};
+
+export const transformToUpperCase = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+export const parsedCategoryName = ({
+  id,
+  categories,
+}: {
+  id: string;
+  categories: Genre[];
+}) => {
+  const genre = categories.find((c) => c.id === parseInt(id));
+  return genre?.name;
 };
 
 export const validatedPage = (page: number) => {

@@ -10,7 +10,7 @@ import {
   RxDoubleArrowRight,
 } from 'react-icons/rx';
 
-import { Movies } from '@/interfaces';
+import type { Movies } from '@/interfaces';
 
 interface Props {
   movies: Movies;
@@ -53,43 +53,64 @@ export const Pagination = ({ movies }: Props) => {
       {currentPage > 1 && (
         <>
           <Link
-            href={`${pathname}?query=${query}&page=1`}
+            href={
+              query ? `${pathname}?query=${query}&page=1` : `${pathname}?page=1`
+            }
             className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
           >
             <RxDoubleArrowLeft />
           </Link>
           <Link
-            href={`${pathname}?query=${query}&page=${currentPage - 1}`}
+            href={
+              query
+                ? `${pathname}?query=${query}&page=${currentPage - 1}`
+                : `${pathname}?page=${currentPage - 1}`
+            }
             className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
           >
             <RxArrowLeft />
           </Link>
         </>
       )}
-      {getPaginationArray().map((searchPage) => (
-        <Link
-          key={searchPage}
-          href={`${pathname}?query=${query}&page=${searchPage}`}
-          className={`rounded-lg p-3 ${
-            currentPage === searchPage
-              ? 'bg-violet-700'
-              : 'bg-violet-500 duration-200 ease-in-out hover:bg-violet-700'
-          }`}
-        >
-          {searchPage}
-        </Link>
-      ))}
-      {currentPage !== totalPages && (
+      {getPaginationArray().map(
+        (searchPage) =>
+          searchPage <= 500 && (
+            <Link
+              key={searchPage}
+              href={
+                query
+                  ? `${pathname}?query=${query}&page=${searchPage}`
+                  : `${pathname}?page=${searchPage}`
+              }
+              className={`rounded-lg p-3 ${
+                currentPage === searchPage
+                  ? 'bg-violet-700'
+                  : 'bg-violet-500 duration-200 ease-in-out hover:bg-violet-700'
+              }`}
+            >
+              {searchPage}
+            </Link>
+          )
+      )}
+      {currentPage !== totalPages && currentPage < 500 && (
         <>
           <Link
-            href={`${pathname}?query=${query}&page=${currentPage + 1}`}
+            href={
+              query
+                ? `${pathname}?query=${query}&page=${currentPage + 1}`
+                : `${pathname}?page=${currentPage + 1}`
+            }
             className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
           >
             <RxArrowRight />
           </Link>
 
           <Link
-            href={`${pathname}?query=${query}&page=${totalPages}`}
+            href={
+              query
+                ? `${pathname}?query=${query}&page=${totalPages}`
+                : `${pathname}?page=${totalPages <= 500 ? totalPages : 500}`
+            }
             className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
           >
             <RxDoubleArrowRight />

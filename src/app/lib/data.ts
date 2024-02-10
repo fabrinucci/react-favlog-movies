@@ -12,8 +12,13 @@ import type {
 import { moviesApi } from './';
 import { filteredMoviesCrew } from '@/utils';
 
-interface MovieSearchProps {
+interface MoviesSearchProps {
   query: string;
+  page: number;
+}
+
+interface MoviesCategoryProps {
+  categoryId: string;
   page: number;
 }
 
@@ -113,10 +118,26 @@ export const getCategories = async () => {
   }
 };
 
-export const getMoviesBySearch = async ({ query, page }: MovieSearchProps) => {
+export const getMoviesByCategory = async ({
+  categoryId,
+  page,
+}: MoviesCategoryProps) => {
   try {
     const { data } = await moviesApi.get<Movies>(
-      `search/movie?query=${query}&page=${page}`
+      `/discover/movie?with_genres=${categoryId}&page=${page || 1}`
+    );
+
+    return data;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch movies data.');
+  }
+};
+
+export const getMoviesBySearch = async ({ query, page }: MoviesSearchProps) => {
+  try {
+    const { data } = await moviesApi.get<Movies>(
+      `search/movie?query=${query}&page=${page || 1}`
     );
     return data;
   } catch (error) {
