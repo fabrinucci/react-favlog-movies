@@ -10,7 +10,8 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const person = await getPerson(params.id);
+  const [id] = params.id.split('-');
+  const person = await getPerson(id);
   return {
     title: person?.name,
     description: `View the info about ${person?.name}`,
@@ -18,7 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  const person = await getPerson(params.id);
+  const [id] = params.id.split('-');
+  const person = await getPerson(id);
   if (!person) redirect('/');
 
   return (

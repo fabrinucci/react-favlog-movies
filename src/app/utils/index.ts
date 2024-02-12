@@ -19,6 +19,10 @@ export const transformToUpperCase = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+export const transformToKebabCase = (str: string) => {
+  return str.toLowerCase().split(' ').join('-');
+};
+
 export const parsedCategoryName = ({
   id,
   categories,

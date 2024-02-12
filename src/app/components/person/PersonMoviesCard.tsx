@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { CreditCast, CreditCrewFiltered } from '@/interfaces';
+import { transformToKebabCase } from '@/utils';
 
 interface Props {
   credits: CreditCast | CreditCrewFiltered;
@@ -12,7 +13,10 @@ export const PersonMoviesCard = ({ credits }: Props) => {
   return (
     <li className='flex w-[120px] flex-col gap-3' key={credits.id}>
       <div className='h-[190px]'>
-        <Link className='h-full w-full' href={`/movie/${credits.id}`}>
+        <Link
+          className='h-full w-full'
+          href={`/movie/${credits.id}-${transformToKebabCase(credits.title)}`}
+        >
           <figure className='h-full w-full rounded-sm bg-purple-400'>
             <Image
               src={
@@ -33,7 +37,7 @@ export const PersonMoviesCard = ({ credits }: Props) => {
       <h3 className='text-center font-semibold text-purple-300'>
         <Link
           className='transition-opacity hover:opacity-80'
-          href={`/movie/${credits.id}`}
+          href={`/movie/${credits.id}-${transformToKebabCase(credits.title)}`}
         >
           {credits.title}
         </Link>

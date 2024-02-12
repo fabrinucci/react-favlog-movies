@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getMovieCast } from '@/lib';
+import { transformToKebabCase } from '@/utils';
 
 interface Props {
   movieId: string;
@@ -20,7 +21,11 @@ export async function SmallMovieCast({ movieId }: Props) {
           className='flex animate-fadeIn flex-col items-center justify-center'
           key={profileCast.id}
         >
-          <Link href={`/person/${profileCast.id}`}>
+          <Link
+            href={`/person/${profileCast.id}-${transformToKebabCase(
+              profileCast.name
+            )}`}
+          >
             <figure className='my-2 h-60 w-40 rounded-md bg-purple-400'>
               <Image
                 className='h-60 w-40 rounded-md object-cover'
@@ -37,7 +42,11 @@ export async function SmallMovieCast({ movieId }: Props) {
               />
             </figure>
           </Link>
-          <Link href={`/person/${profileCast.id}`}>
+          <Link
+            href={`/person/${profileCast.id}-${transformToKebabCase(
+              profileCast.name
+            )}`}
+          >
             <h4 className='text-center font-semibold transition-colors md:hover:text-violet-300'>
               {profileCast.name?.length! <= 22
                 ? profileCast.name

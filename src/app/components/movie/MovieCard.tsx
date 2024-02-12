@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getMovie, getMovieCast, getMovieCrew } from '@/lib';
 import { MovieInfo, SmallMovieCast } from './';
 import type { Movie } from '@/interfaces';
+import { transformToKebabCase } from '@/utils';
 
 interface Props {
   id: string;
@@ -12,6 +13,8 @@ export async function MovieCard({ id }: Props) {
   const movie = (await getMovie(id)) as Movie;
   const movieCast = await getMovieCast({ id });
   const movieCrew = await getMovieCrew({ id });
+
+  const movieTitle = transformToKebabCase(movie.title);
 
   return (
     <section>
@@ -41,7 +44,7 @@ export async function MovieCard({ id }: Props) {
             <div className='flex items-center justify-between pb-3'>
               <h3 className='text-xl font-semibold'>Cast:</h3>
               <Link
-                href={`/movie/${movie.id}/cast`}
+                href={`/movie/${movie.id}-${movieTitle}/cast`}
                 className='rounded-md border border-violet-600 bg-violet-600 px-4 py-3 font-semibold text-white duration-200 ease-in-out md:hover:scale-110'
               >
                 View full cast

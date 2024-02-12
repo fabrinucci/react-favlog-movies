@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { CgMathMinus } from 'react-icons/cg';
 import type { CreditCrewFiltered, PersonCredits } from '@/interfaces';
-import { filteredMoviesCrew } from '@/utils';
+import { filteredMoviesCrew, transformToKebabCase } from '@/utils';
 
 interface Props {
   credits: PersonCredits;
@@ -60,7 +60,7 @@ export function CreditsList({ credits, knownFor }: Props) {
                   <div>
                     <Link
                       className='transition-colors hover:text-violet-300'
-                      href={`/movie/${id}`}
+                      href={`/movie/${id}-${transformToKebabCase(title)}`}
                     >
                       <p className='font-semibold'>{title}</p>
                     </Link>
@@ -99,7 +99,7 @@ export function CreditsList({ credits, knownFor }: Props) {
                   <div>
                     <Link
                       className='transition-colors hover:text-violet-300'
-                      href={`/movie/${id}`}
+                      href={`/movie/${id}-${transformToKebabCase(title)}`}
                     >
                       <p className='font-semibold'>{title}</p>
                     </Link>

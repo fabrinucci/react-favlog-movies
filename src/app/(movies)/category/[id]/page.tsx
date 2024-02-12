@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params, searchParams }: Props) {
-  const [id, category] = params.id.split('-');
+  const [id, ...category] = params.id.split('-');
   const { page } = searchParams;
 
   const movies = await getMoviesByCategory({
@@ -43,7 +43,11 @@ export default async function Page({ params, searchParams }: Props) {
     Number(page) > movies.total_pages ||
     isNaN(Number(page))
   )
-    redirect(`/category/${id}${category ? `-${category}` : ''}?page=1`);
+    redirect(
+      `/category/${id}${
+        category.length > 0 ? `-${category.map((c) => c).join('-')}` : ''
+      }?page=1`
+    );
 
   return (
     <section className='pt-[120px] sm:pt-[80px]'>

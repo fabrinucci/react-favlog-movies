@@ -1,17 +1,15 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { GiRoundStar } from 'react-icons/gi';
 import type { MoviesResult } from '@/interfaces';
+import { transformToKebabCase } from '@/utils';
 
 interface Props {
   movie: MoviesResult;
 }
 
 export const HeroCard = ({ movie }: Props) => {
-  const router = useRouter();
+  const movieTitle = transformToKebabCase(movie.title);
 
   return (
     <>
@@ -55,7 +53,7 @@ export const HeroCard = ({ movie }: Props) => {
 
           <div className='flex flex-col items-center gap-4 sm:flex-row md:items-start'>
             <Link
-              href={`/movie/${movie.id}`}
+              href={`/movie/${movie.id}-${movieTitle}`}
               className='w-36 rounded-md border border-violet-600 bg-violet-600 py-3 text-center font-semibold transition-all hover:scale-110'
             >
               Play

@@ -2,15 +2,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
 import type { MoviesResult } from '@/interfaces';
+import { transformToKebabCase } from '@/utils';
 
 interface Props {
   movie: MoviesResult;
 }
 
 export default async function MovieCardList({ movie }: Props) {
+  const movieTitle = transformToKebabCase(movie.title);
+
   return (
     <li className='relative mb-2 mr-4 inline-block w-[160px] overflow-hidden transition-all last-of-type:mr-0 sm:w-[200px] md:w-[240px]'>
-      <Link href={`/movie/${movie.id}`}>
+      <Link href={`/movie/${movie.id}-${movieTitle}`}>
         <article className='container-movies'>
           <figure className='relative h-[250px] w-auto rounded-sm bg-purple-400 sm:h-[300px] md:h-[350px]'>
             <Image
