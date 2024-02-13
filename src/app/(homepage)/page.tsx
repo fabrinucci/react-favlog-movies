@@ -1,7 +1,5 @@
 import { CategoriesCard, MoviesCard } from '@/components/main';
 
-export const revalidate = 3600;
-
 export default async function HomePage() {
   return (
     <>

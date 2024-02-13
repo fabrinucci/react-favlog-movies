@@ -28,7 +28,7 @@ interface MovieCastProps {
   end?: number;
 }
 
-export const getHeroMovie = cache(async () => {
+export const getHeroMovie = async () => {
   try {
     const { data } = await moviesApi.get<Movies>('/movie/popular');
     const movie = data.results[0];
@@ -37,9 +37,9 @@ export const getHeroMovie = cache(async () => {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch movies data.');
   }
-});
+};
 
-export const getMovies = cache(async (type: MoviesType) => {
+export const getMovies = async (type: MoviesType) => {
   try {
     const { data } = await moviesApi.get<Movies>(`/movie/${type}`);
     return data.results;
@@ -47,7 +47,7 @@ export const getMovies = cache(async (type: MoviesType) => {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch movies data.');
   }
-});
+};
 
 export const getMovie = async (id: string) => {
   try {
