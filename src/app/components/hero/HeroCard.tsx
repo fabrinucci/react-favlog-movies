@@ -1,21 +1,16 @@
-'use client';
-
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
 import type { MoviesResult } from '@/interfaces';
+import { transformToKebabCase } from '@/utils';
 
 interface Props {
   movie: MoviesResult;
 }
 
 export const HeroCard = ({ movie }: Props) => {
-  const router = useRouter();
+  const movieTitle = transformToKebabCase(movie.title);
 
-  const handlePlay = () => {
-    router.push(`movie/${movie.id}`);
-    window.scrollTo(0, 0);
-  };
   return (
     <>
       <picture>
@@ -57,13 +52,13 @@ export const HeroCard = ({ movie }: Props) => {
           </div>
 
           <div className='flex flex-col items-center gap-4 sm:flex-row md:items-start'>
-            <button
-              onClick={handlePlay}
-              className='h-12 w-36 rounded-md border border-violet-600 bg-violet-600 px-5 py-2 duration-200 ease-in-out hover:bg-violet-700'
+            <Link
+              href={`/movie/${movie.id}-${movieTitle}`}
+              className='w-36 rounded-md border border-violet-600 bg-violet-600 py-3 text-center font-semibold transition-all hover:scale-110'
             >
               Play
-            </button>
-            <button className='h-12 w-36 rounded-md border border-violet-600 bg-[#0000006b] px-5 py-2 duration-200 ease-in-out hover:bg-[#000000cc]'>
+            </Link>
+            <button className='w-36 rounded-md border border-violet-600 bg-[#000000b8] py-3 font-semibold transition-all hover:scale-110'>
               Watch Later
             </button>
           </div>

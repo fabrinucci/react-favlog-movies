@@ -17,7 +17,7 @@ export async function MoviesCard({ movieType, moviesTitle }: Props) {
           <h3 className='text-xl font-semibold md:text-2xl'>{moviesTitle}</h3>
         </div>
 
-        <ul className='scrollbar-hide relative h-full w-full overflow-x-scroll scroll-smooth whitespace-nowrap'>
+        <ul className='relative h-full w-full overflow-x-scroll scroll-smooth whitespace-nowrap'>
           {movies?.map((movie) => (
             <MovieCardList key={movie.id} movie={movie} />
           ))}

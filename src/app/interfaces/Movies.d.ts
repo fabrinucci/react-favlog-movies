@@ -3,7 +3,7 @@ export interface Movies {
   results:       MoviesResult[];
   total_pages:   number;
   total_results: number;
-  dates?: Dates;
+  dates?:        Dates;
 }
 
 export interface MoviesResult {

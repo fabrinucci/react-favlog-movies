@@ -20,10 +20,6 @@ html {
   border-radius: 10px;
 }
 
-f {
-  color: #e0d8f1;
-}
-
 .container-movies {
   position: relative;
   cursor: pointer;
@@ -55,6 +51,10 @@ f {
 
 .container-movies:hover img {
   transform: scale(1.1);
+}
+
+.footer-height {
+  height: calc(100vh - 5rem);
 }
 
 @keyframes fadeIn {

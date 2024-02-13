@@ -1,7 +1,5 @@
 import { Hero } from '@/components/hero';
 
-export const revalidate = 3600;
-
 export default function HomePageLayout({
   children,
 }: {

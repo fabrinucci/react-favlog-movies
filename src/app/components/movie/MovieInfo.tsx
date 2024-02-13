@@ -1,22 +1,24 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
-import type { Movie, MovieCredits } from '@/interfaces';
+import type { Movie, MovieCrewFiltered } from '@/interfaces';
+import { transformToKebabCase } from '@/utils';
 
 interface Props {
   movie: Movie;
-  movieCredits: MovieCredits;
+  movieCrew: MovieCrewFiltered[];
 }
 
-export const MovieInfo = ({ movie, movieCredits }: Props) => {
-  const director = movieCredits?.crew.find(
-    (member) => member.job === 'Director'
+export const MovieInfo = ({ movie, movieCrew }: Props) => {
+  const directors = movieCrew.filter((member) =>
+    member.job.some((j) => j === 'Director')
   );
-  const producers = movieCredits?.crew.filter(
-    (member) => member.job === 'Producer'
+  const producers = movieCrew.filter((member) =>
+    member.job.some((j) => j === 'Producer')
   );
 
-  const writers = movieCredits?.crew.filter(
-    (member) => member.job === 'Writer'
+  const writers = movieCrew.filter((member) =>
+    member.job.some((j) => j === 'Writer')
   );
 
   const {
@@ -30,7 +32,6 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
   } = movie;
 
   const movieVotesAvg = Number(vote_average.toFixed(1));
-
   const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
 
   return (
@@ -100,10 +101,17 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
         </div>
         <div className='my-4'>
           <h3 className='text-lg font-semibold'>Categories:</h3>
-          <ul className='mt-2 flex gap-4'>
+          <ul className='mt-2 flex flex-wrap gap-4'>
             {genres.map((category) => (
-              <li className='rounded-md bg-violet-600 p-2' key={category.id}>
-                {category.name}
+              <li key={category.id}>
+                <Link
+                  className='block rounded-md bg-violet-600 p-2 duration-200 ease-in hover:scale-110'
+                  href={`/category/${category.id}-${transformToKebabCase(
+                    category.name
+                  )}`}
+                >
+                  {category.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -116,26 +124,64 @@ export const MovieInfo = ({ movie, movieCredits }: Props) => {
         </div>
 
         <div className='my-4 grid gap-4 min-[400px]:grid-cols-2 sm:grid-cols-3 sm:gap-6'>
-          {director && (
-            <div>
-              <h3 className='text-base font-semibold'>{director.name}</h3>
-              <h4 className='text-sm text-purple-200'>Director</h4>
-            </div>
-          )}
+          {directors &&
+            directors.map((director) => (
+              <div key={director.id}>
+                <Link
+                  href={`/person/${director.id}-${transformToKebabCase(
+                    director.name
+                  )}`}
+                >
+                  <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
+                    {director.name}
+                  </h3>
+                </Link>
+                <h4 className='text-sm text-purple-200'>
+                  {`${director.job}`.split(',').join(', ')}
+                </h4>
+              </div>
+            ))}
           {producers &&
-            producers.map((producer) => (
-              <div key={producer.id}>
-                <h3 className='text-base font-semibold'>{producer.name}</h3>
-                <h4 className='text-sm text-purple-200'>Producer</h4>
-              </div>
-            ))}
+            producers.map((producer) => {
+              if (producer.job.some((j) => j === 'Director')) return;
+              return (
+                <div key={producer.id}>
+                  <Link
+                    href={`/person/${producer.id}-${transformToKebabCase(
+                      producer.name
+                    )}`}
+                  >
+                    <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
+                      {producer.name}
+                    </h3>
+                  </Link>
+                  <h4 className='text-sm text-purple-200'>
+                    {`${producer.job}`.split(',').join(', ')}
+                  </h4>
+                </div>
+              );
+            })}
           {writers &&
-            writers.map((writer) => (
-              <div key={writer.id}>
-                <h3 className='text-base font-semibold'>{writer.name}</h3>
-                <h4 className='text-sm text-purple-200'>Writer</h4>
-              </div>
-            ))}
+            writers.map((writer) => {
+              if (writer.job.some((j) => j === 'Director' || j === 'Producer'))
+                return;
+              return (
+                <div key={writer.id}>
+                  <Link
+                    href={`/person/${writer.id}-${transformToKebabCase(
+                      writer.name
+                    )}`}
+                  >
+                    <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
+                      {writer.name}
+                    </h3>
+                  </Link>
+                  <h4 className='text-sm text-purple-200'>
+                    {`${writer.job}`.split(',').join(', ')}
+                  </h4>
+                </div>
+              );
+            })}
         </div>
       </div>
     </section>

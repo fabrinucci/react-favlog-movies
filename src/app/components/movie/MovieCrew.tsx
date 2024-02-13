@@ -1,42 +1,44 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getMovieCast } from '@/lib';
+import { redirect } from 'next/navigation';
+import { getMovieCrew } from '@/lib';
 import { transformToKebabCase } from '@/utils';
 
 interface Props {
   movieId: string;
 }
 
-const CAST_IMG = 'https://image.tmdb.org/t/p/w300';
+const CREW_IMG = 'https://image.tmdb.org/t/p/w300';
 const NOT_FOUND_F = '/assets/profileFemaleNF.svg';
 const NOT_FOUND_M = '/assets/profileMaleNF.svg';
 
-export async function MovieCast({ movieId }: Props) {
-  const movieCast = await getMovieCast({ id: movieId });
+export async function MovieCrew({ movieId }: Props) {
+  const movieCrew = await getMovieCrew({ id: movieId });
+  if (movieCrew.length === 0) redirect('/');
 
   return (
     <ul className='flex flex-col gap-y-3'>
-      {movieCast.map((profileCast) => (
+      {movieCrew.map((profileCrew) => (
         <li
           className='flex animate-fadeIn items-center gap-4'
-          key={profileCast.id}
+          key={profileCrew.id}
         >
           <Link
-            href={`/person/${profileCast.id}-${transformToKebabCase(
-              profileCast.name
+            href={`/person/${profileCrew.id}-${transformToKebabCase(
+              profileCrew.name
             )}`}
           >
             <figure className='my-2 h-32 w-24 rounded-md bg-purple-400'>
               <Image
                 className='h-32 w-24 rounded-md object-cover'
                 src={
-                  profileCast.profile_path
-                    ? `${CAST_IMG}${profileCast.profile_path}`
-                    : profileCast.gender === 1
+                  profileCrew.profile_path
+                    ? `${CREW_IMG}${profileCrew.profile_path}`
+                    : profileCrew.gender === 1
                     ? NOT_FOUND_F
                     : NOT_FOUND_M
                 }
-                alt={profileCast.name}
+                alt={profileCrew.name}
                 height={100}
                 width={100}
               />
@@ -44,15 +46,17 @@ export async function MovieCast({ movieId }: Props) {
           </Link>
           <div>
             <Link
-              href={`/person/${profileCast.id}-${transformToKebabCase(
-                profileCast.name
+              href={`/person/${profileCrew.id}-${transformToKebabCase(
+                profileCrew.name
               )}`}
             >
               <h4 className='mb-1 font-semibold transition-colors md:hover:text-violet-300'>
-                {profileCast.name}
+                {profileCrew.name}
               </h4>
             </Link>
-            <h5 className='text-sm text-purple-200'>{profileCast.character}</h5>
+            <h5 className='text-sm text-purple-200'>
+              {`${profileCrew.job}`.split(',').join(', ')}
+            </h5>
           </div>
         </li>
       ))}
