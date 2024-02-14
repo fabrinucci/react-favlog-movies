@@ -1,4 +1,6 @@
-<h1 align="center">Welcome to Favlog movies 👋</h1>
+![Main image](public/previews/main.webp)
+
+<h1 align="center">Welcome to Favlog movies 🎥</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.2.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/fabrinucci/react-favlog-movies#readme" target="_blank">
@@ -12,7 +14,13 @@
   </a>
 </p>
 
-> Favlog movies is a website project using the moviedb api.
+> This is a website where you can discover the movies that are on everyone's lips, as well as those gems of cinema acclaimed by critics and audiences.
+>
+> - Dive into the details of each movie, from the plot, cast and critics.
+> - Find out who brings each character to life.
+> - Learn about the careers of actors, directors, writers and more.
+> - Find the movie you are going to watch this weekend by category.
+> - Search for your favorite movie just by typing its name.
 
 ### 🏠 [Homepage](https://github.com/fabrinucci/react-favlog-movies)
 
