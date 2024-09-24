@@ -27,7 +27,7 @@ const createPagination = (n: number) => {
 export const Pagination = ({ movies }: Props) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const query = searchParams.get('query');
+  const query = searchParams?.get('query');
   const currentPage = movies.page;
   const totalPages = movies.total_pages;
 

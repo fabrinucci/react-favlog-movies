@@ -10,7 +10,7 @@ interface Props {
 
 export const SearchMovies = ({ movies }: Props) => {
   const searchParams = useSearchParams();
-  const query = searchParams.get('query');
+  const query = searchParams?.get('query');
 
   return (
     <section className='pt-[120px] sm:pt-[80px]'>

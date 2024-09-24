@@ -1,4 +1,4 @@
-import { Genre } from '../interfaces/Categories';
+import { Genre } from '@/interfaces';
 import type {
   CreditCrew,
   CreditCrewFiltered,

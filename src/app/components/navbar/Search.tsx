@@ -28,7 +28,7 @@ export const Search = () => {
         type='text'
         placeholder='Search'
         onChange={(e) => handleChange(e.target.value)}
-        defaultValue={searchParams.get('query')?.toString()}
+        defaultValue={searchParams?.get('query')?.toString()}
       />
     </div>
   );

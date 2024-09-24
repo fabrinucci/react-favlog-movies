@@ -8,7 +8,7 @@ interface Props {
   movie: MoviesResult;
 }
 
-export default async function MovieCardList({ movie }: Props) {
+export const MovieCardList = ({ movie }: Props) => {
   const movieTitle = transformToKebabCase(movie.title);
 
   return (
@@ -41,4 +41,4 @@ export default async function MovieCardList({ movie }: Props) {
       </Link>
     </li>
   );
-}
+};
