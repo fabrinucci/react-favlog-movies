@@ -4,8 +4,12 @@ import type {
   CreditCrewFiltered,
   MovieCrew,
   MovieCrewFiltered,
-  MoviesResult,
 } from '@/interfaces';
+
+interface CategoryProps {
+  id: string;
+  categories: Genre[];
+}
 
 export const getYear = (movieRelease: string) => {
   return movieRelease.split('-')[0];
@@ -19,15 +23,12 @@ export const transformToKebabCase = (str: string) => {
   return str.toLowerCase().split(' ').join('-');
 };
 
-export const parsedCategoryName = ({
-  id,
-  categories,
-}: {
-  id: string;
-  categories: Genre[];
-}) => {
-  const genre = categories.find((c) => c.id === parseInt(id));
-  return genre?.name;
+export const getCategory = ({ id, categories }: CategoryProps) => {
+  const parsedId = parseInt(id);
+  if (isNaN(parsedId)) return null;
+
+  const category = categories.find((c) => c.id === parsedId);
+  return category || null;
 };
 
 export const validatedPage = (page: number) => {
