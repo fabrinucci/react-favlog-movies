@@ -84,8 +84,13 @@ export const calculateDeathAge = ({
   return deathAge;
 };
 
-export const separateBiography = (biography: string) => {
-  return biography.split('\n\n');
+export const separateBiography = (
+  biography: string,
+  delimiter: string = '\n\n'
+) => {
+  if (!biography || biography.trim() === '') return [];
+  const sanitizedBiography = biography.trim();
+  return sanitizedBiography.split(delimiter);
 };
 
 export const filteredMoviesCrew = (movies: MovieCrew[] | CreditCrew[]) => {
