@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { CategoriesMovies } from '@/components/category';
 import { Pagination } from '@/components/search';
 import { getCategories, getMoviesByCategory } from '@/lib';
-import { getCategory, validatedPage } from '@/utils';
+import { getCategory, validatePage } from '@/utils';
 
 interface Props {
   params: {
@@ -31,7 +31,7 @@ export default async function Page({ params, searchParams }: Props) {
 
   const movies = await getMoviesByCategory({
     categoryId: id,
-    page: validatedPage(Number(page)),
+    page: validatePage(Number(page)),
   });
 
   if (movies.results.length === 0) redirect('/');

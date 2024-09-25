@@ -31,8 +31,9 @@ export const getCategory = ({ id, categories }: CategoryProps) => {
   return category || null;
 };
 
-export const validatedPage = (page: number) => {
+export const validatePage = (page: number) => {
   if (isNaN(page)) return 1;
+  if (page < 1) return 1;
   if (page > 500) return 1;
   return page;
 };
