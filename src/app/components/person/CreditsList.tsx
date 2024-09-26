@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { CgMathMinus } from 'react-icons/cg';
 import type { CreditCrewFiltered, PersonCredits } from '@/interfaces';
-import { filteredMoviesCrew, transformToKebabCase } from '@/utils';
+import { groupCrewJobs, transformToKebabCase } from '@/utils';
 
 interface Props {
   credits: PersonCredits;
@@ -29,7 +29,7 @@ export function CreditsList({ credits, knownFor }: Props) {
     (a, b) => parseInt(b.release_date) - parseInt(a.release_date)
   );
 
-  const filteredCreditsCrew = filteredMoviesCrew(
+  const filteredCreditsCrew = groupCrewJobs(
     sortedMoviesCrew
   ) as CreditCrewFiltered[];
 

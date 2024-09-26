@@ -6,7 +6,7 @@ import type {
 } from '@/interfaces';
 
 import { getPerson, getPersonCredits } from '@/lib';
-import { filteredMoviesCrew } from '@/utils';
+import { groupCrewJobs } from '@/utils';
 import { BiographyInfo, CreditsList, PersonMoviesCard } from './';
 
 interface Props {
@@ -30,7 +30,7 @@ export async function PersonMain({ id }: Props) {
           <ul className='grid grid-cols-fill-2 justify-center gap-3 lg:gap-6'>
             {(person.known_for_department === 'Acting'
               ? cast
-              : filteredMoviesCrew(crew)
+              : groupCrewJobs(crew)
             )
               .sort((a, b) => b.popularity - a.popularity)
               .slice(0, 6)

@@ -91,18 +91,18 @@ export const separateBiography = (
   return sanitizedBiography.split(delimiter);
 };
 
-export const filteredMoviesCrew = (movies: MovieCrew[] | CreditCrew[]) => {
-  const filteredMovies = movies.filter((movie, index) => {
-    const previousMovieIndex = movies.findIndex((m) => m.id === movie.id);
-    return index === previousMovieIndex;
+export const groupCrewJobs = (movies: MovieCrew[] | CreditCrew[]) => {
+  const filteredCrew = movies.filter((movie, index) => {
+    return index === movies.findIndex((m) => m.id === movie.id);
   });
 
-  const uniqueMovies = filteredMovies.map((movie) => {
+  const crewJobs = filteredCrew.map((movie) => {
     const jobs = movies.filter((m) => m.id === movie.id).map((m) => m.job);
     return {
       ...movie,
       job: jobs,
     };
   });
-  return uniqueMovies as MovieCrewFiltered[] | CreditCrewFiltered[];
+
+  return crewJobs as MovieCrewFiltered[] | CreditCrewFiltered[];
 };
