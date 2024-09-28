@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import { CgMathMinus } from 'react-icons/cg';
-import type { CreditCrewFiltered, PersonCredits } from '@/interfaces';
-import { groupCrewJobs, transformToKebabCase } from '@/utils';
+import type {
+  CreditCast,
+  CreditCrew,
+  CreditCrewFiltered,
+  PersonCredits,
+} from '@/interfaces';
+import { groupCrewJobs, sortMovies, transformToKebabCase } from '@/utils';
 
 interface Props {
   credits: PersonCredits;
@@ -11,23 +16,8 @@ interface Props {
 export function CreditsList({ credits, knownFor }: Props) {
   const { cast, crew } = credits;
 
-  const sortMoviesCast = () => {
-    const moviesWithoutYear = cast.filter((movie) => !movie.release_date);
-    return moviesWithoutYear.concat(cast.filter((movie) => movie.release_date));
-  };
-
-  const sortMoviesCrew = () => {
-    const moviesWithoutYear = crew.filter((movie) => !movie.release_date);
-    return moviesWithoutYear.concat(crew.filter((movie) => movie.release_date));
-  };
-
-  const sortedMoviesCast = sortMoviesCast().sort(
-    (a, b) => parseInt(b.release_date) - parseInt(a.release_date)
-  );
-
-  const sortedMoviesCrew = sortMoviesCrew().sort(
-    (a, b) => parseInt(b.release_date) - parseInt(a.release_date)
-  );
+  const sortedMoviesCast = sortMovies(cast) as CreditCast[];
+  const sortedMoviesCrew = sortMovies(crew) as CreditCrew[];
 
   const filteredCreditsCrew = groupCrewJobs(
     sortedMoviesCrew

@@ -1,5 +1,6 @@
 import { Genre } from '@/interfaces';
 import type {
+  CreditCast,
   CreditCrew,
   CreditCrewFiltered,
   MovieCrew,
@@ -76,11 +77,6 @@ export const calculateAge = ({ birthDate, deathDate }: CalculateAgeProps) => {
   const limitMonth = limitDate.getMonth() + 1;
   const limitDay = limitDate.getDate();
 
-  console.log({ limitDate });
-  console.log({ limitDay });
-  console.log({ limitMonth });
-  console.log({ limitYear });
-
   let age = limitYear - bYear;
 
   if (limitMonth < bMonth || (limitMonth === bMonth && limitDay < bDay)) {
@@ -88,4 +84,13 @@ export const calculateAge = ({ birthDate, deathDate }: CalculateAgeProps) => {
   }
 
   return Math.max(age, 0);
+};
+
+export const sortMovies = (movies: CreditCast[] | CreditCrew[]) => {
+  return movies.sort((a, b) => {
+    const dateA = a.release_date ? parseInt(a.release_date) : Infinity;
+    const dateB = b.release_date ? parseInt(b.release_date) : Infinity;
+
+    return dateB - dateA;
+  });
 };
