@@ -25,7 +25,7 @@ export const transformToUpperCase = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export const transformToKebabCase = (str: string) => {
+export const transformToSlug = (str: string) => {
   return str.toLowerCase().split(' ').join('-');
 };
 

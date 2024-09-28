@@ -6,7 +6,7 @@ import type {
   CreditCrewFiltered,
   PersonCredits,
 } from '@/interfaces';
-import { groupCrewJobs, sortMovies, transformToKebabCase } from '@/utils';
+import { groupCrewJobs, sortMovies, transformToSlug } from '@/utils';
 
 interface Props {
   credits: PersonCredits;
@@ -50,7 +50,7 @@ export function CreditsList({ credits, knownFor }: Props) {
                   <div>
                     <Link
                       className='transition-colors hover:text-violet-300'
-                      href={`/movie/${id}-${transformToKebabCase(title)}`}
+                      href={`/movie/${id}-${transformToSlug(title)}`}
                     >
                       <p className='font-semibold'>{title}</p>
                     </Link>
@@ -89,7 +89,7 @@ export function CreditsList({ credits, knownFor }: Props) {
                   <div>
                     <Link
                       className='transition-colors hover:text-violet-300'
-                      href={`/movie/${id}-${transformToKebabCase(title)}`}
+                      href={`/movie/${id}-${transformToSlug(title)}`}
                     >
                       <p className='font-semibold'>{title}</p>
                     </Link>

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
 import type { Movie, MovieCrewFiltered } from '@/interfaces';
-import { transformToKebabCase } from '@/utils';
+import { transformToSlug } from '@/utils';
 
 interface Props {
   movie: Movie;
@@ -106,7 +106,7 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
               <li key={category.id}>
                 <Link
                   className='block rounded-md bg-violet-600 p-2 duration-200 ease-in hover:scale-110'
-                  href={`/category/${category.id}-${transformToKebabCase(
+                  href={`/category/${category.id}-${transformToSlug(
                     category.name
                   )}`}
                 >
@@ -128,7 +128,7 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
             directors.map((director) => (
               <div key={director.id}>
                 <Link
-                  href={`/person/${director.id}-${transformToKebabCase(
+                  href={`/person/${director.id}-${transformToSlug(
                     director.name
                   )}`}
                 >
@@ -147,7 +147,7 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
               return (
                 <div key={producer.id}>
                   <Link
-                    href={`/person/${producer.id}-${transformToKebabCase(
+                    href={`/person/${producer.id}-${transformToSlug(
                       producer.name
                     )}`}
                   >
@@ -168,7 +168,7 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
               return (
                 <div key={writer.id}>
                   <Link
-                    href={`/person/${writer.id}-${transformToKebabCase(
+                    href={`/person/${writer.id}-${transformToSlug(
                       writer.name
                     )}`}
                   >

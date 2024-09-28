@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getMovieCrew } from '@/lib';
-import { transformToKebabCase } from '@/utils';
+import { transformToSlug } from '@/utils';
 
 interface Props {
   movieId: string;
@@ -24,7 +24,7 @@ export async function MovieCrew({ movieId }: Props) {
           key={profileCrew.id}
         >
           <Link
-            href={`/person/${profileCrew.id}-${transformToKebabCase(
+            href={`/person/${profileCrew.id}-${transformToSlug(
               profileCrew.name
             )}`}
           >
@@ -46,7 +46,7 @@ export async function MovieCrew({ movieId }: Props) {
           </Link>
           <div>
             <Link
-              href={`/person/${profileCrew.id}-${transformToKebabCase(
+              href={`/person/${profileCrew.id}-${transformToSlug(
                 profileCrew.name
               )}`}
             >

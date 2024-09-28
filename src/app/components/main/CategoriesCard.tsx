@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getCategories } from '@/lib';
-import { transformToKebabCase } from '@/utils';
+import { transformToSlug } from '@/utils';
 
 export async function CategoriesCard() {
   const categories = await getCategories();
@@ -15,7 +15,7 @@ export async function CategoriesCard() {
           <li key={category.id}>
             <Link
               className='block rounded-md bg-violet-600 p-3 duration-200 ease-in hover:scale-110'
-              href={`/category/${category.id}-${transformToKebabCase(
+              href={`/category/${category.id}-${transformToSlug(
                 category.name
               )}`}
             >

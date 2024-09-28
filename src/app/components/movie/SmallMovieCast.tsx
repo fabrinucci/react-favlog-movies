@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getMovieCast } from '@/lib';
-import { transformToKebabCase } from '@/utils';
+import { transformToSlug } from '@/utils';
 
 interface Props {
   movieId: string;
@@ -22,7 +22,7 @@ export async function SmallMovieCast({ movieId }: Props) {
           key={profileCast.id}
         >
           <Link
-            href={`/person/${profileCast.id}-${transformToKebabCase(
+            href={`/person/${profileCast.id}-${transformToSlug(
               profileCast.name
             )}`}
           >
@@ -43,7 +43,7 @@ export async function SmallMovieCast({ movieId }: Props) {
             </figure>
           </Link>
           <Link
-            href={`/person/${profileCast.id}-${transformToKebabCase(
+            href={`/person/${profileCast.id}-${transformToSlug(
               profileCast.name
             )}`}
           >
