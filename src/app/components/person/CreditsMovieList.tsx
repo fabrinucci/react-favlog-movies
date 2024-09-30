@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { CgMathMinus } from 'react-icons/cg';
 import type { CreditCast, CreditCrewFiltered } from '@/interfaces';
-import { transformToSlug } from '@/utils';
+import { formatStrings, transformToSlug } from '@/utils';
 
 interface Props {
   creditsList: CreditCast[] | CreditCrewFiltered[];
@@ -43,7 +43,7 @@ export const CreditsMovieList = ({ creditsList, type }: Props) => {
                 )}
 
                 {'job' in credit && credit.job && (
-                  <p>{credit.job.join(', ')}</p>
+                  <p>{formatStrings(credit.job)}</p>
                 )}
               </div>
             </li>

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getMovieCrew } from '@/lib';
-import { transformToSlug } from '@/utils';
+import { formatStrings, transformToSlug } from '@/utils';
 
 interface Props {
   movieId: string;
@@ -55,7 +55,7 @@ export async function MovieCrew({ movieId }: Props) {
               </h4>
             </Link>
             <h5 className='text-sm text-purple-200'>
-              {`${profileCrew.job}`.split(',').join(', ')}
+              {formatStrings(profileCrew.job)}
             </h5>
           </div>
         </li>

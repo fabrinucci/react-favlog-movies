@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { MovieCrewFiltered } from '@/interfaces';
-import { transformToSlug } from '@/utils';
+import { formatStrings, transformToSlug } from '@/utils';
 
 interface Props {
   crew: MovieCrewFiltered[];
@@ -9,8 +9,6 @@ interface Props {
 }
 
 export const CrewJobInfo = ({ crew, excludeJobs }: Props) => {
-  const formatJob = (job: string[]) => job.join(', ');
-
   return (
     <>
       {crew.map((crewPerson) => {
@@ -27,7 +25,7 @@ export const CrewJobInfo = ({ crew, excludeJobs }: Props) => {
               </h3>
             </Link>
             <h4 className='text-sm text-purple-200'>
-              {formatJob(crewPerson.job)}
+              {formatStrings(crewPerson.job)}
             </h4>
           </div>
         );
