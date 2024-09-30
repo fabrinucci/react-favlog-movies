@@ -17,6 +17,11 @@ interface CalculateAgeProps {
   deathDate?: string;
 }
 
+interface FilterCrewProps {
+  movieCrew: MovieCrewFiltered[];
+  job: string;
+}
+
 export const getYear = (movieRelease: string) => {
   return movieRelease.split('-')[0];
 };
@@ -27,6 +32,10 @@ export const transformToUpperCase = (str: string) => {
 
 export const transformToSlug = (str: string) => {
   return str.toLowerCase().split(' ').join('-');
+};
+
+export const filterCrewByJob = ({ movieCrew, job }: FilterCrewProps) => {
+  return movieCrew.filter((member) => member.job.includes(job));
 };
 
 export const getCategory = ({ id, categories }: CategoryProps) => {
