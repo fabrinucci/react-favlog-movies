@@ -38,6 +38,8 @@ export const filterCrewByJob = ({ movieCrew, job }: FilterCrewProps) => {
   return movieCrew.filter((member) => member.job.includes(job));
 };
 
+export const formatStrings = (str: string[]) => str.join(', ');
+
 export const getCategory = ({ id, categories }: CategoryProps) => {
   const parsedId = parseInt(id);
   if (isNaN(parsedId)) return null;
