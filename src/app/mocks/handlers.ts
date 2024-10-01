@@ -6,12 +6,14 @@ import type {
   MovieCrew,
   MoviesResult,
   Person,
+  PersonCredits,
 } from '@/interfaces';
 
 import {
   mockedCategories,
   mockedMovieCast,
   mockedPerson,
+  mockedPersonCredits,
   mockedPopularMovies,
 } from './mockedResponse';
 
@@ -22,18 +24,22 @@ export const handlers = [
     return res(ctx.status(200), ctx.json<MoviesResult[]>(mockedPopularMovies));
   }),
 
-  rest.get(`${API_URL}/person/:id`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json<Person>(mockedPerson));
-  }),
-
-  rest.get(`${API_URL}/genre/movie/list`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json<Genre[]>(mockedCategories));
-  }),
-
   rest.get(`${API_URL}/movie/:id/credits`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json<MovieCast[] | MovieCrew[]>(mockedMovieCast)
     );
+  }),
+
+  rest.get(`${API_URL}/person/:id`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json<Person>(mockedPerson));
+  }),
+
+  rest.get(`${API_URL}/person/:id/movie_credits`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json<PersonCredits>(mockedPersonCredits));
+  }),
+
+  rest.get(`${API_URL}/genre/movie/list`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json<Genre[]>(mockedCategories));
   }),
 ];
