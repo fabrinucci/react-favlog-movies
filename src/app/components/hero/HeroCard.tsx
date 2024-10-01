@@ -1,15 +1,16 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
 import type { MoviesResult } from '@/interfaces';
-import { transformToKebabCase } from '@/utils';
+import { transformToSlug } from '@/utils';
 
 interface Props {
   movie: MoviesResult;
 }
 
 export const HeroCard = ({ movie }: Props) => {
-  const movieTitle = transformToKebabCase(movie.title);
+  const movieTitle = transformToSlug(movie.title);
 
   return (
     <>

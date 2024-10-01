@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getMovie, getMovieCast, getMovieCrew } from '@/lib';
 import { MovieInfo, SmallMovieCast } from './';
 import type { Movie } from '@/interfaces';
-import { transformToKebabCase } from '@/utils';
+import { transformToSlug } from '@/utils';
 
 interface Props {
   id: string;
@@ -14,7 +14,7 @@ export async function MovieCard({ id }: Props) {
   const movieCast = await getMovieCast({ id });
   const movieCrew = await getMovieCrew({ id });
 
-  const movieTitle = transformToKebabCase(movie.title);
+  const movieTitle = transformToSlug(movie.title);
 
   return (
     <section>

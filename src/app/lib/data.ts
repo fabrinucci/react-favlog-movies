@@ -10,7 +10,7 @@ import type {
   MovieCrewFiltered,
 } from '@/interfaces';
 import { moviesApi } from './';
-import { filteredMoviesCrew } from '@/utils';
+import { groupCrewJobs } from '@/utils';
 
 interface MoviesSearchProps {
   query: string;
@@ -87,7 +87,7 @@ export const getPersonCredits = async (id: string) => {
 export const getMovieCrew = async ({ id }: { id: string }) => {
   try {
     const { data } = await moviesApi.get<MovieCredits>(`/movie/${id}/credits`);
-    const filteredCrew = filteredMoviesCrew(data.crew);
+    const filteredCrew = groupCrewJobs(data.crew);
     return filteredCrew as MovieCrewFiltered[];
   } catch (error) {
     console.error('Database Error:', error);

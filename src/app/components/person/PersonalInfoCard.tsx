@@ -1,6 +1,6 @@
 import type { Person } from '@/interfaces';
 import { getPerson } from '@/lib';
-import { calculateCurrentAge, calculateDeathAge } from '@/utils';
+import { calculateAge } from '@/utils';
 
 interface Props {
   id: string;
@@ -33,15 +33,13 @@ export async function PersonalInfoCard({ id }: Props) {
     birthday && {
       title: 'Birthday',
       subtitle: `${birthday}${
-        !deathday
-          ? ` (${calculateCurrentAge({ birthDate: birthday })} years old)`
-          : ''
+        !deathday ? ` (${calculateAge({ birthDate: birthday })} years old)` : ''
       }`,
     },
     deathday &&
       birthday && {
         title: 'Day of Death',
-        subtitle: `${deathday}${` (${calculateDeathAge({
+        subtitle: `${deathday}${` (${calculateAge({
           birthDate: birthday,
           deathDate: deathday,
         })} years old)`}`,

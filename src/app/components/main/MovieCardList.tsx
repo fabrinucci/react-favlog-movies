@@ -2,14 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
 import type { MoviesResult } from '@/interfaces';
-import { transformToKebabCase } from '@/utils';
+import { transformToSlug } from '@/utils';
 
 interface Props {
   movie: MoviesResult;
 }
 
-export default async function MovieCardList({ movie }: Props) {
-  const movieTitle = transformToKebabCase(movie.title);
+export const MovieCardList = ({ movie }: Props) => {
+  const movieTitle = transformToSlug(movie.title);
 
   return (
     <li className='relative mb-2 mr-4 inline-block w-[160px] overflow-hidden transition-all last-of-type:mr-0 sm:w-[200px] md:w-[240px]'>
@@ -41,4 +41,4 @@ export default async function MovieCardList({ movie }: Props) {
       </Link>
     </li>
   );
-}
+};

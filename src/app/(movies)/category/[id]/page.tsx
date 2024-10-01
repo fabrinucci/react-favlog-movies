@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { CategoriesMovies } from '@/components/category';
 import { Pagination } from '@/components/search';
 import { getCategories, getMoviesByCategory } from '@/lib';
-import { parsedCategoryName, validatedPage } from '@/utils';
+import { getCategory, validatePage } from '@/utils';
 
 interface Props {
   params: {
@@ -17,11 +17,11 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const [id] = params.id.split('-');
   const categories = await getCategories();
-  const categoryName = parsedCategoryName({ id, categories });
+  const category = getCategory({ id, categories });
 
   return {
-    title: categoryName,
-    description: `Find ${categoryName} movies.`,
+    title: category?.name,
+    description: `Find ${category?.name} movies.`,
   };
 }
 
@@ -31,7 +31,7 @@ export default async function Page({ params, searchParams }: Props) {
 
   const movies = await getMoviesByCategory({
     categoryId: id,
-    page: validatedPage(Number(page)),
+    page: validatePage(Number(page)),
   });
 
   if (movies.results.length === 0) redirect('/');
