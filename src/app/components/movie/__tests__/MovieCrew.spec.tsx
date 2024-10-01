@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { mockedMovieCrew } from '@/mocks/mockedResponse';
+import { mockedMovieCrewFiltered } from '@/mocks/mockedResponse';
 import { getMovieCrew } from '@/lib';
 import { MovieCrew } from '../MovieCrew';
 
@@ -9,7 +9,7 @@ jest.mock('../../../lib', () => ({
 
 describe('Testing <MovieCrew />', () => {
   it('Should be in the component', async () => {
-    (getMovieCrew as jest.Mock).mockResolvedValue(mockedMovieCrew);
+    (getMovieCrew as jest.Mock).mockResolvedValue(mockedMovieCrewFiltered);
 
     render(await MovieCrew({ movieId: '4' }));
 
