@@ -22,6 +22,6 @@ describe('Testing PersonCard', () => {
 
     const img = screen.getByRole('img');
     expect(img).toBeInTheDocument();
-    expect(img).toHaveAccessibleName('some text');
+    expect(img).toHaveAccessibleName('Person name');
   });
 });
