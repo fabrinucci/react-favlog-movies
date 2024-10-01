@@ -2,7 +2,7 @@
 
 <h1 align="center">Welcome to Favlog movies 🎥</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.2.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/fabrinucci/react-favlog-movies#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -27,19 +27,20 @@
 ## Install
 
 ```sh
-yarn install
+npm run install
 ```
 
 ## Usage
 
 ```sh
-yarn dev
+npm run dev
 ```
 
 ## Environments
 
 ```sh
 API_KEY=
+NEXT_PUBLIC_API_URL=https://api.themoviedb.org/3
 ```
 
 ## Technologies
@@ -50,6 +51,9 @@ API_KEY=
 [![TypeScript](https://img.shields.io/static/v1?label=&message=typescript&color=3178C6&logo=typescript&logoColor=white&style=for-the-badge)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/static/v1?label=&message=TailwindCSS&color=06B6D4&logo=tailwindcss&logoColor=white&style=for-the-badge)](https://tailwindcss.com/)
 
+[![Jest](https://img.shields.io/static/v1?label=&message=jest&color=C21325&logo=jest&logoColor=white&style=for-the-badge)](https://jestjs.io/)
+[![React Testing Library](https://img.shields.io/static/v1?label=&message=testing-library&color=E33332&logo=testing-library&logoColor=white&style=for-the-badge)](https://testing-library.com/)
+
 ## Author
 
 👤 **Fabrizio Nucci**
@@ -57,7 +61,7 @@ API_KEY=
 [![Website](https://img.shields.io/static/v1?label=&message=website&color=CCCCF1&style=for-the-badge)](https://fabrinucci.github.io)
 [![GitHub](https://img.shields.io/static/v1?label=&message=github&color=181717&logo=github&logoColor=white&style=for-the-badge)](https://github.com/fabrinucci)
 [![LinkedIn](https://img.shields.io/static/v1?label=&message=linkedin&color=0A66C2&logo=linkedin&logoColor=white&style=for-the-badge)](https://linkedin.com/in/fabrinucci)
-[![Twitter](https://img.shields.io/static/v1?label=&message=twitter&color=1D9BF0&logo=twitter&logoColor=white&style=for-the-badge)](https://twitter.com/FabrizioDev)
+[![Twitter](https://img.shields.io/static/v1?label=&message=twitter&color=000000&logo=x&logoColor=white&style=for-the-badge)](https://x.com/FabrizioDev)
 
 ## Show your support
 
