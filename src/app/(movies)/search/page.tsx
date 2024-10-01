@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { Pagination, SearchMovies } from '@/components/search';
 import { getMoviesBySearch } from '@/lib';
-import { validatedPage } from '@/utils';
+import { validatePage } from '@/utils';
 
 interface Props {
   searchParams: {
@@ -24,7 +24,7 @@ export default async function SearchPage({ searchParams }: Props) {
   const { query, page } = searchParams;
   const searchedMovies = await getMoviesBySearch({
     query: query,
-    page: validatedPage(Number(page)),
+    page: validatePage(Number(page)),
   });
 
   if (!query) redirect('/');

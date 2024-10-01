@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
 import type { Movie, MovieCrewFiltered } from '@/interfaces';
-import { transformToKebabCase } from '@/utils';
+import { filterCrewByJob, transformToSlug } from '@/utils';
+import { CrewJobInfo } from './CrewJobInfo';
 
 interface Props {
   movie: Movie;
@@ -10,17 +11,6 @@ interface Props {
 }
 
 export const MovieInfo = ({ movie, movieCrew }: Props) => {
-  const directors = movieCrew.filter((member) =>
-    member.job.some((j) => j === 'Director')
-  );
-  const producers = movieCrew.filter((member) =>
-    member.job.some((j) => j === 'Producer')
-  );
-
-  const writers = movieCrew.filter((member) =>
-    member.job.some((j) => j === 'Writer')
-  );
-
   const {
     genres,
     poster_path,
@@ -33,6 +23,10 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
 
   const movieVotesAvg = Number(vote_average.toFixed(1));
   const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
+
+  const directors = filterCrewByJob({ movieCrew, job: 'Director' });
+  const producers = filterCrewByJob({ movieCrew, job: 'Producer' });
+  const writers = filterCrewByJob({ movieCrew, job: 'Writer' });
 
   return (
     <section className='grid gap-8 md:grid-cols-3'>
@@ -106,7 +100,7 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
               <li key={category.id}>
                 <Link
                   className='block rounded-md bg-violet-600 p-2 duration-200 ease-in hover:scale-110'
-                  href={`/category/${category.id}-${transformToKebabCase(
+                  href={`/category/${category.id}-${transformToSlug(
                     category.name
                   )}`}
                 >
@@ -124,64 +118,16 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
         </div>
 
         <div className='my-4 grid gap-4 min-[400px]:grid-cols-2 sm:grid-cols-3 sm:gap-6'>
-          {directors &&
-            directors.map((director) => (
-              <div key={director.id}>
-                <Link
-                  href={`/person/${director.id}-${transformToKebabCase(
-                    director.name
-                  )}`}
-                >
-                  <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
-                    {director.name}
-                  </h3>
-                </Link>
-                <h4 className='text-sm text-purple-200'>
-                  {`${director.job}`.split(',').join(', ')}
-                </h4>
-              </div>
-            ))}
-          {producers &&
-            producers.map((producer) => {
-              if (producer.job.some((j) => j === 'Director')) return;
-              return (
-                <div key={producer.id}>
-                  <Link
-                    href={`/person/${producer.id}-${transformToKebabCase(
-                      producer.name
-                    )}`}
-                  >
-                    <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
-                      {producer.name}
-                    </h3>
-                  </Link>
-                  <h4 className='text-sm text-purple-200'>
-                    {`${producer.job}`.split(',').join(', ')}
-                  </h4>
-                </div>
-              );
-            })}
-          {writers &&
-            writers.map((writer) => {
-              if (writer.job.some((j) => j === 'Director' || j === 'Producer'))
-                return;
-              return (
-                <div key={writer.id}>
-                  <Link
-                    href={`/person/${writer.id}-${transformToKebabCase(
-                      writer.name
-                    )}`}
-                  >
-                    <h3 className='inline text-base font-semibold transition-colors md:hover:text-violet-300'>
-                      {writer.name}
-                    </h3>
-                  </Link>
-                  <h4 className='text-sm text-purple-200'>
-                    {`${writer.job}`.split(',').join(', ')}
-                  </h4>
-                </div>
-              );
-            })}
+          {directors && <CrewJobInfo crew={directors} />}
+          {producers && (
+            <CrewJobInfo crew={producers} excludeJobs={['Director']} />
+          )}
+          {writers && (
+            <CrewJobInfo
+              crew={writers}
+              excludeJobs={['Director', 'Producer']}
+            />
+          )}
         </div>
       </div>
     </section>

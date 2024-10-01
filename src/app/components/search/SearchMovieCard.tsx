@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { MoviesResult } from '@/interfaces';
-import { transformToKebabCase } from '@/utils';
+import { transformToSlug } from '@/utils';
 
 interface Props {
   movie: MoviesResult;
@@ -11,7 +11,7 @@ export const SearchMovieCard = ({ movie }: Props) => {
   const MOVIE_PATH = 'https://image.tmdb.org/t/p/w300';
   const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
 
-  const movieTitle = transformToKebabCase(movie.title);
+  const movieTitle = transformToSlug(movie.title);
 
   return (
     <li className='mb-4' key={movie.id}>

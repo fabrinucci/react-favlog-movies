@@ -1,3 +1,4 @@
+import React from 'react';
 import { CategoriesCard, MoviesCard } from '@/components/main';
 
 export default async function HomePage() {

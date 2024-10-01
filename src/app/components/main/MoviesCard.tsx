@@ -1,6 +1,6 @@
 import { getMovies } from '@/lib';
 import type { MoviesType } from '@/interfaces';
-import MovieCardList from './MovieCardList';
+import { MovieCardList } from './MovieCardList';
 
 interface Props {
   movieType: MoviesType;
