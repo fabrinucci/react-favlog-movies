@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { Pagination, SearchMovies } from '@/components/search';
@@ -34,10 +35,12 @@ export default async function SearchPage({ searchParams }: Props) {
 
   return (
     <div className='mb-10'>
-      <SearchMovies movies={searchedMovies.results} />
-      {searchedMovies.results.length !== 0 && (
-        <Pagination movies={searchedMovies} />
-      )}
+      <Suspense>
+        <SearchMovies movies={searchedMovies.results} />
+        {searchedMovies.results.length !== 0 && (
+          <Pagination movies={searchedMovies} />
+        )}
+      </Suspense>
     </div>
   );
 }
