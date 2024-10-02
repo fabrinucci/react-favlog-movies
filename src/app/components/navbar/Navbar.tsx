@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { BsCameraReelsFill } from 'react-icons/bs';
 import { Account, Search } from './';
@@ -13,7 +14,9 @@ export const Navbar = () => {
         <Account />
       </div>
 
-      <Search />
+      <Suspense>
+        <Search />
+      </Suspense>
 
       <div className='hidden gap-2 sm:flex'>
         <button className='rounded-md border border-violet-600 bg-[#0000006b] px-5 py-2 text-white duration-200 ease-in-out hover:bg-[#000000b1]'>

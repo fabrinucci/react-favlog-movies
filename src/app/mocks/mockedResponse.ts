@@ -61,7 +61,7 @@ export const mockedPerson = {
   id: 1,
   imdb_id: 'some text',
   known_for_department: 'some text',
-  name: 'some text',
+  name: 'Person name',
   place_of_birth: 'some text',
   popularity: 1,
   profile_path: 'some text',
