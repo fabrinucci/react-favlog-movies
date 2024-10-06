@@ -59,8 +59,8 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
         </picture>
       </div>
       <div className='animate-fadeIn md:col-start-2 md:col-end-4'>
-        <div className='flex flex-col items-center justify-center gap-5 sm:flex-row md:justify-start'>
-          <h2 className='text-center text-2xl font-semibold sm:text-3xl'>
+        <div className='flex flex-col items-center justify-center gap-5 sm:flex-row md:max-w-3xl md:justify-start'>
+          <h2 className='text-center text-2xl font-semibold sm:text-3xl sm:leading-10'>
             {title}
           </h2>
           <div className='flex items-center gap-5'>
