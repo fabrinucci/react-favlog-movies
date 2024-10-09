@@ -11,7 +11,7 @@ import type {
 
 import {
   mockedCategories,
-  mockedMovieCast,
+  mockedMovieCreditsCast,
   mockedPerson,
   mockedPersonCredits,
   mockedPopularMovies,
@@ -27,7 +27,7 @@ export const handlers = [
   rest.get(`${API_URL}/movie/:id/credits`, (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.json<MovieCast[] | MovieCrew[]>(mockedMovieCast)
+      ctx.json<MovieCast[] | MovieCrew[]>(mockedMovieCreditsCast)
     );
   }),
 
