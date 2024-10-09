@@ -1,236 +1,279 @@
-export const mockedPopularMovies = [
-  {
-    adult: false,
-    backdrop_path: 'some text',
-    genre_ids: [1, 5, 6],
-    id: 15,
-    original_language: 'some text',
-    original_title: 'some text',
-    overview: 'some text',
-    popularity: 15,
-    poster_path: 'some text',
-    release_date: 'some text',
-    title: 'Title',
-    video: false,
-    vote_average: 15,
-    vote_count: 15,
-  },
-  {
-    adult: true,
-    backdrop_path: 'some text',
-    genre_ids: [1, 5, 6],
-    id: 25,
-    original_language: 'some text',
-    original_title: 'fe',
-    overview: 'some text',
-    popularity: 15,
-    poster_path: 'some text',
-    release_date: 'some text',
-    title: 'Other Title',
-    video: true,
-    vote_average: 25,
-    vote_count: 15,
-  },
-];
+import {
+  CreditCast,
+  CreditCrew,
+  Genre,
+  Movie,
+  MovieCast,
+  MovieCrew,
+  MovieCrewFiltered,
+  Movies,
+  MoviesResult,
+  Person,
+  PersonCredits,
+} from '@/interfaces';
+import { faker } from '@faker-js/faker';
 
-export const mockedMovieResult = {
-  adult: false,
-  backdrop_path: 'some text',
-  genre_ids: [1, 5, 6],
-  id: 19,
-  original_language: 'English',
-  original_title: 'Movie title test',
-  overview: 'some text',
-  popularity: 15,
-  poster_path: 'some text',
-  release_date: '25/09/2023',
-  title: 'Movie title test',
-  video: true,
-  vote_average: 15,
-  vote_count: 15,
+export const mockedMovie: MoviesResult = {
+  adult: faker.datatype.boolean(),
+  backdrop_path: `/${faker.string.nanoid()}.jpg`,
+  genre_ids: faker.helpers.arrayElements([12, 16, 35, 80, 99, 218, 506], {
+    min: 1,
+    max: 3,
+  }),
+  id: faker.number.int(),
+  original_language: faker.helpers.arrayElement(['en', 'es', 'fr', 'de']),
+  original_title: faker.lorem.words({ min: 1, max: 6 }),
+  overview: faker.lorem.paragraph({ min: 100, max: 1000 }),
+  popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
+  poster_path: `/${faker.string.nanoid()}.jpg`,
+  release_date: faker.date.anytime().toISOString().split('T')[0],
+  title: faker.lorem.words({ min: 1, max: 6 }),
+  video: faker.datatype.boolean(),
+  vote_average: faker.number.float({ min: 1, max: 10, fractionDigits: 3 }),
+  vote_count: faker.number.int({ max: 50000 }),
 };
 
-export const mockedPerson = {
-  adult: true,
-  also_known_as: ['some text'],
-  biography: 'some text',
-  birthday: 'some text',
-  deathday: 'some text',
-  gender: 1,
-  homepage: 'some text',
-  id: 1,
-  imdb_id: 'some text',
-  known_for_department: 'some text',
-  name: 'Person name',
-  place_of_birth: 'some text',
-  popularity: 1,
-  profile_path: 'some text',
+export const mockedPerson: Person = {
+  adult: faker.datatype.boolean(),
+  also_known_as: faker.helpers.arrayElements([faker.person.fullName()], {
+    min: 1,
+    max: 4,
+  }),
+  biography: faker.person.bio(),
+  birthday: faker.date
+    .birthdate({ mode: 'year', min: 1960, max: 2000 })
+    .toISOString()
+    .split('T')[0],
+  deathday: faker.date
+    .birthdate({ mode: 'year', min: 2010, max: 2020 })
+    .toISOString()
+    .split('T')[0],
+  gender: faker.helpers.arrayElement([0, 1, 2, 3]),
+  homepage: faker.helpers.arrayElement([faker.internet.url(), null]),
+  id: faker.number.int(),
+  imdb_id: faker.string.uuid(),
+  known_for_department: faker.helpers.arrayElement([
+    'Acting',
+    'Directing',
+    'Production',
+    'Writing',
+  ]),
+  name: faker.person.fullName(),
+  place_of_birth: faker.location.city(),
+  popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
+  profile_path: `/${faker.string.nanoid()}.jpg`,
 };
 
-export const mockedMovies = {
-  page: 1,
+export const mockedCategory: Genre = {
+  id: faker.number.int(),
+  name: faker.helpers.arrayElement([
+    'Action',
+    'Animation',
+    'Drama',
+    'Horror',
+    'Mystery',
+    'Romance',
+    'Suspense',
+    'Thriller',
+  ]),
+};
+
+export const mockedPopularMovies: MoviesResult[] = faker.helpers.arrayElements(
+  [mockedMovie],
+  20
+);
+
+export const mockedMovies: Movies = {
+  page: faker.number.int({ min: 1, max: 500 }),
   results: mockedPopularMovies,
-  total_pages: 3,
-  total_results: 20,
+  total_pages: faker.number.int({ min: 1, max: 500 }),
+  total_results: faker.number.int({ min: 1, max: 20 }),
 };
 
-export const mockedCategories = [
+export const mockedCategories: Genre[] = faker.helpers.arrayElements(
+  [mockedCategory],
+  8
+);
+
+const mockedCreditsGlobal = {
+  adult: faker.datatype.boolean(),
+  backdrop_path: `/${faker.string.nanoid()}.jpg`,
+  genre_ids: faker.helpers.arrayElements([12, 16, 35, 80, 99, 218, 506], {
+    min: 1,
+    max: 4,
+  }),
+  id: faker.number.int(),
+  original_language: faker.helpers.arrayElement(['en', 'es', 'fr', 'de']),
+  original_title: faker.lorem.words({ min: 1, max: 6 }),
+  overview: faker.lorem.paragraph({ min: 100, max: 1000 }),
+  popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
+  poster_path: `/${faker.string.nanoid()}.jpg`,
+  release_date: faker.date.anytime().toISOString().split('T')[0],
+  title: faker.lorem.words({ min: 1, max: 6 }),
+  video: faker.datatype.boolean(),
+  vote_average: faker.number.float({ min: 1, max: 10, fractionDigits: 3 }),
+  vote_count: faker.number.int({ max: 50000 }),
+  credit_id: faker.string.alphanumeric({ length: 10 }),
+};
+
+export const mockedCreditsCast: CreditCast = {
+  ...mockedCreditsGlobal,
+  character: faker.lorem.words({ min: 1, max: 3 }),
+  order: faker.number.int({ min: 0, max: 100 }),
+};
+
+export const mockedCreditsCrew: CreditCrew = {
+  ...mockedCreditsGlobal,
+  department: faker.helpers.arrayElement([
+    'Directing',
+    'Production',
+    'Writing',
+  ]),
+  job: faker.helpers.arrayElement([
+    'Director',
+    'Producer',
+    'Screenplay',
+    'Writer',
+  ]),
+};
+
+export const mockedPersonCredits: PersonCredits = {
+  id: faker.number.int(),
+  cast: faker.helpers.arrayElements([mockedCreditsCast], { min: 1, max: 30 }),
+  crew: faker.helpers.arrayElements([mockedCreditsCrew], { min: 1, max: 30 }),
+};
+
+export const mockedMovieCreditsGlobal = {
+  adult: faker.datatype.boolean(),
+  gender: faker.helpers.arrayElement([0, 1, 2, 3]),
+  id: faker.number.int(),
+  known_for_department: faker.helpers.arrayElement([
+    'Directing',
+    'Production',
+    'Writing',
+  ]),
+  name: faker.person.fullName(),
+  original_name: faker.person.fullName(),
+  popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
+  profile_path: `/${faker.string.nanoid()}.jpg`,
+  cast_id: faker.number.int({ min: 1, max: 100 }),
+  credit_id: faker.string.alphanumeric({ length: 10 }),
+};
+
+export const mockedMovieCreditsCast: MovieCast[] = [
   {
-    id: 1,
-    name: 'Horror',
-  },
-  {
-    id: 2,
-    name: 'Animation',
-  },
-  {
-    id: 3,
-    name: 'Suspense',
+    ...mockedMovieCreditsGlobal,
+    character: faker.lorem.words({ min: 1, max: 3 }),
+    order: faker.number.int({ min: 0, max: 100 }),
   },
 ];
 
-export const mockedCreditsCast = {
-  adult: true,
-  backdrop_path: 'some text',
-  genre_ids: [1, 5, 9],
-  id: 6,
-  original_language: 'some text',
-  original_title: 'some text',
-  overview: 'some text',
-  popularity: 6,
-  poster_path: 'some text',
-  release_date: 'some text',
-  title: 'Movie Title Cast',
-  video: true,
-  vote_average: 6,
-  vote_count: 6,
-  character: 'some text',
-  credit_id: 'some text',
-  order: 6,
-};
-
-export const mockedCreditsCrew = {
-  adult: true,
-  backdrop_path: 'some text',
-  genre_ids: [1, 5, 9],
-  id: 6,
-  original_language: 'some text',
-  original_title: 'some text',
-  overview: 'some text',
-  popularity: 6,
-  poster_path: 'some text',
-  release_date: 'some text',
-  title: 'Movie Title Crew',
-  video: true,
-  vote_average: 6,
-  vote_count: 6,
-  credit_id: 'some text',
-  department: 'actor',
-  job: 'actor',
-};
-
-export const mockedPersonCredits = {
-  id: 5,
-  cast: [mockedCreditsCast],
-  crew: [mockedCreditsCrew],
-};
-
-export const mockedMovieCast = [
+export const mockedMovieCreditsCrew: MovieCrew[] = [
   {
-    adult: true,
-    gender: 6,
-    id: 6,
-    known_for_department: 'Title',
-    name: 'Movie Title',
-    original_name: 'Title',
-    popularity: 6,
-    profile_path: 'Title',
-    cast_id: 6,
-    character: 'Title',
-    credit_id: 'Title',
-    order: 6,
+    ...mockedMovieCreditsGlobal,
+    department: faker.helpers.arrayElement([
+      'Directing',
+      'Production',
+      'Writing',
+    ]),
+    job: faker.helpers.arrayElement([
+      'Director',
+      'Producer',
+      'Screenplay',
+      'Writer',
+    ]),
   },
 ];
 
-export const mockedMovieCrew = [
+export const mockedMovieCrewFiltered: MovieCrewFiltered[] = [
   {
-    adult: true,
-    gender: 6,
-    id: 6,
-    known_for_department: 'Title',
-    name: 'Movie Title',
-    original_name: 'Title',
-    popularity: 6,
-    profile_path: 'Title',
-    credit_id: 'Title',
-    department: 'deparment',
-    job: 'job',
+    ...mockedMovieCreditsGlobal,
+    department: faker.helpers.arrayElement([
+      'Directing',
+      'Production',
+      'Writing',
+    ]),
+    job: faker.helpers.arrayElements([
+      'Director',
+      'Producer',
+      'Screenplay',
+      'Writer',
+    ]),
   },
 ];
 
-export const mockedMovieCrewFiltered = [
-  {
-    adult: true,
-    gender: 6,
-    id: 6,
-    known_for_department: 'Title',
-    name: 'Movie Title',
-    original_name: 'Title',
-    popularity: 6,
-    profile_path: 'Title',
-    credit_id: 'Title',
-    department: 'deparment',
-    job: ['job'],
-  },
-];
-
-export const mockedFullMovie = {
-  adult: true,
-  backdrop_path: 'some text',
+export const mockedFullMovie: Movie = {
+  adult: faker.datatype.boolean(),
+  backdrop_path: `/${faker.string.nanoid()}.jpg`,
   belongs_to_collection: null,
-  budget: 15,
-  genres: [
+  budget: faker.number.int({ min: 100000, max: 1000000000 }),
+  genres: faker.helpers.arrayElements([mockedCategory], { min: 1, max: 4 }),
+  homepage: faker.internet.url(),
+  id: faker.number.int(),
+  imdb_id: faker.string.alphanumeric(10),
+  original_language: faker.helpers.arrayElement(['en', 'es', 'fr', 'de']),
+  original_title: faker.lorem.words({ min: 1, max: 6 }),
+  overview: faker.lorem.paragraphs({ min: 1, max: 5 }),
+  popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
+  poster_path: `/${faker.string.nanoid()}.jpg`,
+  production_companies: faker.helpers.arrayElements(
+    [
+      {
+        id: faker.number.int(),
+        logo_path: null,
+        name: faker.company.name(),
+        origin_country: faker.helpers.arrayElement([
+          'CA',
+          'FR',
+          'DE',
+          'US',
+          'UK',
+        ]),
+      },
+    ],
+    { min: 1, max: 3 }
+  ),
+  production_countries: faker.helpers.arrayElements([
     {
-      id: 4,
-      name: 'Horror',
+      iso_3166_1: faker.helpers.arrayElement(['CA', 'FR', 'DE', 'US', 'UK']),
+      name: faker.helpers.arrayElement([
+        'Canada',
+        'France',
+        'Germany',
+        'United States',
+        'United Kingdom',
+      ]),
     },
-  ],
-  homepage: 'some text',
-  id: 15,
-  imdb_id: 'some text',
-  original_language: 'some text',
-  original_title: 'some text',
-  overview: 'some text',
-  popularity: 15,
-  poster_path: 'some text',
-  production_companies: [
+  ]),
+  release_date: faker.date.anytime().toISOString().split('T')[0],
+
+  revenue: faker.number.int({ min: 100000, max: 1000000000 }),
+  runtime: faker.number.int({ max: 500 }),
+  spoken_languages: faker.helpers.arrayElements([
     {
-      id: 4,
-      logo_path: null,
-      name: 'Name',
-      origin_country: 'UK',
+      english_name: faker.helpers.arrayElement([
+        'English',
+        'French',
+        'German',
+        'Spanish',
+      ]),
+      iso_639_1: faker.helpers.arrayElement(['en', 'de', 'fr', 'es']),
+      name: faker.helpers.arrayElement([
+        'English',
+        'French',
+        'German',
+        'Spanish',
+      ]),
     },
-  ],
-  production_countries: [
-    {
-      iso_3166_1: '453',
-      name: 'Name',
-    },
-  ],
-  release_date: 'some text',
-  revenue: 15,
-  runtime: 15,
-  spoken_languages: [
-    {
-      english_name: 'name',
-      iso_639_1: 'name',
-      name: 'name',
-    },
-  ],
-  status: 'some text',
-  tagline: 'some text',
-  title: 'Full movie title',
-  video: false,
-  vote_average: 15,
-  vote_count: 15,
+  ]),
+  status: faker.helpers.arrayElement([
+    'Planned',
+    'Post Production',
+    'Released',
+  ]),
+  tagline: faker.lorem.sentence(),
+  title: faker.lorem.words({ min: 1, max: 6 }),
+  video: faker.datatype.boolean(),
+  vote_average: faker.number.float({ min: 1, max: 10, fractionDigits: 3 }),
+  vote_count: faker.number.int({ max: 50000 }),
 };
