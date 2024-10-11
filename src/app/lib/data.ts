@@ -1,4 +1,3 @@
-import { cache } from 'react';
 import type {
   Categories,
   MovieCredits,

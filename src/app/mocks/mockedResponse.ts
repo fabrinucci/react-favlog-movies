@@ -1,4 +1,5 @@
-import {
+import { faker } from '@faker-js/faker';
+import type {
   CreditCast,
   CreditCrew,
   Genre,
@@ -11,7 +12,6 @@ import {
   Person,
   PersonCredits,
 } from '@/interfaces';
-import { faker } from '@faker-js/faker';
 
 export const mockedMovie: MoviesResult = {
   adult: faker.datatype.boolean(),
@@ -26,7 +26,7 @@ export const mockedMovie: MoviesResult = {
   overview: faker.lorem.paragraph({ min: 100, max: 1000 }),
   popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
   poster_path: `/${faker.string.nanoid()}.jpg`,
-  release_date: faker.date.anytime().toISOString().split('T')[0],
+  release_date: faker.date.past().toISOString().split('T')[0],
   title: faker.lorem.words({ min: 1, max: 6 }),
   video: faker.datatype.boolean(),
   vote_average: faker.number.float({ min: 1, max: 10, fractionDigits: 3 }),
@@ -108,7 +108,7 @@ const mockedCreditsGlobal = {
   overview: faker.lorem.paragraph({ min: 100, max: 1000 }),
   popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
   poster_path: `/${faker.string.nanoid()}.jpg`,
-  release_date: faker.date.anytime().toISOString().split('T')[0],
+  release_date: faker.date.past().toISOString().split('T')[0],
   title: faker.lorem.words({ min: 1, max: 6 }),
   video: faker.datatype.boolean(),
   vote_average: faker.number.float({ min: 1, max: 10, fractionDigits: 3 }),
@@ -245,7 +245,7 @@ export const mockedFullMovie: Movie = {
       ]),
     },
   ]),
-  release_date: faker.date.anytime().toISOString().split('T')[0],
+  release_date: faker.date.past().toISOString().split('T')[0],
 
   revenue: faker.number.int({ min: 100000, max: 1000000000 }),
   runtime: faker.number.int({ max: 500 }),
