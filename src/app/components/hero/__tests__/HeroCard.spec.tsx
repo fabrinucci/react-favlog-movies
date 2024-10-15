@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { HeroCard } from '@/components/hero/HeroCard';
-import { mockedMovie } from '@/mocks/mockedResponse';
 import { transformToSlug } from '@/utils';
+import { generateMockedMovie } from '@/mocks/mockers';
 
 describe('Testing HeroCard', () => {
+  const mockedMovie = generateMockedMovie();
+
   test('Should render the correct hero image', async () => {
     render(<HeroCard movie={mockedMovie} />);
 
@@ -42,7 +44,7 @@ describe('Testing HeroCard', () => {
     );
   });
 
-  test('Should render the correct rating', () => {
+  test('Link should render the correct href', () => {
     const newMockedMovie = { ...mockedMovie, title: 'The last kingdom' };
     render(<HeroCard movie={newMockedMovie} />);
 
@@ -50,7 +52,7 @@ describe('Testing HeroCard', () => {
     expect(viewButton).toBeInTheDocument();
     expect(viewButton).toHaveAttribute(
       'href',
-      `/movie/${mockedMovie.id}-${transformToSlug('the-last-kingdom')}`
+      `/movie/${mockedMovie.id}-${'the-last-kingdom'}`
     );
   });
 });

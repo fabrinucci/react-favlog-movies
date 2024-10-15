@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Hero } from '../Hero';
 import { getHeroMovie } from '@/lib';
-import { mockedMovie } from '@/mocks/mockedResponse';
+import { generateMockedMovie } from '@/mocks/mockers';
 
 jest.mock('../../../lib', () => ({
   getHeroMovie: jest.fn(),
@@ -11,6 +11,8 @@ describe('Testing HeroCard', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
   });
+
+  const mockedMovie = generateMockedMovie();
 
   test('Should render the correct hero image', async () => {
     (getHeroMovie as jest.Mock).mockResolvedValue(mockedMovie);
