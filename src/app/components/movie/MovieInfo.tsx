@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
 import type { Movie, MovieCrewFiltered } from '@/interfaces';
+import { config } from '@/config';
 import { filterCrewByJob, transformToSlug } from '@/utils';
 import { CrewJobInfo } from './CrewJobInfo';
 
@@ -21,8 +22,9 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
     vote_count,
   } = movie;
 
+  const { MOVIE_PATH_SMALL, MOVIE_PATH_MEDIUM, MOVIE_NOT_FOUND } = config;
+
   const movieVotesAvg = Number(vote_average.toFixed(1));
-  const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
 
   const directors = filterCrewByJob({ movieCrew, job: 'Director' });
   const producers = filterCrewByJob({ movieCrew, job: 'Producer' });
@@ -36,7 +38,7 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
             media='(min-width:640px)'
             srcSet={
               poster_path
-                ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                ? `${MOVIE_PATH_MEDIUM}${poster_path}`
                 : MOVIE_NOT_FOUND
             }
           />
@@ -46,14 +48,14 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
             } object-center`}
             src={
               poster_path
-                ? `https://image.tmdb.org/t/p/w300${poster_path}`
+                ? `${MOVIE_PATH_SMALL}${poster_path}`
                 : MOVIE_NOT_FOUND
             }
             alt={title}
             height={500}
             width={500}
             priority
-            blurDataURL={`https://image.tmdb.org/t/p/300${poster_path}`}
+            blurDataURL={`${MOVIE_PATH_SMALL}${poster_path}`}
             placeholder='blur'
           />
         </picture>

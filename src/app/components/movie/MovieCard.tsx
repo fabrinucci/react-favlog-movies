@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getMovie, getMovieCast, getMovieCrew } from '@/lib';
 import { MovieInfo, SmallMovieCast } from './';
 import type { Movie } from '@/interfaces';
+import { config } from '@/config';
 import { transformToSlug } from '@/utils';
 
 interface Props {
@@ -14,6 +15,8 @@ export async function MovieCard({ id }: Props) {
   const movieCast = await getMovieCast({ id });
   const movieCrew = await getMovieCrew({ id });
 
+  const { MOVIE_PATH_LARGE } = config;
+
   const movieTitle = transformToSlug(movie.title);
 
   return (
@@ -22,7 +25,7 @@ export async function MovieCard({ id }: Props) {
         <figure>
           <Image
             className='h-[120px] w-full object-cover sm:h-[80px]'
-            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+            src={`${MOVIE_PATH_LARGE}${movie.backdrop_path}`}
             alt={movie.title}
             height={200}
             width={1000}

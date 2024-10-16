@@ -2,15 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getMovieCrew } from '@/lib';
+import { config } from '@/config';
 import { formatStrings, transformToSlug } from '@/utils';
 
 interface Props {
   movieId: string;
 }
 
-const CREW_IMG = 'https://image.tmdb.org/t/p/w300';
-const NOT_FOUND_F = '/assets/profileFemaleNF.svg';
-const NOT_FOUND_M = '/assets/profileMaleNF.svg';
+const { MOVIE_PATH_SMALL, FEMALE_NOT_FOUND, MALE_NOT_FOUND } = config;
 
 export async function MovieCrew({ movieId }: Props) {
   const movieCrew = await getMovieCrew({ id: movieId });
@@ -33,10 +32,10 @@ export async function MovieCrew({ movieId }: Props) {
                 className='h-32 w-24 rounded-md object-cover'
                 src={
                   profileCrew.profile_path
-                    ? `${CREW_IMG}${profileCrew.profile_path}`
+                    ? `${MOVIE_PATH_SMALL}${profileCrew.profile_path}`
                     : profileCrew.gender === 1
-                    ? NOT_FOUND_F
-                    : NOT_FOUND_M
+                    ? FEMALE_NOT_FOUND
+                    : MALE_NOT_FOUND
                 }
                 alt={profileCrew.name}
                 height={100}

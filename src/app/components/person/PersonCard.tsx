@@ -1,10 +1,8 @@
 import Image from 'next/image';
 import type { Person } from '@/interfaces';
 import { getPerson } from '@/lib';
+import { config } from '@/config';
 import { PersonMain, PersonalInfoCard } from './';
-
-const NOT_FOUND_F = '/assets/profileFemaleNF.svg';
-const NOT_FOUND_M = '/assets/profileMaleNF.svg';
 
 interface Props {
   id: string;
@@ -13,6 +11,7 @@ interface Props {
 export async function PersonCard({ id }: Props) {
   const person = (await getPerson(id)) as Person;
   const { gender, profile_path } = person;
+  const { MOVIE_PATH_SMALL, FEMALE_NOT_FOUND, MALE_NOT_FOUND } = config;
 
   return (
     <div className='w-full'>
@@ -24,10 +23,10 @@ export async function PersonCard({ id }: Props) {
                 className='h-full w-full rounded-md object-cover'
                 src={
                   profile_path
-                    ? `https://media.themoviedb.org/t/p/w300${profile_path}`
+                    ? `${MOVIE_PATH_SMALL}${profile_path}`
                     : gender === 1
-                    ? NOT_FOUND_F
-                    : NOT_FOUND_M
+                    ? FEMALE_NOT_FOUND
+                    : MALE_NOT_FOUND
                 }
                 alt={person.name}
                 height={200}

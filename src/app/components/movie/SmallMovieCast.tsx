@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getMovieCast } from '@/lib';
 import { transformToSlug } from '@/utils';
+import { config } from '@/config';
 
 interface Props {
   movieId: string;
@@ -10,9 +11,7 @@ interface Props {
 export async function SmallMovieCast({ movieId }: Props) {
   const movieCast = await getMovieCast({ id: movieId, start: 0, end: 6 });
 
-  const CAST_IMG = 'https://image.tmdb.org/t/p/w300';
-  const NOT_FOUND_F = '/assets/profileFemaleNF.svg';
-  const NOT_FOUND_M = '/assets/profileMaleNF.svg';
+  const { MOVIE_PATH_SMALL, FEMALE_NOT_FOUND, MALE_NOT_FOUND } = config;
 
   return (
     <ul className='grid grid-cols-fit-3 gap-x-6 gap-y-4'>
@@ -31,10 +30,10 @@ export async function SmallMovieCast({ movieId }: Props) {
                 className='h-60 w-40 rounded-md object-cover'
                 src={
                   profileCast.profile_path
-                    ? `${CAST_IMG}${profileCast.profile_path}`
+                    ? `${MOVIE_PATH_SMALL}${profileCast.profile_path}`
                     : profileCast.gender === 1
-                    ? NOT_FOUND_F
-                    : NOT_FOUND_M
+                    ? FEMALE_NOT_FOUND
+                    : MALE_NOT_FOUND
                 }
                 alt={profileCast.name}
                 height={300}

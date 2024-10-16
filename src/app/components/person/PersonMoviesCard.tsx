@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { CreditCast, CreditCrewFiltered } from '@/interfaces';
+import { config } from '@/config';
 import { transformToSlug } from '@/utils';
 
 interface Props {
@@ -8,8 +9,7 @@ interface Props {
 }
 
 export const PersonMoviesCard = ({ credits }: Props) => {
-  const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
-
+  const { MOVIE_PATH_SMALL, MOVIE_NOT_FOUND } = config;
   return (
     <li className='flex w-[120px] flex-col gap-3' key={credits.id}>
       <div className='h-[190px]'>
@@ -21,7 +21,7 @@ export const PersonMoviesCard = ({ credits }: Props) => {
             <Image
               src={
                 credits.poster_path
-                  ? `https://image.tmdb.org/t/p/w300${credits.poster_path}`
+                  ? `${MOVIE_PATH_SMALL}${credits.poster_path}`
                   : MOVIE_NOT_FOUND
               }
               alt={credits.title}

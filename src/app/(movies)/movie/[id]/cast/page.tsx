@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { config } from '@/config';
 import { MovieCast, MovieCrew } from '@/components/movie';
 import { getMovie, getMovieCast, getMovieCrew } from '@/lib';
 
@@ -26,7 +27,7 @@ export default async function Page({ params }: Props) {
   const movieCast = await getMovieCast({ id: params.id });
   const movieCrew = await getMovieCrew({ id: params.id });
 
-  const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
+  const { MOVIE_PATH_SMALL, MOVIE_NOT_FOUND } = config;
 
   return (
     <div className='pt-[120px] sm:pt-[80px]'>
@@ -40,7 +41,7 @@ export default async function Page({ params }: Props) {
                 }`}
                 src={
                   movie?.poster_path
-                    ? `https://image.tmdb.org/t/p/w300${movie?.poster_path}`
+                    ? `${MOVIE_PATH_SMALL}${movie?.poster_path}`
                     : MOVIE_NOT_FOUND
                 }
                 alt={movie?.title}

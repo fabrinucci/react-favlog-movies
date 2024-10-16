@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GiRoundStar } from 'react-icons/gi';
 import type { MoviesResult } from '@/interfaces';
+import { config } from '@/config';
 import { transformToSlug } from '@/utils';
 
 interface Props {
@@ -12,17 +13,19 @@ interface Props {
 export const HeroCard = ({ movie }: Props) => {
   const movieTitle = transformToSlug(movie.title);
 
+  const { MOVIE_PATH_MEDIUM, MOVIE_PATH_LARGE } = config;
+
   return (
     <>
       <picture>
         <source
           media='(min-width:640px)'
-          srcSet={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+          srcSet={`${MOVIE_PATH_LARGE}${movie.backdrop_path}`}
         />
         <Image
           data-testid='hero-img'
           className='h-full w-full object-cover'
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          src={`${MOVIE_PATH_MEDIUM}${movie.poster_path}`}
           alt={movie.title}
           height={500}
           width={500}
