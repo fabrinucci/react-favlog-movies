@@ -53,6 +53,7 @@ export const Pagination = ({ movies }: Props) => {
       {currentPage > 1 && (
         <>
           <Link
+            data-testid='pagination-link-first-page'
             href={
               query ? `${pathname}?query=${query}&page=1` : `${pathname}?page=1`
             }
@@ -61,6 +62,7 @@ export const Pagination = ({ movies }: Props) => {
             <RxDoubleArrowLeft />
           </Link>
           <Link
+            data-testid='pagination-link-prev-page'
             href={
               query
                 ? `${pathname}?query=${query}&page=${currentPage - 1}`
@@ -76,6 +78,7 @@ export const Pagination = ({ movies }: Props) => {
         (searchPage) =>
           searchPage <= 500 && (
             <Link
+              data-testid={`pagination-link-${searchPage}-page`}
               key={searchPage}
               href={
                 query
@@ -95,6 +98,7 @@ export const Pagination = ({ movies }: Props) => {
       {currentPage !== totalPages && currentPage < 500 && (
         <>
           <Link
+            data-testid='pagination-link-next-page'
             href={
               query
                 ? `${pathname}?query=${query}&page=${currentPage + 1}`
@@ -106,6 +110,7 @@ export const Pagination = ({ movies }: Props) => {
           </Link>
 
           <Link
+            data-testid='pagination-link-last-page'
             href={
               query
                 ? `${pathname}?query=${query}&page=${totalPages}`
