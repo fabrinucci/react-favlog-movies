@@ -113,7 +113,9 @@ export const Pagination = ({ movies }: Props) => {
             data-testid='pagination-link-last-page'
             href={
               query
-                ? `${pathname}?query=${query}&page=${totalPages}`
+                ? `${pathname}?query=${query}&page=${
+                    totalPages <= 500 ? totalPages : 500
+                  }`
                 : `${pathname}?page=${totalPages <= 500 ? totalPages : 500}`
             }
             className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
