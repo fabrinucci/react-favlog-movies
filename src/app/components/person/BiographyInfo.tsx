@@ -14,17 +14,23 @@ export const BiographyInfo = ({ name, biography }: Props) => {
 
   return (
     <div className='flex flex-col gap-3'>
-      <h3 className='text-xl font-semibold'>Biography</h3>
+      <h3 data-testid='Biography-title' className='text-xl font-semibold'>
+        Biography
+      </h3>
 
-      {(biography &&
-        newBio.map((bio, index) => (
-          <p
-            className={`${!show && index >= 2 ? 'hidden' : ''} leading-7`}
-            key={index}
-          >
-            {bio}
-          </p>
-        ))) || <p>{`We don't have biography for ${name}.`}</p>}
+      <div data-testid='Biography-bio'>
+        {(biography &&
+          newBio.map((bio, index) => (
+            <p
+              className={`${!show && index >= 2 ? 'hidden' : ''} leading-7`}
+              key={index}
+            >
+              {bio}
+            </p>
+          ))) || (
+          <p className='leading-7'>{`We don't have biography for ${name}.`}</p>
+        )}
+      </div>
 
       {biography && newBio.length > 2 && (
         <div className='flex place-self-end'>
