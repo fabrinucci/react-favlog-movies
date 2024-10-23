@@ -18,7 +18,7 @@ describe('Testing HeroCard', () => {
     (getHeroMovie as jest.Mock).mockResolvedValue(mockedMovie);
     render(await Hero());
 
-    const heroImg = screen.getByTestId('hero-img');
+    const heroImg = screen.getByTestId('Hero-img');
 
     expect(heroImg).toBeInTheDocument();
     expect(heroImg).toHaveAttribute('alt', mockedMovie.title);
@@ -28,7 +28,7 @@ describe('Testing HeroCard', () => {
     (getHeroMovie as jest.Mock).mockResolvedValue(mockedMovie);
     render(await Hero());
 
-    const heroTitle = screen.getByTestId('hero-title');
+    const heroTitle = screen.getByTestId('Hero-title');
 
     expect(heroTitle).toBeInTheDocument();
     expect(heroTitle).toHaveTextContent(mockedMovie.title);

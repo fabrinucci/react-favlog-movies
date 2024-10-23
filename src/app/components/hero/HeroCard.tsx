@@ -23,7 +23,7 @@ export const HeroCard = ({ movie }: Props) => {
           srcSet={`${MOVIE_PATH_LARGE}${movie.backdrop_path}`}
         />
         <Image
-          data-testid='hero-img'
+          data-testid='Hero-img'
           className='h-full w-full object-cover'
           src={`${MOVIE_PATH_MEDIUM}${movie.poster_path}`}
           alt={movie.title}
@@ -36,14 +36,14 @@ export const HeroCard = ({ movie }: Props) => {
       <section className='absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]'>
         <div className='flex flex-col items-center justify-center gap-6'>
           <h1
-            data-testid='hero-title'
+            data-testid='Hero-title'
             className='text-center text-3xl font-semibold lg:text-4xl'
           >
             {movie.title}
           </h1>
 
           <div className='flex flex-col items-center gap-4 sm:flex-row'>
-            <p data-testid='hero-release' className='text-sm text-purple-300'>
+            <p data-testid='Hero-release' className='text-sm text-purple-300'>
               Released: {movie.release_date}
             </p>
             <div className='flex gap-3'>
@@ -54,7 +54,7 @@ export const HeroCard = ({ movie }: Props) => {
                 <div>
                   <GiRoundStar size={20} />
                 </div>
-                <p data-testid='hero-rating' className='leading-4'>
+                <p data-testid='Hero-rating' className='leading-4'>
                   {movie.vote_average.toFixed(1)}
                 </p>
               </div>
@@ -63,7 +63,7 @@ export const HeroCard = ({ movie }: Props) => {
 
           <div className='flex flex-col items-center gap-4 sm:flex-row md:items-start'>
             <Link
-              data-testid='hero-view-movie'
+              data-testid='Hero-view-movie'
               href={`/movie/${movie.id}-${movieTitle}`}
               className='w-36 rounded-md border border-violet-600 bg-violet-600 py-3 text-center font-semibold transition-all hover:scale-110'
             >

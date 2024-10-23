@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { HeroCard } from '@/components/hero/HeroCard';
-import { transformToSlug } from '@/utils';
 import { generateMockedMovie } from '@/mocks/mockers';
 
 describe('Testing HeroCard', () => {
@@ -9,7 +8,7 @@ describe('Testing HeroCard', () => {
   test('Should render the correct hero image', async () => {
     render(<HeroCard movie={mockedMovie} />);
 
-    const heroImg = screen.getByTestId('hero-img');
+    const heroImg = screen.getByTestId('Hero-img');
 
     expect(heroImg).toBeInTheDocument();
     expect(heroImg).toHaveAttribute('alt', mockedMovie.title);
@@ -18,7 +17,7 @@ describe('Testing HeroCard', () => {
   test('Should be in the document', async () => {
     render(<HeroCard movie={mockedMovie} />);
 
-    const heroTitle = screen.getByTestId('hero-title');
+    const heroTitle = screen.getByTestId('Hero-title');
 
     expect(heroTitle).toBeInTheDocument();
     expect(heroTitle).toHaveTextContent(mockedMovie.title);
@@ -27,7 +26,7 @@ describe('Testing HeroCard', () => {
   test('Should render the correct release date', () => {
     render(<HeroCard movie={mockedMovie} />);
 
-    const heroRelease = screen.getByTestId('hero-release');
+    const heroRelease = screen.getByTestId('Hero-release');
     expect(heroRelease).toBeInTheDocument();
     expect(heroRelease).toHaveTextContent(
       `Released: ${mockedMovie.release_date}`
@@ -37,7 +36,7 @@ describe('Testing HeroCard', () => {
   test('Should render the correct rating', () => {
     render(<HeroCard movie={mockedMovie} />);
 
-    const heroRating = screen.getByTestId('hero-rating');
+    const heroRating = screen.getByTestId('Hero-rating');
     expect(heroRating).toBeInTheDocument();
     expect(heroRating).toHaveTextContent(
       `${mockedMovie.vote_average.toFixed(1)}`
@@ -48,7 +47,7 @@ describe('Testing HeroCard', () => {
     const newMockedMovie = { ...mockedMovie, title: 'The last kingdom' };
     render(<HeroCard movie={newMockedMovie} />);
 
-    const viewButton = screen.getByTestId('hero-view-movie');
+    const viewButton = screen.getByTestId('Hero-view-movie');
     expect(viewButton).toBeInTheDocument();
     expect(viewButton).toHaveAttribute(
       'href',
