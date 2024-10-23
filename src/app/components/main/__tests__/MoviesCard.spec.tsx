@@ -1,23 +1,34 @@
 import { render, screen } from '@testing-library/react';
 import { MoviesCard } from '@/components/main/MoviesCard';
 import { getMovies } from '@/lib';
-import { mockedMovieResult } from '@/mocks/mockedResponse';
+import { generateMockedMovies } from '@/mocks/mockers';
 
 jest.mock('../../../lib', () => ({
   getMovies: jest.fn(),
 }));
 
 describe('Testing <MoviesCard />', () => {
-  it('Should be in the component', async () => {
-    (getMovies as jest.Mock).mockResolvedValue([mockedMovieResult]);
+  test('Should be in the document and render the correct info', async () => {
+    const mockedMovies = generateMockedMovies(12);
+
+    (getMovies as jest.Mock).mockResolvedValue(mockedMovies);
     render(
       await MoviesCard({
-        moviesTitle: 'Popular movies',
+        moviesTitle: 'Top movies',
         movieType: 'popular',
       })
     );
 
-    const titleMovie = screen.getByText('Movie title test');
-    expect(titleMovie).toBeInTheDocument();
+    const titleCard = screen.getByTestId('MoviesCard-title');
+    const listMovies = screen.getByTestId('MoviesCard-list');
+    const li = screen.getAllByTestId('MovieCard-li');
+
+    expect(titleCard).toBeInTheDocument();
+    expect(titleCard).toHaveTextContent('Top movies');
+
+    expect(listMovies).toBeInTheDocument();
+    expect(listMovies.children.length).toBe(mockedMovies.length);
+
+    expect(li.length).toBe(mockedMovies.length);
   });
 });

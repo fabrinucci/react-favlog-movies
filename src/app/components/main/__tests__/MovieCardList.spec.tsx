@@ -16,7 +16,7 @@ describe('Testing <MoviesCardList />', () => {
 
   test('Should render the correct title', () => {
     render(<MovieCardList movie={mockedMovie} />);
-    const title = screen.getByTestId('movie-card-title');
+    const title = screen.getByTestId('MovieCard-title');
 
     expect(title).toBeInTheDocument();
     expect(title).toHaveTextContent(mockedMovie.title);
@@ -47,8 +47,8 @@ describe('Testing <MoviesCardList />', () => {
       />
     );
 
-    const releaseYear = screen.getByTestId('movie-card-release_date');
-    const voteAverage = screen.getByTestId('movie-card-vote_average');
+    const releaseYear = screen.getByTestId('MovieCard-release_date');
+    const voteAverage = screen.getByTestId('MovieCard-vote_average');
 
     expect(releaseYear).toBeInTheDocument();
     expect(voteAverage).toBeInTheDocument();
@@ -60,7 +60,7 @@ describe('Testing <MoviesCardList />', () => {
   test('Should display the correct alt and src to the image', () => {
     render(<MovieCardList movie={mockedMovie} />);
 
-    const img = screen.getByTestId('movie-card-img');
+    const img = screen.getByTestId('MovieCard-img');
 
     expect(img).toBeInTheDocument();
     expect(img).toHaveAttribute(
@@ -73,7 +73,7 @@ describe('Testing <MoviesCardList />', () => {
   test('Should have the "hidden" class in responsive', () => {
     render(<MovieCardList movie={mockedMovie} />);
 
-    const movieInfo = screen.getByTestId('movie-card-info-movies');
+    const movieInfo = screen.getByTestId('MovieCard-info-movies');
     expect(movieInfo).toHaveClass('hidden');
   });
 });
