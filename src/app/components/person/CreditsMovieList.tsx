@@ -33,7 +33,11 @@ export const CreditsMovieList = ({ creditsList, type }: Props) => {
                 {release_date ? (
                   `(${parseInt(release_date)})`
                 ) : (
-                  <CgMathMinus className='w-full' size={22} />
+                  <CgMathMinus
+                    data-testid='CreditsMovieList-no-release'
+                    className='w-full'
+                    size={22}
+                  />
                 )}
               </p>
               <div>
@@ -51,7 +55,7 @@ export const CreditsMovieList = ({ creditsList, type }: Props) => {
 
                 {'character' in credit && credit.character && (
                   <p data-testid='CreditsMovieList-character'>
-                    <span className='mr-1 text-purple-300'>as</span>
+                    <span className='text-purple-300'>as </span>
                     {credit.character}
                   </p>
                 )}
