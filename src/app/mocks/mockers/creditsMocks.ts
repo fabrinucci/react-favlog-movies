@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 import type {
   CreditCast,
   CreditCrew,
+  CreditCrewFiltered,
   MovieCast,
   MovieCrew,
   MovieCrewFiltered,
@@ -20,7 +21,7 @@ const generateMockedCreditsGlobal = () => ({
   id: faker.number.int(),
   original_language: faker.helpers.arrayElement(['en', 'es', 'fr', 'de']),
   original_title: faker.lorem.words({ min: 1, max: 6 }),
-  overview: faker.lorem.paragraph({ min: 100, max: 1000 }),
+  overview: faker.lorem.paragraph({ min: 1, max: 5 }),
   popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
   poster_path: `/${faker.string.nanoid()}.jpg`,
   release_date: faker.date.past().toISOString().split('T')[0],
@@ -31,13 +32,13 @@ const generateMockedCreditsGlobal = () => ({
   credit_id: faker.string.alphanumeric({ length: 10 }),
 });
 
-export const generateMockedCreditsCast = (): CreditCast => ({
+export const generateMockedCreditCast = (): CreditCast => ({
   ...generateMockedCreditsGlobal(),
   character: faker.lorem.words({ min: 1, max: 3 }),
   order: faker.number.int({ min: 0, max: 100 }),
 });
 
-export const generateMockedCreditsCrew = (): CreditCrew => ({
+export const generateMockedCreditCrew = (): CreditCrew => ({
   ...generateMockedCreditsGlobal(),
   department: faker.helpers.arrayElement([
     'Directing',
@@ -52,13 +53,40 @@ export const generateMockedCreditsCrew = (): CreditCrew => ({
   ]),
 });
 
+export const generateMockedCreditCrewFiltered = (): CreditCrewFiltered => ({
+  ...generateMockedCreditCrew(),
+  job: faker.helpers.arrayElements([
+    'Director',
+    'Producer',
+    'Screenplay',
+    'Writer',
+  ]),
+});
+
+export const generateMockedCredits = (
+  length: number,
+  type: 'cast' | 'crew'
+): CreditCast[] | CreditCrewFiltered[] => {
+  if (type === 'cast')
+    return Array.from({ length }, () => generateMockedCreditCast());
+  if (type === 'crew')
+    return Array.from({ length }, () => generateMockedCreditCrewFiltered());
+  return [];
+};
+// }
+
 export const generateMockedPersonCredits = (
   castLength: number,
   crewLength: number
 ): PersonCredits => ({
   id: faker.number.int(),
-  cast: Array.from({ length: castLength }, () => generateMockedCreditsCast()),
-  crew: Array.from({ length: crewLength }, () => generateMockedCreditsCrew()),
+  cast:
+    castLength > 0
+      ? Array.from({ length: castLength }, () => generateMockedCreditCast())
+      : [],
+  crew: crewLength
+    ? Array.from({ length: crewLength }, () => generateMockedCreditCrew())
+    : [],
 });
 
 // MovieCredits

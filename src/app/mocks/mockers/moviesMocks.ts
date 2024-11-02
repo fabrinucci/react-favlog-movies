@@ -12,7 +12,7 @@ export const generateMockedMovie = (): MoviesResult => ({
   id: faker.number.int(),
   original_language: faker.helpers.arrayElement(['en', 'es', 'fr', 'de']),
   original_title: faker.lorem.words({ min: 1, max: 6 }),
-  overview: faker.lorem.paragraph({ min: 100, max: 1000 }),
+  overview: faker.lorem.words(10),
   popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
   poster_path: `/${faker.string.nanoid()}.jpg`,
   release_date: faker.date.past().toISOString().split('T')[0],
@@ -27,10 +27,10 @@ export const generateMockedMovies = (length: number): MoviesResult[] => {
 };
 
 export const generateMockedFullMovies = (): Movies => ({
-  page: faker.number.int({ min: 1, max: 500 }),
+  page: faker.number.int({ min: 1, max: 199 }),
   results: generateMockedMovies(20),
-  total_pages: faker.number.int({ min: 1, max: 500 }),
-  total_results: faker.number.int({ min: 1, max: 20 }),
+  total_pages: faker.number.int({ min: 200, max: 400 }),
+  total_results: faker.number.int({ min: 5000, max: 20000 }),
 });
 
 export const generateMockedFullMovie = (): Movie => ({
