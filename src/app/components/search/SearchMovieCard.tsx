@@ -17,12 +17,12 @@ export const SearchMovieCard = ({ movie }: Props) => {
     <li className='mb-4' key={movie.id}>
       <div className='flex animate-fadeIn flex-col items-center gap-4 sm:flex-row sm:items-start'>
         <Link
-          data-testid='search-movie-card-img-link'
+          data-testid='SearchMovieCard-img-link'
           href={`/movie/${movie.id}-${movieTitle}`}
         >
           <figure className='h-40 w-28 rounded-sm bg-purple-400'>
             <Image
-              data-testid='search-movie-img'
+              data-testid='SearchMovieCard-img'
               className='object-fit h-full w-full rounded-sm'
               src={
                 movie.poster_path
@@ -38,11 +38,11 @@ export const SearchMovieCard = ({ movie }: Props) => {
         <div className='flex flex-col gap-2'>
           <div>
             <Link
-              data-testid='search-movie-card-title-link'
+              data-testid='SearchMovieCard-title-link'
               href={`/movie/${movie.id}-${movieTitle}`}
             >
               <h3
-                data-testid='search-movie-card-title'
+                data-testid='SearchMovieCard-title'
                 className='text-center font-semibold transition-colors duration-200 sm:text-start md:inline md:hover:text-violet-300'
               >
                 {movie.title}
@@ -50,13 +50,13 @@ export const SearchMovieCard = ({ movie }: Props) => {
             </Link>
           </div>
           <p
-            data-testid='search-movie-card-release'
+            data-testid='SearchMovieCard-release'
             className='text-center text-sm text-gray-300 sm:text-start'
           >
             {movie.release_date}
           </p>
           <p
-            data-testid='search-movie-card-overview'
+            data-testid='SearchMovieCard-overview'
             className='hidden text-justify text-sm leading-7 md:block md:w-[90%]'
           >
             {movie.overview.length > 150

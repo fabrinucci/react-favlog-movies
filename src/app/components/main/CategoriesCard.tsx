@@ -6,15 +6,15 @@ export async function CategoriesCard() {
   const categories = await getCategories();
 
   return (
-    <section data-testid='categories-card' className='py-10'>
+    <section data-testid='CategoriesCard' className='py-10'>
       <h3
-        data-testid='categories-card-title'
+        data-testid='CategoriesCard-title'
         className='mb-6 text-xl font-semibold md:text-2xl'
       >
         Select a category
       </h3>
       <ul
-        data-testid='categories-card-list'
+        data-testid='CategoriesCard-list'
         className='flex flex-wrap items-center justify-center gap-6'
       >
         {categories?.map((category) => (

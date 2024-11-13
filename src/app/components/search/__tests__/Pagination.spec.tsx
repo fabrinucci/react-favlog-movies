@@ -18,10 +18,10 @@ describe('Testing Pagination', () => {
   test('Pagination buttons should appear with their correct href', () => {
     render(<Pagination movies={mockedMovies} />);
 
-    const firstPage = screen.getByTestId('pagination-link-first-page');
-    const prevPage = screen.getByTestId('pagination-link-prev-page');
-    const nextPage = screen.getByTestId('pagination-link-next-page');
-    const lastPage = screen.getByTestId('pagination-link-last-page');
+    const firstPage = screen.getByTestId('Pagination-link-first-page');
+    const prevPage = screen.getByTestId('Pagination-link-prev-page');
+    const nextPage = screen.getByTestId('Pagination-link-next-page');
+    const lastPage = screen.getByTestId('Pagination-link-last-page');
 
     expect(firstPage).toHaveAttribute('href', '/movies?query=matrix&page=1');
     expect(prevPage).toHaveAttribute(
@@ -45,8 +45,8 @@ describe('Testing Pagination', () => {
 
     render(<Pagination movies={newMockMovies} />);
 
-    const firstPage = screen.queryByTestId('pagination-link-first-page');
-    const prevPage = screen.queryByTestId('pagination-link-prev-page');
+    const firstPage = screen.queryByTestId('Pagination-link-first-page');
+    const prevPage = screen.queryByTestId('Pagination-link-prev-page');
 
     expect(firstPage).not.toBeInTheDocument();
     expect(prevPage).not.toBeInTheDocument();
@@ -59,8 +59,8 @@ describe('Testing Pagination', () => {
       total_pages: 10,
     };
     render(<Pagination movies={newMockedMovies} />);
-    const nextPage = screen.queryByTestId('pagination-link-next-page');
-    const lastPage = screen.queryByTestId('pagination-link-last-page');
+    const nextPage = screen.queryByTestId('Pagination-link-next-page');
+    const lastPage = screen.queryByTestId('Pagination-link-last-page');
 
     expect(nextPage).not.toBeInTheDocument();
     expect(lastPage).not.toBeInTheDocument();
@@ -71,21 +71,21 @@ describe('Testing Pagination', () => {
 
     render(<Pagination movies={newMockedMovies} />);
 
-    expect(screen.getByTestId('pagination-link-2-page')).toBeInTheDocument();
-    expect(screen.getByTestId('pagination-link-3-page')).toBeInTheDocument();
-    expect(screen.getByTestId('pagination-link-4-page')).toBeInTheDocument();
+    expect(screen.getByTestId('Pagination-link-2-page')).toBeInTheDocument();
+    expect(screen.getByTestId('Pagination-link-3-page')).toBeInTheDocument();
+    expect(screen.getByTestId('Pagination-link-4-page')).toBeInTheDocument();
 
-    expect(screen.getByTestId('pagination-link-2-page')).toHaveAttribute(
+    expect(screen.getByTestId('Pagination-link-2-page')).toHaveAttribute(
       'href',
       '/movies?query=matrix&page=2'
     );
 
-    expect(screen.getByTestId('pagination-link-3-page')).toHaveAttribute(
+    expect(screen.getByTestId('Pagination-link-3-page')).toHaveAttribute(
       'href',
       '/movies?query=matrix&page=3'
     );
 
-    expect(screen.getByTestId('pagination-link-4-page')).toHaveAttribute(
+    expect(screen.getByTestId('Pagination-link-4-page')).toHaveAttribute(
       'href',
       '/movies?query=matrix&page=4'
     );
@@ -96,11 +96,11 @@ describe('Testing Pagination', () => {
 
     render(<Pagination movies={newMockedMovies} />);
 
-    const firstPage = screen.queryByTestId('pagination-link-first-page');
-    const prevPage = screen.queryByTestId('pagination-link-prev-page');
-    const nextPage = screen.queryByTestId('pagination-link-next-page');
-    const lastPage = screen.queryByTestId('pagination-link-last-page');
-    const currentPage = screen.getByTestId('pagination-link-3-page');
+    const firstPage = screen.queryByTestId('Pagination-link-first-page');
+    const prevPage = screen.queryByTestId('Pagination-link-prev-page');
+    const nextPage = screen.queryByTestId('Pagination-link-next-page');
+    const lastPage = screen.queryByTestId('Pagination-link-last-page');
+    const currentPage = screen.getByTestId('Pagination-link-3-page');
 
     expect(firstPage).toHaveClass('bg-violet-500');
     expect(prevPage).toHaveClass('bg-violet-500');
@@ -117,8 +117,8 @@ describe('Testing Pagination', () => {
       total_pages: 510,
     };
     render(<Pagination movies={newMockedMovies} />);
-    const nextPage = screen.getByTestId('pagination-link-next-page');
-    const lastPage = screen.getByTestId('pagination-link-last-page');
+    const nextPage = screen.getByTestId('Pagination-link-next-page');
+    const lastPage = screen.getByTestId('Pagination-link-last-page');
 
     expect(nextPage).toHaveAttribute('href', '/movies?query=matrix&page=491');
     expect(lastPage).toHaveAttribute('href', '/movies?query=matrix&page=500');

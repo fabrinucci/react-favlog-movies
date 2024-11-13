@@ -18,9 +18,9 @@ describe('Testing SearchMovieCard', () => {
   test('Should render movie details correctly', () => {
     render(<SearchMovieCard movie={mockedMovie} />);
 
-    const movieTitle = screen.getByTestId('search-movie-card-title');
-    const releaseDate = screen.getByTestId('search-movie-card-release');
-    const overview = screen.getByTestId('search-movie-card-overview');
+    const movieTitle = screen.getByTestId('SearchMovieCard-title');
+    const releaseDate = screen.getByTestId('SearchMovieCard-release');
+    const overview = screen.getByTestId('SearchMovieCard-overview');
 
     expect(movieTitle).toBeInTheDocument();
     expect(movieTitle).toHaveTextContent(mockedMovie.title);
@@ -39,7 +39,7 @@ describe('Testing SearchMovieCard', () => {
     };
     render(<SearchMovieCard movie={mockedMovieOverview} />);
 
-    const overview = screen.getByTestId('search-movie-card-overview');
+    const overview = screen.getByTestId('SearchMovieCard-overview');
 
     expect(overview).toBeInTheDocument();
     expect(overview).toHaveTextContent(
@@ -50,7 +50,7 @@ describe('Testing SearchMovieCard', () => {
   test('Should render image data correctly', () => {
     render(<SearchMovieCard movie={mockedMovie} />);
 
-    const movieImage = screen.getByTestId('search-movie-img');
+    const movieImage = screen.getByTestId('SearchMovieCard-img');
 
     expect(movieImage).toBeInTheDocument();
     expect(movieImage).toHaveAttribute('alt', mockedMovie.title);
@@ -65,7 +65,7 @@ describe('Testing SearchMovieCard', () => {
 
     render(<SearchMovieCard movie={mockedMoviePoster} />);
 
-    const movieImage = screen.getByTestId('search-movie-img');
+    const movieImage = screen.getByTestId('SearchMovieCard-img');
     expect(movieImage).toHaveAttribute('src', MOVIE_NOT_FOUND);
     expect(movieImage).toHaveAttribute('alt', mockedMovie.title);
   });
@@ -75,8 +75,8 @@ describe('Testing SearchMovieCard', () => {
 
     render(<SearchMovieCard movie={mockedMovieTitle} />);
 
-    const movieTitleLink = screen.getByTestId('search-movie-card-title-link');
-    const movieImgLink = screen.getByTestId('search-movie-card-img-link');
+    const movieTitleLink = screen.getByTestId('SearchMovieCard-title-link');
+    const movieImgLink = screen.getByTestId('SearchMovieCard-img-link');
 
     expect(movieTitleLink).toBeInTheDocument();
     expect(movieTitleLink).toHaveAttribute(

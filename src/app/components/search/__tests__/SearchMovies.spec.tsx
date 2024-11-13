@@ -14,8 +14,8 @@ describe('Testing SearchMovies', () => {
     (useSearchParams as jest.Mock).mockReturnValue({ get: () => 'matrix' });
     render(<SearchMovies movies={mockedMovies} />);
 
-    const title = screen.getByTestId('search-movies-title');
-    const list = screen.getByTestId('search-movies-list');
+    const title = screen.getByTestId('SearchMovies-title');
+    const list = screen.getByTestId('SearchMovies-list');
 
     expect(title).toBeInTheDocument();
     expect(title).toHaveTextContent('Results about: "matrix"');
@@ -28,14 +28,14 @@ describe('Testing SearchMovies', () => {
     (useSearchParams as jest.Mock).mockReturnValue({ get: () => 'matrix' });
     render(<SearchMovies movies={[]} />);
 
-    const title = screen.getByTestId('search-movies-title');
+    const title = screen.getByTestId('SearchMovies-title');
 
     expect(title).toBeInTheDocument();
     expect(title).toHaveTextContent(
       'There are no movies that matched your query "matrix"'
     );
 
-    expect(screen.queryByTestId('search-movies-list')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('SearchMovies-list')).not.toBeInTheDocument();
   });
 
   test('useSearchParams should have been called', () => {

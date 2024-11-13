@@ -15,7 +15,7 @@ export const SearchMovies = ({ movies }: Props) => {
   return (
     <section className='pt-[120px] sm:pt-[80px]'>
       <div className='p-6 md:p-8'>
-        <h2 data-testid='search-movies-title' className='mb-6 text-2xl'>
+        <h2 data-testid='SearchMovies-title' className='mb-6 text-2xl'>
           {movies?.length! > 0
             ? `Results about: "${query}"`
             : `There are no movies that matched your query "${query}"`}
@@ -23,7 +23,7 @@ export const SearchMovies = ({ movies }: Props) => {
 
         {movies.length > 0 && (
           <ul
-            data-testid='search-movies-list'
+            data-testid='SearchMovies-list'
             className='grid grid-cols-2 gap-6'
           >
             {movies?.map((movie) => (

@@ -14,9 +14,9 @@ describe('Testing <CategoriesCard />', () => {
     (getCategories as jest.Mock).mockResolvedValue(mockedCategories);
     render(await CategoriesCard());
 
-    const card = screen.getByTestId('categories-card');
-    const title = screen.getByTestId('categories-card-title');
-    const list = screen.getByTestId('categories-card-list');
+    const card = screen.getByTestId('CategoriesCard');
+    const title = screen.getByTestId('CategoriesCard-title');
+    const list = screen.getByTestId('CategoriesCard-list');
 
     expect(card).toBeInTheDocument();
 

@@ -48,12 +48,13 @@ export const Pagination = ({ movies }: Props) => {
     const endingPage = Math.min(startingPage + LIMIT - 1, totalPages);
     return createPagination(endingPage).slice(startingPage - 1);
   };
+
   return (
     <section className='flex justify-center gap-6'>
       {currentPage > 1 && (
         <>
           <Link
-            data-testid='pagination-link-first-page'
+            data-testid='Pagination-link-first-page'
             href={
               query ? `${pathname}?query=${query}&page=1` : `${pathname}?page=1`
             }
@@ -62,7 +63,7 @@ export const Pagination = ({ movies }: Props) => {
             <RxDoubleArrowLeft />
           </Link>
           <Link
-            data-testid='pagination-link-prev-page'
+            data-testid='Pagination-link-prev-page'
             href={
               query
                 ? `${pathname}?query=${query}&page=${currentPage - 1}`
@@ -78,7 +79,7 @@ export const Pagination = ({ movies }: Props) => {
         (searchPage) =>
           searchPage <= 500 && (
             <Link
-              data-testid={`pagination-link-${searchPage}-page`}
+              data-testid={`Pagination-link-${searchPage}-page`}
               key={searchPage}
               href={
                 query
@@ -98,7 +99,7 @@ export const Pagination = ({ movies }: Props) => {
       {currentPage !== totalPages && currentPage < 500 && (
         <>
           <Link
-            data-testid='pagination-link-next-page'
+            data-testid='Pagination-link-next-page'
             href={
               query
                 ? `${pathname}?query=${query}&page=${currentPage + 1}`
@@ -110,7 +111,7 @@ export const Pagination = ({ movies }: Props) => {
           </Link>
 
           <Link
-            data-testid='pagination-link-last-page'
+            data-testid='Pagination-link-last-page'
             href={
               query
                 ? `${pathname}?query=${query}&page=${

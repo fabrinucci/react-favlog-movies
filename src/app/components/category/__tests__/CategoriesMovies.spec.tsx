@@ -14,7 +14,7 @@ describe('Testing CategoriesMovies', () => {
       />
     );
 
-    const title = screen.getByTestId('category-title');
+    const title = screen.getByTestId('CategoriesMovies-title');
 
     expect(title).toBeInTheDocument();
     expect(title).toHaveTextContent(mockedCategories[1].name);
@@ -30,7 +30,7 @@ describe('Testing CategoriesMovies', () => {
       />
     );
 
-    const categoryList = screen.getByTestId('category-list');
+    const categoryList = screen.getByTestId('CategoriesMovies-list');
     expect(categoryList).toBeInTheDocument();
   });
 });
