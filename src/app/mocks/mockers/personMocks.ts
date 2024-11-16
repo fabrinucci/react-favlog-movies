@@ -14,7 +14,7 @@ export const generateMockedPerson = (): Person => ({
     .toISOString()
     .split('T')[0],
   gender: faker.helpers.arrayElement([0, 1, 2, 3]),
-  homepage: faker.helpers.arrayElement([faker.internet.url(), null]),
+  homepage: faker.helpers.arrayElement([faker.internet.url()]),
   id: faker.number.int(),
   imdb_id: faker.string.uuid(),
   known_for_department: faker.helpers.arrayElement([
