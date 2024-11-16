@@ -14,12 +14,13 @@ export async function PersonCard({ id }: Props) {
   const { MOVIE_PATH_SMALL, FEMALE_NOT_FOUND, MALE_NOT_FOUND } = config;
 
   return (
-    <div className='w-full'>
+    <div data-testid='PersonCard' className='w-full'>
       <div className='flex flex-col items-center md:flex-row md:items-start md:gap-8'>
         <section className='flex max-w-[280px] flex-col items-center md:items-start'>
           <div className='mx-auto h-[245px] w-[200px] md:mx-0 md:h-[420px] md:w-[270px]'>
             <figure className='h-full w-full rounded-md bg-purple-400'>
               <Image
+                data-testid='PersonCard-img'
                 className='h-full w-full rounded-md object-cover'
                 src={
                   profile_path
