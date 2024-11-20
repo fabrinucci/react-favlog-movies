@@ -111,7 +111,7 @@ export const generateMockedMovieCreditsGlobal = () => ({
 export const generateMockedMovieCreditsCast = (length: number): MovieCast[] =>
   Array.from({ length }, () => ({
     ...generateMockedMovieCreditsGlobal(),
-    character: faker.lorem.words({ min: 1, max: 3 }),
+    character: faker.lorem.word(),
     order: faker.number.int({ min: 0, max: 100 }),
   }));
 
