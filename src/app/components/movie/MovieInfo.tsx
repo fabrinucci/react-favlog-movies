@@ -31,7 +31,7 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
   const writers = filterCrewByJob({ movieCrew, job: 'Writer' });
 
   return (
-    <section className='grid gap-8 md:grid-cols-3'>
+    <section data-testid='MovieInfo' className='grid gap-8 md:grid-cols-3'>
       <div className='mx-auto h-[500px] w-full animate-fadeIn overflow-clip rounded-md bg-purple-400 min-[460px]:w-[80%] sm:h-[600px] md:h-[400px] md:w-full lg:h-[500px]'>
         <picture>
           <source
@@ -43,6 +43,7 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
             }
           />
           <Image
+            data-testid='MovieInfo-img'
             className={`h-full w-full rounded-md ${
               poster_path ? 'object-cover' : ''
             } object-center`}
@@ -62,21 +63,30 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
       </div>
       <div className='animate-fadeIn md:col-start-2 md:col-end-4'>
         <div className='flex flex-col items-center justify-center gap-5 sm:flex-row md:max-w-3xl md:justify-start'>
-          <h2 className='text-center text-2xl font-semibold sm:text-3xl sm:leading-10'>
+          <h2
+            data-testid='MovieInfo-title'
+            className='text-center text-2xl font-semibold sm:text-3xl sm:leading-10'
+          >
             {title}
           </h2>
           <div className='flex items-center gap-5'>
             {release_date && (
-              <h3 className='text-xl font-semibold sm:text-2xl'>
+              <h3
+                data-testid='MovieInfo-release'
+                className='text-xl font-semibold sm:text-2xl'
+              >
                 {release_date.split('-')[0]}
               </h3>
             )}
             {vote_count === 0 ? (
               <div className='flex h-[55px] w-[55px] items-center justify-center rounded-full border-2 border-purple-200 text-purple-200'>
-                <p className='text-center'>N/R</p>
+                <p data-testid='MovieInfo-vote-avg' className='text-center'>
+                  N/R
+                </p>
               </div>
             ) : (
               <div
+                data-testid='MovieInfo-vote-avg'
                 className={`flex items-center gap-2 ${
                   movieVotesAvg > 0 && movieVotesAvg < 6 && 'text-orange-400'
                 } ${
@@ -96,30 +106,49 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
           </div>
         </div>
         <div className='my-4'>
-          <h3 className='text-lg font-semibold'>Categories:</h3>
-          <ul className='mt-2 flex flex-wrap gap-4'>
-            {genres.map((category) => (
-              <li key={category.id}>
-                <Link
-                  className='block rounded-md bg-violet-600 p-2 duration-200 ease-in hover:scale-110'
-                  href={`/category/${category.id}-${transformToSlug(
-                    category.name
-                  )}`}
-                >
-                  {category.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <h3
+            data-testid='MovieInfo-categories-title'
+            className='text-lg font-semibold'
+          >
+            Categories:
+          </h3>
+          {genres.length > 0 ? (
+            <ul
+              data-testid='MovieInfo-categories-list'
+              className='mt-2 flex flex-wrap gap-4'
+            >
+              {genres.map((category) => (
+                <li data-testid='MovieInfo-categories-li' key={category.id}>
+                  <Link
+                    data-testid='MovieInfo-categories-link'
+                    className='block rounded-md bg-violet-600 p-2 duration-200 ease-in hover:scale-110'
+                    href={`/category/${category.id}-${transformToSlug(
+                      category.name
+                    )}`}
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className='leading-7 text-purple-200'>No categories yet</div>
+          )}
         </div>
         <div className='my-4'>
           <h3 className='text-lg font-semibold'>Overview:</h3>
-          <p className='max-w-[700px] text-justify leading-7 text-purple-200'>
-            {overview}
+          <p
+            data-testid='MovieInfo-overview'
+            className='max-w-[700px] text-justify leading-7 text-purple-200'
+          >
+            {overview || 'Overview not available yet'}
           </p>
         </div>
 
-        <div className='my-4 grid gap-4 min-[400px]:grid-cols-2 sm:grid-cols-3 sm:gap-6'>
+        <div
+          data-testid='MovieInfo-crewjob'
+          className='my-4 grid gap-4 min-[400px]:grid-cols-2 sm:grid-cols-3 sm:gap-6'
+        >
           {directors && <CrewJobInfo crew={directors} />}
           {producers && (
             <CrewJobInfo crew={producers} excludeJobs={['Director']} />

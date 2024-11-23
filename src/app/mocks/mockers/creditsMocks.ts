@@ -45,22 +45,12 @@ export const generateMockedCreditCrew = (): CreditCrew => ({
     'Production',
     'Writing',
   ]),
-  job: faker.helpers.arrayElement([
-    'Director',
-    'Producer',
-    'Screenplay',
-    'Writer',
-  ]),
+  job: faker.helpers.arrayElement(['Director', 'Producer', 'Writer']),
 });
 
 export const generateMockedCreditCrewFiltered = (): CreditCrewFiltered => ({
   ...generateMockedCreditCrew(),
-  job: faker.helpers.arrayElements([
-    'Director',
-    'Producer',
-    'Screenplay',
-    'Writer',
-  ]),
+  job: faker.helpers.arrayElements(['Director', 'Producer', 'Writer']),
 });
 
 export const generateMockedCredits = (
@@ -123,12 +113,7 @@ export const generateMockedMovieCreditsCrew = (length: number): MovieCrew[] =>
       'Production',
       'Writing',
     ]),
-    job: faker.helpers.arrayElement([
-      'Director',
-      'Producer',
-      'Screenplay',
-      'Writer',
-    ]),
+    job: faker.helpers.arrayElement(['Director', 'Producer', 'Writer']),
   }));
 
 export const generateMockedMovieCrewFiltered = (
@@ -141,10 +126,5 @@ export const generateMockedMovieCrewFiltered = (
       'Production',
       'Writing',
     ]),
-    job: faker.helpers.arrayElements([
-      'Director',
-      'Producer',
-      'Screenplay',
-      'Writer',
-    ]),
+    job: faker.helpers.arrayElements(['Director', 'Producer', 'Writer']),
   }));
