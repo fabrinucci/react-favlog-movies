@@ -141,7 +141,7 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
             data-testid='MovieInfo-overview'
             className='max-w-[700px] text-justify leading-7 text-purple-200'
           >
-            {overview || 'Overview not available yet'}
+            {overview || "We don't have an overview about this movie."}
           </p>
         </div>
 

@@ -53,7 +53,9 @@ describe('Testing <MovieInfo />', () => {
       const overview = screen.getByTestId('MovieInfo-overview');
 
       expect(overview).toBeInTheDocument();
-      expect(overview).toHaveTextContent('Overview not available yet');
+      expect(overview).toHaveTextContent(
+        "We don't have an overview about this movie."
+      );
     });
   });
 
