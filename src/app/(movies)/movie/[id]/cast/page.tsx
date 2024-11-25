@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { config } from '@/config';
-import { MovieCast, MovieCrew } from '@/components/movie';
+import { MovieProfiles } from '@/components/movie';
 import { getMovie, getMovieCast, getMovieCrew } from '@/lib';
 
 interface Props {
@@ -69,15 +69,16 @@ export default async function Page({ params }: Props) {
             <div className='md:w-[50%]'>
               <h3 className='mb-6 text-xl font-semibold'>{`Cast (${movieCast.length})`}</h3>
               {movieCast.length > 0 ? (
-                <MovieCast movieId={params.id} />
+                <MovieProfiles profiles={movieCast} />
               ) : (
                 `There are no cast records added to ${movie.title}.`
               )}
             </div>
+
             <div className='md:w-[50%]'>
               <h3 className='mb-6 text-xl font-semibold'>{`Crew (${movieCrew.length})`}</h3>
               {movieCrew.length > 0 ? (
-                <MovieCrew movieId={params.id} />
+                <MovieProfiles profiles={movieCrew} />
               ) : (
                 <p>{`There are no crew records added to ${movie.title}.`}</p>
               )}
