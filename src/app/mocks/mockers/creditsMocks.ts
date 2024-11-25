@@ -116,7 +116,7 @@ export const generateMockedMovieCreditsCrew = (length: number): MovieCrew[] =>
     job: faker.helpers.arrayElement(['Director', 'Producer', 'Writer']),
   }));
 
-export const generateMockedMovieCrewFiltered = (
+export const generateMockedMovieCreditsCrewF = (
   length: number
 ): MovieCrewFiltered[] =>
   Array.from({ length }, () => ({
