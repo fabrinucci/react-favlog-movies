@@ -91,7 +91,7 @@ describe('Testing Pagination', () => {
     );
   });
 
-  it('Should apply different color class to the current page.', () => {
+  test('Should apply different color class to the current page.', () => {
     const newMockedMovies = { ...mockedMovies, page: 3, total_pages: 10 };
 
     render(<Pagination movies={newMockedMovies} />);
