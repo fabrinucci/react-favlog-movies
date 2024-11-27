@@ -90,7 +90,7 @@ export const generateMockedMovieCreditsGlobal = () => ({
     'Production',
     'Writing',
   ]),
-  name: faker.person.fullName(),
+  name: faker.person.lastName(),
   original_name: faker.person.fullName(),
   popularity: faker.number.float({ max: 10000, fractionDigits: 3 }),
   profile_path: `/${faker.string.nanoid()}.jpg`,
