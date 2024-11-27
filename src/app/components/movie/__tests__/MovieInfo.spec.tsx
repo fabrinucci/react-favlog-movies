@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { MovieInfo } from '../MovieInfo';
 import {
   generateMockedFullMovie,
-  generateMockedMovieCrewFiltered,
-} from '@/mocks/mockers';
+  generateMockedMovieCreditsCrewF,
+} from '@/mocks';
 import { config } from '@/config';
 
 const { MOVIE_PATH_SMALL, MOVIE_NOT_FOUND } = config;
@@ -11,13 +11,13 @@ const { MOVIE_PATH_SMALL, MOVIE_NOT_FOUND } = config;
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: any) => {
-    return <img {...props} fill='true' />;
+    return <img {...props} priority='true' />;
   },
 }));
 
 describe('Testing <MovieInfo />', () => {
   const mockedFullMovie = generateMockedFullMovie();
-  const mockedMovieCrewFiltered = generateMockedMovieCrewFiltered(10);
+  const mockedMovieCrewFiltered = generateMockedMovieCreditsCrewF(10);
 
   describe('Test global', () => {
     test('Should correctly render the movie info', () => {
@@ -281,7 +281,7 @@ describe('Testing <MovieInfo />', () => {
 
   describe('Test crew job', () => {
     test('Should render alternative text when there are no categories', () => {
-      const mockedMovieCrewFiltered = generateMockedMovieCrewFiltered(4);
+      const mockedMovieCrewFiltered = generateMockedMovieCreditsCrewF(4);
       render(
         <MovieInfo
           movie={mockedFullMovie}

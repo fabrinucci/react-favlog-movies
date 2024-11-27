@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { PersonMoviesCard } from '@/components/person';
-import { generateMockedCreditCast } from '@/mocks/mockers';
+import { generateMockedCreditCast } from '@/mocks';
 import { config } from '@/config';
 
 const { MOVIE_PATH_SMALL, MOVIE_NOT_FOUND } = config;

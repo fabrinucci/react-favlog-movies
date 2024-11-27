@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { config } from '@/config';
-import { generateMockedMovie } from '@/mocks/mockers';
+import { generateMockedMovie } from '@/mocks';
 import { MovieCardList } from '../MovieCardList';
 
 jest.mock('next/image', () => ({

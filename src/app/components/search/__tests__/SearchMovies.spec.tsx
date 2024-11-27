@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { SearchMovies } from '../SearchMovies';
 import { useSearchParams } from 'next/navigation';
-import { generateMockedMovies } from '@/mocks/mockers';
+import { generateMockedMovies } from '@/mocks';
 
 jest.mock('next/navigation');
 

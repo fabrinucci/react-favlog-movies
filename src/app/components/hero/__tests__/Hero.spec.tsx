@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Hero } from '../Hero';
 import { getHeroMovie } from '@/lib';
-import { generateMockedMovie } from '@/mocks/mockers';
+import { generateMockedMovie } from '@/mocks';
 
 jest.mock('../../../lib', () => ({
   getHeroMovie: jest.fn(),

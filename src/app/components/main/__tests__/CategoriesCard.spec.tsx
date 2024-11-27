@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { CategoriesCard } from '../CategoriesCard';
 import { getCategories } from '@/lib';
-import { generateCategories } from '@/mocks/mockers';
+import { generateCategories } from '@/mocks';
 
 jest.mock('../../../lib', () => ({
   getCategories: jest.fn(),

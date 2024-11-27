@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MoviesCard } from '@/components/main/MoviesCard';
 import { getMovies } from '@/lib';
-import { generateMockedMovies } from '@/mocks/mockers';
+import { generateMockedMovies } from '@/mocks';
 
 jest.mock('../../../lib', () => ({
   getMovies: jest.fn(),

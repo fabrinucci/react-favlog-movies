@@ -5,13 +5,13 @@ import {
   generateMockedFullMovie,
   generateMockedMovieCreditsCast,
   generateMockedMovieCreditsCrew,
-} from '@/mocks/mockers';
+} from '@/mocks';
 import { config } from '@/config';
 
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: any) => {
-    return <img {...props} fill='true' />;
+    return <img {...props} />;
   },
 }));
 

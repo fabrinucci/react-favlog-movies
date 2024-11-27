@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { PersonCard } from '@/components/person';
 import { getPerson } from '@/lib';
-import { generateMockedPerson } from '@/mocks/mockers';
+import { generateMockedPerson } from '@/mocks';
 import { config } from '@/config';
 
 const { MOVIE_PATH_SMALL, FEMALE_NOT_FOUND, MALE_NOT_FOUND } = config;
@@ -17,7 +17,7 @@ jest.mock('../PersonMain', () => ({
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: any) => {
-    return <img {...props} fill='true' />;
+    return <img {...props} />;
   },
 }));
 

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { SmallMovieCast } from '../SmallMovieCast';
 import { getMovieCast } from '@/lib';
-import { generateMockedMovieCreditsCast } from '@/mocks/mockers';
+import { generateMockedMovieCreditsCast } from '@/mocks';
 import { transformToSlug } from '@/utils';
 import { config } from '@/config';
 
@@ -14,7 +14,7 @@ jest.mock('../../../lib', () => ({
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: any) => {
-    return <img {...props} fill='true' />;
+    return <img {...props} />;
   },
 }));
 

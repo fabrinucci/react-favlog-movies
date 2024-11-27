@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { faker } from '@faker-js/faker';
 import { config } from '@/config';
-import { generateMockedMovie } from '@/mocks/mockers';
+import { generateMockedMovie } from '@/mocks';
 import { SearchMovieCard } from '../SearchMovieCard';
 
 jest.mock('next/image', () => ({

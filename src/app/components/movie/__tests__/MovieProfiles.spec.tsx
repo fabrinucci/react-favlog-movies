@@ -3,14 +3,14 @@ import { MovieProfiles } from '../MovieProfiles';
 import {
   generateMockedMovieCreditsCast,
   generateMockedMovieCreditsCrewF,
-} from '@/mocks/mockers';
+} from '@/mocks';
 import { config } from '@/config';
 import { formatStrings } from '@/utils';
 
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: any) => {
-    return <img {...props} fill='true' />;
+    return <img {...props} />;
   },
 }));
 

@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { CategoriesMovies } from '../CategoriesMovies';
-import { mockedPopularMovies } from '@/mocks/mockedResponse';
-import { generateCategories } from '@/mocks/mockers';
+import { generateCategories, generateMockedMovies } from '@/mocks';
 
 describe('Testing CategoriesMovies', () => {
+  const mockedPopularMovies = generateMockedMovies(10);
   test('Title should be the correct values', () => {
     const mockedCategories = generateCategories(5);
     render(

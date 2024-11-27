@@ -1,7 +1,7 @@
 import { usePathname, useSearchParams } from 'next/navigation';
 import { render, screen } from '@testing-library/react';
 import { Pagination } from '../Pagination';
-import { generateMockedFullMovies } from '@/mocks/mockers';
+import { generateMockedFullMovies } from '@/mocks';
 
 jest.mock('next/navigation');
 

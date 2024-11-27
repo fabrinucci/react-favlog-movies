@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { HeroCard } from '@/components/hero/HeroCard';
-import { generateMockedMovie } from '@/mocks/mockers';
+import { generateMockedMovie } from '@/mocks';
 
 describe('Testing HeroCard', () => {
   const mockedMovie = generateMockedMovie();

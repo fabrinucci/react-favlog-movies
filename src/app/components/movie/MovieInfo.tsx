@@ -56,8 +56,6 @@ export const MovieInfo = ({ movie, movieCrew }: Props) => {
             height={500}
             width={500}
             priority
-            blurDataURL={`${MOVIE_PATH_SMALL}${poster_path}`}
-            placeholder='blur'
           />
         </picture>
       </div>

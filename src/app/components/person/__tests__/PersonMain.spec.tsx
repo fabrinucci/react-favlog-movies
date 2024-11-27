@@ -1,10 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { PersonMain } from '@/components/person';
 import { getPerson, getPersonCredits } from '@/lib';
-import {
-  generateMockedPerson,
-  generateMockedPersonCredits,
-} from '@/mocks/mockers';
+import { generateMockedPerson, generateMockedPersonCredits } from '@/mocks';
 
 jest.mock('../../../lib', () => ({
   getPerson: jest.fn(),

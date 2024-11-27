@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { CreditsList } from '@/components/person';
-import { generateMockedPersonCredits } from '@/mocks/mockers';
+import { generateMockedPersonCredits } from '@/mocks';
 
 describe('Testing BiographyInfo', () => {
   test('Should render lists', async () => {

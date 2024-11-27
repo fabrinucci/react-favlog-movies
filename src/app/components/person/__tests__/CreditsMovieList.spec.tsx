@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { CreditsMovieList } from '@/components/person';
-import { generateMockedCredits } from '@/mocks/mockers';
+import { generateMockedCredits } from '@/mocks';
 import type { CreditCast, CreditCrewFiltered } from '@/interfaces';
 import { formatStrings } from '@/utils';
 

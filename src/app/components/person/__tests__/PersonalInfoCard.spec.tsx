@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { PersonalInfoCard } from '@/components/person';
 import { getPerson } from '@/lib';
-import { generateMockedPerson } from '@/mocks/mockers';
+import { generateMockedPerson } from '@/mocks';
 import { calculateAge } from '@/utils';
 
 jest.mock('../../../lib', () => ({
