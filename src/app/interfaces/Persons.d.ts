@@ -4,7 +4,7 @@ export interface Person {
   biography:            string
   birthday:             string | null
   deathday:             string | null
-  gender:               number  
+  gender:               0 | 1 | 2 | 3  
   homepage:             string | null
   id:                   number
   imdb_id:              string | null

@@ -24,6 +24,7 @@ export function CreditsList({ credits, knownFor }: Props) {
 
   return (
     <div
+      data-testid='CreditsList'
       className={`flex ${
         knownFor === 'Acting' ? 'flex-col' : 'flex-col-reverse'
       } gap-10`}

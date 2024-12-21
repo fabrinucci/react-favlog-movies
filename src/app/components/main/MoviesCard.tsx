@@ -14,10 +14,18 @@ export async function MoviesCard({ movieType, moviesTitle }: Props) {
     <section className='animate-fadeIn'>
       <div className='py-5'>
         <div className='mb-5 flex items-center justify-between'>
-          <h3 className='text-xl font-semibold md:text-2xl'>{moviesTitle}</h3>
+          <h3
+            data-testid='MoviesCard-title'
+            className='text-xl font-semibold md:text-2xl'
+          >
+            {moviesTitle}
+          </h3>
         </div>
 
-        <ul className='relative h-full w-full overflow-x-scroll scroll-smooth whitespace-nowrap'>
+        <ul
+          data-testid='MoviesCard-list'
+          className='relative h-full w-full overflow-x-scroll scroll-smooth whitespace-nowrap'
+        >
           {movies?.map((movie) => (
             <MovieCardList key={movie.id} movie={movie} />
           ))}
