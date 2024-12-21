@@ -20,14 +20,27 @@ export async function PersonMain({ id }: Props) {
   const { cast, crew } = personCredits as PersonCredits;
 
   return (
-    <div className='mt-6 md:mt-0'>
-      <h2 className='hidden text-4xl font-semibold md:mb-6 md:block'>{name}</h2>
+    <div data-testid='PersonMain' className='mt-6 md:mt-0'>
+      <h2
+        data-testid='PersonMain-name'
+        className='hidden text-4xl font-semibold md:mb-6 md:block'
+      >
+        {name}
+      </h2>
       <div className='flex flex-col gap-6'>
         <BiographyInfo name={name} biography={biography} />
 
         <div className='flex flex-col gap-3'>
-          <h3 className='text-xl font-semibold'>Known For</h3>
-          <ul className='grid grid-cols-fill-2 justify-center gap-3 lg:gap-6'>
+          <h3
+            data-testid='PersonMain-known-for'
+            className='text-xl font-semibold'
+          >
+            Known For
+          </h3>
+          <ul
+            data-testid='PersonMain-movies-list'
+            className='grid grid-cols-fill-2 justify-center gap-3 lg:gap-6'
+          >
             {(person.known_for_department === 'Acting'
               ? cast
               : groupCrewJobs(crew)

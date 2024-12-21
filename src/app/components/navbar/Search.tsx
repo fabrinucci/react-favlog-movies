@@ -22,7 +22,7 @@ export const Search = () => {
   }, WAIT_BETWEEN_CHANGE);
 
   return (
-    <div>
+    <div data-testid='Search'>
       <input
         className='h-10 w-full rounded-md bg-[#f3d8ff] px-3 py-1 text-black transition-all placeholder:text-black hover:bg-[#f7e5ff] hover:outline-[#f7e5ff] focus:outline-1 focus:outline-[#f7e5ff] sm:w-56'
         type='text'

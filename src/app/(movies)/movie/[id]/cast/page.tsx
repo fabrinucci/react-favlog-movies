@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { MovieCast, MovieCrew } from '@/components/movie';
+import { config } from '@/config';
+import { MovieProfiles } from '@/components/movie';
 import { getMovie, getMovieCast, getMovieCrew } from '@/lib';
 
 interface Props {
@@ -26,7 +27,7 @@ export default async function Page({ params }: Props) {
   const movieCast = await getMovieCast({ id: params.id });
   const movieCrew = await getMovieCrew({ id: params.id });
 
-  const MOVIE_NOT_FOUND = '/assets/movieNotFound.svg';
+  const { MOVIE_PATH_SMALL, MOVIE_NOT_FOUND } = config;
 
   return (
     <div className='pt-[120px] sm:pt-[80px]'>
@@ -40,7 +41,7 @@ export default async function Page({ params }: Props) {
                 }`}
                 src={
                   movie?.poster_path
-                    ? `https://image.tmdb.org/t/p/w300${movie?.poster_path}`
+                    ? `${MOVIE_PATH_SMALL}${movie?.poster_path}`
                     : MOVIE_NOT_FOUND
                 }
                 alt={movie?.title}
@@ -68,15 +69,16 @@ export default async function Page({ params }: Props) {
             <div className='md:w-[50%]'>
               <h3 className='mb-6 text-xl font-semibold'>{`Cast (${movieCast.length})`}</h3>
               {movieCast.length > 0 ? (
-                <MovieCast movieId={params.id} />
+                <MovieProfiles profiles={movieCast} />
               ) : (
                 `There are no cast records added to ${movie.title}.`
               )}
             </div>
+
             <div className='md:w-[50%]'>
               <h3 className='mb-6 text-xl font-semibold'>{`Crew (${movieCrew.length})`}</h3>
               {movieCrew.length > 0 ? (
-                <MovieCrew movieId={params.id} />
+                <MovieProfiles profiles={movieCrew} />
               ) : (
                 <p>{`There are no crew records added to ${movie.title}.`}</p>
               )}

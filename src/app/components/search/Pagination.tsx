@@ -48,11 +48,13 @@ export const Pagination = ({ movies }: Props) => {
     const endingPage = Math.min(startingPage + LIMIT - 1, totalPages);
     return createPagination(endingPage).slice(startingPage - 1);
   };
+
   return (
     <section className='flex justify-center gap-6'>
       {currentPage > 1 && (
         <>
           <Link
+            data-testid='Pagination-link-first-page'
             href={
               query ? `${pathname}?query=${query}&page=1` : `${pathname}?page=1`
             }
@@ -61,6 +63,7 @@ export const Pagination = ({ movies }: Props) => {
             <RxDoubleArrowLeft />
           </Link>
           <Link
+            data-testid='Pagination-link-prev-page'
             href={
               query
                 ? `${pathname}?query=${query}&page=${currentPage - 1}`
@@ -76,6 +79,7 @@ export const Pagination = ({ movies }: Props) => {
         (searchPage) =>
           searchPage <= 500 && (
             <Link
+              data-testid={`Pagination-link-${searchPage}-page`}
               key={searchPage}
               href={
                 query
@@ -95,6 +99,7 @@ export const Pagination = ({ movies }: Props) => {
       {currentPage !== totalPages && currentPage < 500 && (
         <>
           <Link
+            data-testid='Pagination-link-next-page'
             href={
               query
                 ? `${pathname}?query=${query}&page=${currentPage + 1}`
@@ -106,9 +111,12 @@ export const Pagination = ({ movies }: Props) => {
           </Link>
 
           <Link
+            data-testid='Pagination-link-last-page'
             href={
               query
-                ? `${pathname}?query=${query}&page=${totalPages}`
+                ? `${pathname}?query=${query}&page=${
+                    totalPages <= 500 ? totalPages : 500
+                  }`
                 : `${pathname}?page=${totalPages <= 500 ? totalPages : 500}`
             }
             className='rounded-lg bg-violet-500 p-3 text-xl duration-200 ease-in-out hover:bg-violet-700'
